@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:soccer_management/widgets/widgets_propios.dart';
 
 class LogInPage extends StatelessWidget {
   static String id = 'LogIn_page';
