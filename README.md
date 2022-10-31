@@ -1,6 +1,8 @@
 # soccer_management
 
-A new Flutter project.
+Proyecto de UX.
+
+Administracion de ligas de futbol.
 
 ## Getting Started
 
