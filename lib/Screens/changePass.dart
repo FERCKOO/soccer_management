@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ForgotPassPage extends StatelessWidget {
-  static String id = 'forgotPassword_page';
+class ChangePassPage extends StatelessWidget {
+  static String id = 'ChangePassword_page';
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ForgotPassPage extends StatelessWidget {
         */
         title:
         Text(
-          'Recuperar contraseña',
+          'Cambiar contraseña',
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Color(0xFF333333),
@@ -42,7 +42,9 @@ class ForgotPassPage extends StatelessWidget {
             /*
                * Seccion de formulario
               */
-            _textFieldEmail(),
+            _textFieldPassword(),
+            SizedBox(height: 25,),
+            _textFieldConfirmPassword(),
             SizedBox(height: 100),
             _buttonSingIn()
 
@@ -56,11 +58,21 @@ class ForgotPassPage extends StatelessWidget {
   void setState(Null Function() param0) {}
 }
 
-Widget _textFieldEmail() {
+Widget _textFieldPassword() {
   return _textFieldGeneral(
-    labelText: 'Correo electronico',
-    icon: Icons.email_outlined,
-    hintText: 'example@hotmail.com',
+    labelText: 'Nueva Contraseña',
+    icon: Icons.lock_outline_rounded,
+    hintText: '*********',
+    obscureText: true,
+    onChanged: () {},
+  );
+}
+
+Widget _textFieldConfirmPassword() {
+  return _textFieldGeneral(
+    labelText: 'Confirmar contraseña',
+    icon: Icons.lock_outline_rounded,
+    hintText: '*********',
     obscureText: true,
     onChanged: () {},
   );
@@ -78,7 +90,7 @@ Widget _buttonSingIn() {
     ),
     onPressed: () {},
     child: Text(
-           'Enviar',
+           'Actualizar contraseña',
            style: TextStyle(
             color: Colors.white,
             fontSize: 18,
