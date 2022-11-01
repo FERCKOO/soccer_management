@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Screens/ChangePass.dart';
+import 'Screens/principal.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Pantalla de inicio
-      initialRoute: ChangePassPage.id,
+      initialRoute: PrincipalPage.id,
       routes: {
-        ChangePassPage.id:(context) => ChangePassPage(),
+        PrincipalPage.id:(context) => PrincipalPage(),
       },
     );
   }
