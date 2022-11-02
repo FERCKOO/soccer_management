@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:filter_list/filter_list.dart';
 
-class CalendarPage extends StatelessWidget{
+class CalendarPage extends StatelessWidget {
   static String id = 'Calendar_Page';
   @override
   Widget build(BuildContext context) {
@@ -31,49 +31,47 @@ class CalendarPage extends StatelessWidget{
             /*
               * Imagen de la liga.
             */
-          Container(
-            padding: EdgeInsets.only(top: 34),
-            alignment: Alignment.topCenter,
-            child: Icon(
-              Icons.image,
-              size: 70,
+            Container(
+              padding: EdgeInsets.only(top: 34),
+              alignment: Alignment.topCenter,
+              child: Icon(
+                Icons.image,
+                size: 70,
+              ),
             ),
-          ),
-          /**
+            /**
            * Nombre del jugador
            */
-          Container(
-            child: Text(
-              'Nombre de liga',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Lato',
+            Container(
+              child: Text(
+                'Nombre de liga',
+                style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato',
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-          SizedBox(height: 8),
+            SizedBox(height: 8),
 
-          /**
+            /**
              * Linea horizontal.
             */
-          Container(
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  color: Color(0xFFE51E3F),
-                  width: 2,
+            Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFFE51E3F),
+                    width: 2,
+                  ),
                 ),
               ),
             ),
-          ),
             Text('data')
           ],
         ),
       ),
-    )
-    );
+    ));
   }
-
 }

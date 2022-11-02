@@ -21,23 +21,22 @@ class LogUpPage extends StatelessWidget {
         /*
          * Teto de regristro 
         */
-        title:
-            Text(
-              'Registro',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFF333333),
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Lato',
-              ),
-            ),
-            centerTitle: true,
+        title: Text(
+          'Registro',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Color(0xFF333333),
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            fontFamily: 'Lato',
+          ),
+        ),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [     
+          children: [
             /*
                * Imagen del usuario.
               */
@@ -62,39 +61,41 @@ class LogUpPage extends StatelessWidget {
             _textFieldPassword(),
             SizedBox(height: 15),
             _textFieldConfirmPassword(),
-            SizedBox(height: 20,),
+            SizedBox(
+              height: 20,
+            ),
             _buttonSingUp(),
-
           ],
         ),
       ),
-    )
-    );
+    ));
   }
 }
 
 Widget _buttonSingUp() {
-  return  RaisedButton(
-    color: Color(0xFF011C53),
-    padding: EdgeInsets.symmetric(
-      horizontal: 100,
-      vertical: 20,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xFF011C53),
+      padding: EdgeInsets.symmetric(
+        horizontal: 100,
+        vertical: 20,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
     onPressed: () {},
     child: Text(
-           'Registrarse',
-           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Lato'
-           ),
-          ),
+      'Registrarse',
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato'),
+    ),
   );
 }
+
 /*
  * Seccion de metodos y funciones
 */
@@ -149,12 +150,10 @@ Widget _textFieldConfirmPassword() {
   );
 }
 
-
 /**
  * Clase generica de text labels
  */
 class _textFieldGeneral extends StatefulWidget {
-
   final String labelText; //Texto del label
   final String? hintText; //Texto de muestra
   final TextInputType? keyboardType;
@@ -186,10 +185,10 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-            prefixIcon: Icon(widget.icon),
-            labelText: '${widget.labelText}',
-            hintText: widget.hintText,
-          ),
+          prefixIcon: Icon(widget.icon),
+          labelText: '${widget.labelText}',
+          hintText: widget.hintText,
+        ),
         onChanged: (value) {},
       ),
     );
@@ -198,7 +197,6 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
 
 // clase fecha de nacimiento
 class _formDateGeneral extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -224,7 +222,7 @@ class _formDateGeneral extends StatelessWidget {
             ),
           ],
         ),
-    ),
+      ),
     );
   }
 }

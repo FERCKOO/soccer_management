@@ -14,8 +14,7 @@ class LogInPage extends StatelessWidget {
         /*
          * Texto de inicio sesion
         */
-        title:
-        Text(
+        title: Text(
           'Iniciar sesión',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -39,15 +38,15 @@ class LogInPage extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Image(image: AssetImage(
+                      child: Image(
+                    image: AssetImage(
                       'Logo.png',
                     ),
                     width: 10,
                     height: 20,
-                    ) 
-                  ),
+                  )),
                 ],
-                ),
+              ),
             ),
             SizedBox(height: 20),
 
@@ -56,16 +55,16 @@ class LogInPage extends StatelessWidget {
             */
             Container(
               margin: EdgeInsets.symmetric(
-                        horizontal: 80,
-                      ),
+                horizontal: 80,
+              ),
               decoration: BoxDecoration(
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Color(0xFFE51E3F),
-                                width: 2,
-                                ),
-                            ),
-                          ),
+                border: Border(
+                  bottom: BorderSide(
+                    color: Color(0xFFE51E3F),
+                    width: 2,
+                  ),
+                ),
+              ),
             ),
             SizedBox(height: 20),
             /**
@@ -73,15 +72,15 @@ class LogInPage extends StatelessWidget {
             */
             Container(
               child: Text(
-                        'BIENVENIDO',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Color(0xFF333333),
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Lato',
-                        ),
-                      ),
+                'BIENVENIDO',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFF333333),
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato',
+                ),
+              ),
             ),
             /*
                * Seccion de formulario
@@ -99,68 +98,64 @@ class LogInPage extends StatelessWidget {
               * Seccion de actualizacion de contraseña
             */
             Center(
-                child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "¿Olvidaste tu contraseña?",
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Color(0xFF4890B8)
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "¿Olvidaste tu contraseña?",
+                      style: TextStyle(fontSize: 14, color: Color(0xFF4890B8)),
                     ),
-                  ),
-                  GestureDetector( // Detecta alguna accion en texto
-                    onTap: ((){
-                      print('object 1');
-                    }),
-                    child: Text(
-                      ' Da click aqui',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xFF4890B8),
-                        decoration: TextDecoration.underline,
+                    GestureDetector(
+                      // Detecta alguna accion en texto
+                      onTap: (() {
+                        print('object 1');
+                      }),
+                      child: Text(
+                        ' Da click aqui',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF4890B8),
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
-            
             ),
             SizedBox(height: 25),
             /*
               * Seccion para registrarse
             */
             Center(
-                child: Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: ((){
-                      print('object 2');
-                    }),
-                    child: Text(
-                      'Registrate dando click aqui.',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xFF4890B8),
-                        decoration: TextDecoration.underline,
+              child: Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: (() {
+                        print('object 2');
+                      }),
+                      child: Text(
+                        'Registrate dando click aqui.',
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xFF4890B8),
+                          decoration: TextDecoration.underline,
+                        ),
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
             ),
           ],
         ),
       ),
-    )
-    );
+    ));
   }
-  
+
   void setState(Null Function() param0) {}
 }
 
@@ -174,7 +169,7 @@ Widget _textFieldEmail() {
 }
 
 Widget _textFieldPassword() {
-  return _textFieldGeneral( 
+  return _textFieldGeneral(
     labelText: 'Contraseña',
     icon: Icons.lock_outline_rounded,
     hintText: '*********',
@@ -184,25 +179,26 @@ Widget _textFieldPassword() {
 }
 
 Widget _buttonSingIn() {
-  return  RaisedButton(
-    color: Color(0xFF011C53),
-    padding: EdgeInsets.symmetric(
-      horizontal: 100,
-      vertical: 20,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xFF011C53),
+      padding: EdgeInsets.symmetric(
+        horizontal: 100,
+        vertical: 20,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
     onPressed: () {},
     child: Text(
-           'Iniciar sesion',
-           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Lato'
-           ),
-          ),
+      'Iniciar sesion',
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato'),
+    ),
   );
 }
 
@@ -210,7 +206,6 @@ Widget _buttonSingIn() {
  * Clase generica de text labels
  */
 class _textFieldGeneral extends StatefulWidget {
-
   final String labelText; //Texto del label
   final String? hintText; //Texto de muestra
   final TextInputType? keyboardType;
@@ -242,10 +237,10 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-            prefixIcon: Icon(widget.icon),
-            labelText: '${widget.labelText}',
-            hintText: widget.hintText,
-          ),
+          prefixIcon: Icon(widget.icon),
+          labelText: '${widget.labelText}',
+          hintText: widget.hintText,
+        ),
         onChanged: (value) {},
       ),
     );

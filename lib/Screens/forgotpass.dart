@@ -21,8 +21,7 @@ class ForgotPassPage extends StatelessWidget {
         /*
          * Texto de inicio sesion
         */
-        title:
-        Text(
+        title: Text(
           'Recuperar contraseña',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -45,14 +44,12 @@ class ForgotPassPage extends StatelessWidget {
             _textFieldEmail(),
             SizedBox(height: 100),
             _buttonSingIn()
-
           ],
         ),
       ),
-    )
-    );
+    ));
   }
-  
+
   void setState(Null Function() param0) {}
 }
 
@@ -67,25 +64,26 @@ Widget _textFieldEmail() {
 }
 
 Widget _buttonSingIn() {
-  return  RaisedButton(
-    color: Color(0xFF011C53),
-    padding: EdgeInsets.symmetric(
-      horizontal: 100,
-      vertical: 20,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xFF011C53),
+      padding: EdgeInsets.symmetric(
+        horizontal: 100,
+        vertical: 20,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
     onPressed: () {},
     child: Text(
-           'Enviar',
-           style: TextStyle(
-            color: Colors.white,
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Lato'
-           ),
-          ),
+      'Enviar',
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato'),
+    ),
   );
 }
 
@@ -93,7 +91,6 @@ Widget _buttonSingIn() {
  * Clase generica de text labels
  */
 class _textFieldGeneral extends StatefulWidget {
-
   final String labelText; //Texto del label
   final String? hintText; //Texto de muestra
   final TextInputType? keyboardType;
@@ -125,10 +122,10 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-            prefixIcon: Icon(widget.icon),
-            labelText: '${widget.labelText}',
-            hintText: widget.hintText,
-          ),
+          prefixIcon: Icon(widget.icon),
+          labelText: '${widget.labelText}',
+          hintText: widget.hintText,
+        ),
         onChanged: (value) {},
       ),
     );

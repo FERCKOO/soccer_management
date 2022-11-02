@@ -97,25 +97,24 @@ class PrincipalPage extends StatelessWidget {
               ),
             ),
           ),
-
           SizedBox(
             height: 340,
             child: ListView(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 5,
-                ),
-                child: 
-                ListTile(
-                  leading: CircleAvatar(backgroundImage: AssetImage("assets/react.png")),
-                  title: Text('Nombre liga'),
-                  subtitle: Text('Nombre equipo'),
-                ),
-              )
-            ],
-          ),
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 5,
+                  ),
+                  child: ListTile(
+                    leading: CircleAvatar(
+                        backgroundImage: AssetImage("assets/react.png")),
+                    title: Text('Nombre liga'),
+                    subtitle: Text('Nombre equipo'),
+                  ),
+                )
+              ],
             ),
+          ),
           _button(),
         ],
       ),
@@ -125,14 +124,16 @@ class PrincipalPage extends StatelessWidget {
 }
 
 Widget _button() {
-  return RaisedButton(
-    color: Color(0xFF011C53),
-    padding: EdgeInsets.symmetric(
-      horizontal: 80,
-      vertical: 20,
-    ),
-    shape: RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: Color(0xFF011C53),
+      padding: EdgeInsets.symmetric(
+        horizontal: 80,
+        vertical: 20,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
     ),
     child: Text(
       'Inscribirte a un equipo',
@@ -265,7 +266,7 @@ class _BottomBarState extends State<_BottomBar> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                IconButton(  
+                IconButton(
                   icon: Icon(
                     Icons.person_outline,
                     color: currentIndex != 4 ? Colors.white : Color(0xFFE51E3F),
