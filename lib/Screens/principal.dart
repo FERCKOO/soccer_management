@@ -83,20 +83,7 @@ class PrincipalPage extends StatelessWidget {
           /**
              * Contenedor de la etiqueta
              */
-          Container(
-            decoration: BoxDecoration(
-              color: Color(0xFF011C53),
-            ),
-            height: 25,
-            width: double.infinity,
-            child: Text(
-              'Sin equipos',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
+            _etiqueta('Sin equipos'),
 
           SizedBox(
             height: 340,
@@ -283,6 +270,37 @@ class _BottomBarState extends State<_BottomBar> {
               ],
             ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+Widget _etiqueta(String name) {
+  return _etiquetaclase(
+    name: name,
+  );
+}
+
+class _etiquetaclase extends StatelessWidget {
+  final String name;
+
+  const _etiquetaclase({required this.name});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(top:5),
+      decoration: BoxDecoration(
+        color: Color(0xFF011C53),
+      ),
+      height: 25,
+      width: double.infinity,
+      child: Text(
+        '$name',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          color: Colors.white,
         ),
       ),
     );

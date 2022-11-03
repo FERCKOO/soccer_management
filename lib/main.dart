@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'Screens/calendar.dart';
+import 'Screens/principal.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,9 +18,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Pantalla de inicio
-      initialRoute: CalendarPage.id,
+      initialRoute: PrincipalPage.id,
       routes: {
-        CalendarPage.id:(context) => CalendarPage(),
+        PrincipalPage.id:(context) => PrincipalPage(),
       },
     );
   }
