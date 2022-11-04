@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'Screens/calendar.dart';
 import 'Screens/principal.dart';
+import 'Screens/principal.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         CalendarPage.id: (context) => CalendarPage(),
       },
+      home: PrincipalPage(),
     );
   }
 }
