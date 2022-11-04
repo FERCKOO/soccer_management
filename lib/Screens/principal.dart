@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/notifications.dart';
+import 'joinTeam.dart';
 
 class PrincipalPage extends StatelessWidget {
   static String id = "Principal_page";
@@ -17,7 +19,10 @@ class PrincipalPage extends StatelessWidget {
             icon: Icon(
               Icons.notifications_none,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Route route = MaterialPageRoute(builder: (bc) => NotificationsPage());
+              Navigator.of(context).push(route);
+            }, // Accion de la notificacion
           ),
         ],
         /*
@@ -35,7 +40,14 @@ class PrincipalPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Column(
+      body: _body(context),
+      bottomNavigationBar: _BottomBar(),
+    ));
+  }
+}
+
+Widget _body(context) {
+  return Column(
         mainAxisSize: MainAxisSize.min,
         children: [
           /*
@@ -103,15 +115,12 @@ class PrincipalPage extends StatelessWidget {
             ],
           ),
             ),
-          _button(),
-        ],
-      ),
-      bottomNavigationBar: _BottomBar(),
-    ));
-  }
+          _button(context),
+        ]
+  );
 }
 
-Widget _button() {
+Widget _button(context) {
   return RaisedButton(
     color: Color(0xFF011C53),
     padding: EdgeInsets.symmetric(
@@ -129,7 +138,10 @@ Widget _button() {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
-    onPressed: () {},
+    onPressed: () {
+      Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
+      Navigator.of(context).push(route);
+    },
   );
 }
 /*
@@ -143,13 +155,13 @@ class _BottomBar extends StatefulWidget {
 
 class _BottomBarState extends State<_BottomBar> {
   // Indice de la barra.
-  int currentIndex = 0;
+  /*int currentIndex = 0;
   setBottomBarIndex(index) {
     setState(() {
       currentIndex = index;
     });
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -165,18 +177,18 @@ class _BottomBarState extends State<_BottomBar> {
                 IconButton(
                   icon: Icon(
                     Icons.home_outlined,
-                    color: currentIndex != 0 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 0 ? Colors.white :*/ Color(0xFFE51E3F),
                   ),
                   onPressed: () {
                     focusColor:
                     Colors.black;
-                    setBottomBarIndex(0);
+                    //setBottomBarIndex(0);
                   },
                 ),
                 Text(
                   'Home',
                   style: TextStyle(
-                    color: currentIndex != 0 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 0 ? Colors.white :*/ Color(0xFFE51E3F),
                   ),
                 ),
               ],
@@ -189,16 +201,16 @@ class _BottomBarState extends State<_BottomBar> {
                 IconButton(
                   icon: Icon(
                     Icons.calendar_month,
-                    color: currentIndex != 1 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 1 ? */Colors.white //: Color(0xFFE51E3F),
                   ),
                   onPressed: () {
-                    setBottomBarIndex(1);
+                    //setBottomBarIndex(1);
                   },
                 ),
                 Text(
                   'Calendario',
                   style: TextStyle(
-                    color: currentIndex != 1 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 1 ? */Colors.white// : Color(0xFFE51E3F),
                   ),
                 ),
               ],
@@ -211,16 +223,18 @@ class _BottomBarState extends State<_BottomBar> {
                 IconButton(
                   icon: Icon(
                     Icons.add,
-                    color: currentIndex != 2 ? Colors.white : Color(0xFFE51E3F),
+                    color:/* currentIndex != 2 ?*/ Colors.white// : Color(0xFFE51E3F),
                   ),
                   onPressed: () {
-                    setBottomBarIndex(2);
+                    //setBottomBarIndex(2);
+                    Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
+                    Navigator.of(context).push(route);
                   },
                 ),
                 Text(
                   'Inscribirme',
                   style: TextStyle(
-                    color: currentIndex != 2 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 2 ?*/ Colors.white// : Color(0xFFE51E3F),
                   ),
                 ),
               ],
@@ -233,16 +247,16 @@ class _BottomBarState extends State<_BottomBar> {
                 IconButton(
                   icon: Icon(
                     Icons.sports_soccer,
-                    color: currentIndex != 3 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 3 ? */Colors.white// : Color(0xFFE51E3F),
                   ),
                   onPressed: () {
-                    setBottomBarIndex(3);
+                    //setBottomBarIndex(3);
                   },
                 ),
                 Text(
                   'Mis ligas',
                   style: TextStyle(
-                    color: currentIndex != 3 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 3 ? */Colors.white// : Color(0xFFE51E3F),
                   ),
                 ),
               ],
@@ -255,16 +269,16 @@ class _BottomBarState extends State<_BottomBar> {
                 IconButton(  
                   icon: Icon(
                     Icons.person_outline,
-                    color: currentIndex != 4 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 4 ?*/ Colors.white //: Color(0xFFE51E3F),
                   ),
                   onPressed: () {
-                    setBottomBarIndex(4);
+                    //setBottomBarIndex(4);
                   },
                 ),
                 Text(
                   'Perfil',
                   style: TextStyle(
-                    color: currentIndex != 4 ? Colors.white : Color(0xFFE51E3F),
+                    color: /*currentIndex != 4 ?*/ Colors.white// : Color(0xFFE51E3F),
                   ),
                 ),
               ],

@@ -15,7 +15,9 @@ class NotificationsPage extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         /*
          * Texto de inicio sesion
