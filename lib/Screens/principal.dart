@@ -137,7 +137,7 @@ Widget _body(context) {
 Widget _button(context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Color(0xFF011C53),
+      primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         horizontal: 80,
         vertical: 20,

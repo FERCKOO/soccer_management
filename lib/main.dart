@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'Screens/calendar.dart';
 import 'Screens/principal.dart';
-import 'Screens/principal.dart';
 
 void main() => runApp(MyApp());
 

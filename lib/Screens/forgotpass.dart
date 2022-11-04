@@ -66,7 +66,7 @@ Widget _textFieldEmail() {
 Widget _buttonSingIn() {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Color(0xFF011C53),
+      primary: Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         horizontal: 100,
         vertical: 20,
