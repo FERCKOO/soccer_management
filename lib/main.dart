@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'Screens/calendar.dart';
+import 'Screens/principal.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       // Pantalla de inicio
       initialRoute: CalendarPage.id,
       routes: {
-        CalendarPage.id:(context) => CalendarPage(),
+        CalendarPage.id: (context) => CalendarPage(),
       },
     );
   }
