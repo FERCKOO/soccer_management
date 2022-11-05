@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_management/bottom_drawer_layout.dart';
+import '../Screens/logUp.dart';
+import '../Screens/logIn.dart';
+import '../router/routes.dart';
 import 'Screens/calendar.dart';
 import 'Screens/principal.dart';
 
@@ -16,11 +20,8 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       // Pantalla de inicio
-      initialRoute: CalendarPage.id,
-      routes: {
-        CalendarPage.id: (context) => CalendarPage(),
-      },
-      home: PrincipalPage(),
+      initialRoute: LayoutBottomNavigatorBar.id,
+      routes: customRoutes,
     );
   }
 }

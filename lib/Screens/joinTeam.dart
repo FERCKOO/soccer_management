@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/principal.dart';
+import '../widgets/widgets_propios.dart';
+import '../Screens/principal.dart';
 
 class JoinTeamPage extends StatelessWidget {
   static String id = 'JoinTeam_Page';
@@ -96,7 +97,6 @@ class JoinTeamPage extends StatelessWidget {
             ),
           ],
         ),
-        bottomNavigationBar: _BottomBar(),
       ),
     );
   }
@@ -127,148 +127,6 @@ class _etiquetaclase extends StatelessWidget {
         textAlign: TextAlign.center,
         style: TextStyle(
           color: Colors.white,
-        ),
-      ),
-    );
-  }
-}
-
-// Barra inferior
-class _BottomBar extends StatefulWidget {
-  @override
-  _BottomBarState createState() => _BottomBarState();
-}
-
-class _BottomBarState extends State<_BottomBar> {
-  // Indice de la barra.
-  int currentIndex = 2;
-  setBottomBarIndex(index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      color: Color(0xFF3A4280),
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            // Primer icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.home_outlined,
-                    color: currentIndex != 0 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    focusColor:
-                    Colors.black;
-                    setBottomBarIndex(0);
-                    Navigator.of(context).pop();
-                  },
-                ),
-                Text(
-                  'Home',
-                  style: TextStyle(
-                    color: currentIndex != 0 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-
-            // Segundo icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.calendar_month,
-                    color: currentIndex != 1 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    setBottomBarIndex(1);
-                  },
-                ),
-                Text(
-                  'Calendario',
-                  style: TextStyle(
-                    color: currentIndex != 1 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-
-            // Tercer icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.add,
-                    color: currentIndex != 2 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    setBottomBarIndex(2);
-                  },
-                ),
-                Text(
-                  'Inscribirme',
-                  style: TextStyle(
-                    color: currentIndex != 2 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-
-            // Cuarto icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.sports_soccer,
-                    color: currentIndex != 3 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    setBottomBarIndex(3);
-                  },
-                ),
-                Text(
-                  'Mis ligas',
-                  style: TextStyle(
-                    color: currentIndex != 3 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-
-            // Quinto icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(  
-                  icon: Icon(
-                    Icons.person_outline,
-                    color: currentIndex != 4 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    setBottomBarIndex(4);
-                  },
-                ),
-                Text(
-                  'Perfil',
-                  style: TextStyle(
-                    color: currentIndex != 4 ? Colors.white : Color(0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-          ],
         ),
       ),
     );

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/notifications.dart';
 import 'joinTeam.dart';
@@ -7,6 +9,7 @@ class PrincipalPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: Color(0xffF4F4F4),
@@ -42,12 +45,15 @@ class PrincipalPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: _body(context),
-      bottomNavigationBar: _BottomBar(),
+      //bottomNavigationBar: _BottomBar(),
     ));
   }
 }
 
 Widget _body(context) {
+  final size = MediaQuery.of(context).size; // Tamaño total de  la pantalla
+  bool hTeam = true; // validacion con Query para saber si se tiene equipo
+
   return Column(
     mainAxisSize: MainAxisSize.min,
     children: [
@@ -96,47 +102,42 @@ Widget _body(context) {
       /**
              * Contenedor de la etiqueta
              */
-      Container(
-        decoration: BoxDecoration(
-          color: Color(0xFF011C53),
-        ),
-        height: 25,
-        width: double.infinity,
-        child: Text(
-          'Sin equipos',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
-      _etiqueta('Sin equipos'),
+      _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo'),
       SizedBox(
         height: 340,
         child: ListView(
           children: [
-            Container(
-              padding: EdgeInsets.symmetric(
+            GestureDetectorTeams('Nombre liga', 'Nombre equipo'),
+          ],
+        ),
+      ),
+      _button(context, size),
+    ],
+  );
+}
+
+// widget para los equipos
+GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam){
+  return GestureDetector(
+    child: Container(
+      padding: EdgeInsets.symmetric(
                 horizontal: 5,
               ),
               child: ListTile(
                 leading: CircleAvatar(
                     backgroundImage: AssetImage("assets/react.png")),
-                title: Text('Nombre liga'),
-                subtitle: Text('Nombre equipo'),
+                title: Text('$NameLeague'),
+                subtitle: Text('$NameTeam'),
               ),
-            )
-          ],
-        ),
-      ),
-      _button(context),
-    ],
+    ),
   );
 }
 
-Widget _button(context) {
+Widget _button(context, Size size) {
+
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
+      alignment: Alignment(size.height-50, 50),
       primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         horizontal: 80,
@@ -164,155 +165,6 @@ Widget _button(context) {
 /*
  * Seccion de metodos y funciones
 */
-
-class _BottomBar extends StatefulWidget {
-  @override
-  _BottomBarState createState() => _BottomBarState();
-}
-
-class _BottomBarState extends State<_BottomBar> {
-  // Indice de la barra.
-  /*int currentIndex = 0;
-  setBottomBarIndex(index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
-*/
-  @override
-  Widget build(BuildContext context) {
-    return BottomAppBar(
-      color: Color(0xFF3A4280),
-      child: Container(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            // Primer icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.home_outlined,
-                    color: /*currentIndex != 0 ? Colors.white :*/ Color(
-                        0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    focusColor:
-                    Colors.black;
-                    //setBottomBarIndex(0);
-                  },
-                ),
-                Text(
-                  'Home',
-                  style: TextStyle(
-                    color: /*currentIndex != 0 ? Colors.white :*/ Color(
-                        0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-
-            // Segundo icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.calendar_month,
-                      color: /*currentIndex != 1 ? */ Colors
-                          .white //: Color(0xFFE51E3F),
-                      ),
-                  onPressed: () {
-                    //setBottomBarIndex(1);
-                  },
-                ),
-                Text(
-                  'Calendario',
-                  style: TextStyle(
-                      color: /*currentIndex != 1 ? */ Colors
-                          .white // : Color(0xFFE51E3F),
-                      ),
-                ),
-              ],
-            ),
-
-            // Tercer icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.add,
-                      color: /* currentIndex != 2 ?*/ Colors
-                          .white // : Color(0xFFE51E3F),
-                      ),
-                  onPressed: () {
-                    //setBottomBarIndex(2);
-                    Route route =
-                        MaterialPageRoute(builder: (bc) => JoinTeamPage());
-                    Navigator.of(context).push(route);
-                  },
-                ),
-                Text(
-                  'Inscribirme',
-                  style: TextStyle(
-                      color: /*currentIndex != 2 ?*/ Colors
-                          .white // : Color(0xFFE51E3F),
-                      ),
-                ),
-              ],
-            ),
-
-            // Cuarto icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.sports_soccer,
-                      color: /*currentIndex != 3 ? */ Colors
-                          .white // : Color(0xFFE51E3F),
-                      ),
-                  onPressed: () {
-                    //setBottomBarIndex(3);
-                  },
-                ),
-                Text(
-                  'Mis ligas',
-                  style: TextStyle(
-                      color: /*currentIndex != 3 ? */ Colors
-                          .white // : Color(0xFFE51E3F),
-                      ),
-                ),
-              ],
-            ),
-
-            // Quinto icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(Icons.person_outline,
-                      color: /*currentIndex != 4 ?*/ Colors
-                          .white //: Color(0xFFE51E3F),
-                      ),
-                  onPressed: () {
-                    //setBottomBarIndex(4);
-                  },
-                ),
-                Text(
-                  'Perfil',
-                  style: TextStyle(
-                      color: /*currentIndex != 4 ?*/ Colors
-                          .white // : Color(0xFFE51E3F),
-                      ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
 
 Widget _etiqueta(String name) {
   return _etiquetaclase(

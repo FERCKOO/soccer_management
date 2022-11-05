@@ -89,7 +89,7 @@ Widget _etiqueta(String name) {
   );
 }
 
-class _etiquetaclase extends StatelessWidget {
+class _etiquetaclase extends StatelessWidget{
   final String name;
 
   const _etiquetaclase({required this.name});
