@@ -6,33 +6,33 @@ import 'joinTeam.dart';
 
 class PrincipalPage extends StatelessWidget {
   static String id = "Principal_page";
-
+  final int _cantTeams = 0;
   @override
   Widget build(BuildContext context) {
 
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         actions: [
           IconButton(
-            padding: EdgeInsets.only(right: 15),
-            color: Color(0xFF011C53),
-            icon: Icon(
+            padding: const EdgeInsets.only(right: 15),
+            color: const Color(0xFF011C53),
+            icon: const Icon(
               Icons.notifications_none,
             ),
             onPressed: () {
               Route route =
-                  MaterialPageRoute(builder: (bc) => NotificationsPage());
-              Navigator.of(context).push(route);
+                MaterialPageRoute(builder: (bc) => NotificationsPage());
+                Navigator.of(context).push(route);
             }, // Accion de la notificacion
           ),
         ],
         /*
          * Teto de pantalla 
         */
-        title: Text(
+        title: const Text(
           'Equipos',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -44,15 +44,16 @@ class PrincipalPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: _body(context),
+      body: _body(context, _cantTeams),
       //bottomNavigationBar: _BottomBar(),
     ));
   }
 }
 
-Widget _body(context) {
+Widget _body(context, int _cantTeams) {
   final size = MediaQuery.of(context).size; // Tamaño total de  la pantalla
-  bool hTeam = true; // validacion con Query para saber si se tiene equipo
+  bool hTeam; // validacion con Query para saber si se tiene equipo
+  (_cantTeams == 0) ? hTeam = false : hTeam = true;
 
   return Column(
     mainAxisSize: MainAxisSize.min,
@@ -61,9 +62,9 @@ Widget _body(context) {
               * Imagen del usuario.
             */
       Container(
-        padding: EdgeInsets.only(top: 34),
+        padding: const EdgeInsets.only(top: 34),
         alignment: Alignment.topCenter,
-        child: Icon(
+        child: const Icon(
           Icons.person_rounded,
           size: 70,
         ),
@@ -72,9 +73,9 @@ Widget _body(context) {
            * Nombre del jugador
            */
       Container(
-        child: Text(
+        child: const Text(
           'Nombre de jugador',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             fontFamily: 'Lato',
@@ -82,36 +83,37 @@ Widget _body(context) {
           textAlign: TextAlign.center,
         ),
       ),
-      SizedBox(height: 8),
+      const SizedBox(height: 8),
 
       /**
              * Linea horizontal.
             */
       Container(
-        decoration: BoxDecoration(
-          border: Border(
+        decoration: const BoxDecoration(
+          border: const Border(
             bottom: BorderSide(
-              color: Color(0xFFE51E3F),
+              color: const Color(0xFFE51E3F),
               width: 2,
             ),
           ),
         ),
       ),
-      SizedBox(height: 2),
+      const SizedBox(height: 2),
 
       /**
              * Contenedor de la etiqueta
              */
       _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo'),
-      SizedBox(
-        height: 340,
-        child: ListView(
-          children: [
-            GestureDetectorTeams('Nombre liga', 'Nombre equipo'),
-          ],
+      Expanded(
+        child: ListView.builder(
+          itemCount: _cantTeams,
+          itemBuilder: (context, int index) {
+            return GestureDetectorTeams('Nombre liga', 'Nombre equipo');
+           },
+
         ),
       ),
-      _button(context, size),
+      //_button(context, size),
     ],
   );
 }
@@ -120,12 +122,11 @@ Widget _body(context) {
 GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam){
   return GestureDetector(
     child: Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
                 horizontal: 5,
               ),
               child: ListTile(
-                leading: CircleAvatar(
-                    backgroundImage: AssetImage("assets/react.png")),
+                leading: const CircleAvatar(),
                 title: Text('$NameLeague'),
                 subtitle: Text('$NameTeam'),
               ),
@@ -137,9 +138,12 @@ Widget _button(context, Size size) {
 
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      alignment: Alignment(size.height-50, 50),
+      alignment: Alignment(
+        size.width / 2,
+        size.height
+        ),
       primary: const Color(0xFF011C53),
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
         horizontal: 80,
         vertical: 20,
       ),
@@ -180,8 +184,8 @@ class _etiquetaclase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 5),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(top: 5),
+      decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
       height: 25,
@@ -189,7 +193,7 @@ class _etiquetaclase extends StatelessWidget {
       child: Text(
         '$name',
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
         ),
       ),

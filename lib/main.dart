@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/bottom_drawer_layout.dart';
-import '../Screens/logUp.dart';
-import '../Screens/logIn.dart';
+import 'package:soccer_management/Screens/logIn.dart';
 import '../router/routes.dart';
-import 'Screens/calendar.dart';
-import 'Screens/principal.dart';
 
 void main() => runApp(MyApp());
 
@@ -19,8 +15,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // Pantalla de inicio
-      initialRoute: LayoutBottomNavigatorBar.id,
+      // Pantalla de inicio 
+      initialRoute: LogInPage.id,
       routes: customRoutes,
     );
   }

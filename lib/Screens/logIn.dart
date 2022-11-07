@@ -1,11 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/forgotpass.dart';
+import 'package:soccer_management/Screens/logup.dart';
+import 'package:soccer_management/bottom_drawer_layout.dart';
+import 'package:soccer_management/router/routes.dart';
 
 class LogInPage extends StatelessWidget {
+  
   static String id = 'LogIn_page';
 
   @override
   Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: Color(0xffF4F4F4),
@@ -34,21 +40,22 @@ class LogInPage extends StatelessWidget {
              * Imagen del la app.
             */
             Container(
-              // TODO de la imagen
-              child: Row(
-                children: [
-                  Expanded(
-                      child: Image(
+              child: 
+                  Icon(
+                      Icons.image,
+                      size: 100,
+                    ),
+
+                    /*Image(
                     image: AssetImage(
                       'Logo.png',
                     ),
                     width: 10,
                     height: 20,
-                  )),
-                ],
+                  )
+                  */
               ),
-            ),
-            SizedBox(height: 20),
+            SizedBox(height: sizeScreen.height * .01),
 
             /**
              * Linea horizontal.
@@ -66,7 +73,7 @@ class LogInPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: sizeScreen.height * .015),
             /**
              * Texto de bienvenida
             */
@@ -86,13 +93,13 @@ class LogInPage extends StatelessWidget {
                * Seccion de formulario
               */
 
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height * .01),
             _textFieldEmail(),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height * .01),
             _textFieldPassword(),
-            SizedBox(height: 30),
-            _buttonSingIn(),
-            SizedBox(height: 100),
+            SizedBox(height: sizeScreen.height * .02),
+            _buttonSingIn(context),
+            SizedBox(height: sizeScreen.height * .11),
 
             /*
               * Seccion de actualizacion de contraseña
@@ -109,7 +116,8 @@ class LogInPage extends StatelessWidget {
                     GestureDetector(
                       // Detecta alguna accion en texto
                       onTap: (() {
-                        print('object 1');
+                        print('obj1');
+                        Navigator.pushNamed(context, '${ForgotPassPage.id}');
                       }),
                       child: Text(
                         ' Da click aqui',
@@ -124,7 +132,7 @@ class LogInPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 25),
+            SizedBox(height: sizeScreen.height * .01),
             /*
               * Seccion para registrarse
             */
@@ -136,6 +144,7 @@ class LogInPage extends StatelessWidget {
                     GestureDetector(
                       onTap: (() {
                         print('object 2');
+                        Navigator.pushNamed(context, '${LogUpPage.id}');
                       }),
                       child: Text(
                         'Registrate dando click aqui.',
@@ -178,7 +187,7 @@ Widget _textFieldPassword() {
   );
 }
 
-Widget _buttonSingIn() {
+Widget _buttonSingIn(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: Color(0xFF011C53),
@@ -190,7 +199,6 @@ Widget _buttonSingIn() {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    onPressed: () {},
     child: Text(
       'Iniciar sesion',
       style: TextStyle(
@@ -199,6 +207,11 @@ Widget _buttonSingIn() {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
+    onPressed: () {
+      Navigator.of(context)
+                  .pushNamedAndRemoveUntil(LayoutBottomNavigatorBar.id,
+                  (Route<dynamic> route) => false);
+    },
   );
 }
 

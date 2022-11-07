@@ -7,6 +7,8 @@ class JoinTeamPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Color(0xffF4F4F4),
@@ -55,7 +57,7 @@ class JoinTeamPage extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            SizedBox(height: 8),
+            SizedBox(height: sizeScreen.height*.01),
 
             /**
              * Linea horizontal.
@@ -70,16 +72,16 @@ class JoinTeamPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: 2),
+            SizedBox(height: sizeScreen.height*.002),
 
             /**
              * Contenedor de la etiqueta
              */
             _etiqueta('Selecciona una liga'),
 
-            //Zona de Ligas/Equipos
+            //Zona de Ligas
             SizedBox(
-              height: 340,
+              height: sizeScreen.height*.589,
               child: ListView(
                 children: [
                   Container(
@@ -88,7 +90,7 @@ class JoinTeamPage extends StatelessWidget {
                     ),
                     child: ListTile(
                       leading: CircleAvatar(
-                          backgroundImage: AssetImage("assets/react.png")),
+                          ),
                       title: Text('Nombre liga'),
                     ),
                   )

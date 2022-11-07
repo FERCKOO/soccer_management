@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 
+import '../bottom_drawer_layout.dart';
+
 class LogUpPage extends StatelessWidget {
   static String id = "logUp_page";
 
   @override
   Widget build(BuildContext context) {
+
+    final sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: Color(0xffF4F4F4),
@@ -16,7 +21,9 @@ class LogUpPage extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
         ),
         /*
          * Teto de regristro 
@@ -51,20 +58,20 @@ class LogUpPage extends StatelessWidget {
                * Seccion de formulario
               */
             _textFieldName(),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height*.01),
             _textFieldLastName(),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height*.01),
             _textFieldEmail(),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height*.01),
             _formFieldDate(),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height*.01),
             _textFieldPassword(),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height*.01),
             _textFieldConfirmPassword(),
             SizedBox(
-              height: 20,
+              height: sizeScreen.height*.015,
             ),
-            _buttonSingUp(),
+            _buttonSingUp(context),
           ],
         ),
       ),
@@ -72,7 +79,7 @@ class LogUpPage extends StatelessWidget {
   }
 }
 
-Widget _buttonSingUp() {
+Widget _buttonSingUp(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: Color(0xFF011C53),
@@ -84,7 +91,9 @@ Widget _buttonSingUp() {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    onPressed: () {},
+    onPressed: () {
+      Navigator.of(context).pushNamed(LayoutBottomNavigatorBar.id);
+    },
     child: Text(
       'Registrarse',
       style: TextStyle(
@@ -185,7 +194,8 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-          prefixIcon: Icon(widget.icon),
+          border: OutlineInputBorder(),
+          suffixIcon: Icon(widget.icon),
           labelText: '${widget.labelText}',
           hintText: widget.hintText,
         ),
@@ -203,7 +213,10 @@ class _formDateGeneral extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         horizontal: 70,
       ),
-      child: Form(
+      child: 
+      
+      
+      Form(
         child: Column(
           children: <Widget>[
             DateTimeFormField(

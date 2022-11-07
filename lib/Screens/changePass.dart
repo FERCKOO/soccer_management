@@ -1,7 +1,6 @@
-import 'dart:html';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/principal.dart';
+import 'package:soccer_management/router/routes.dart';
 
 class ChangePassPage extends StatelessWidget {
   static String id = 'ChangePassword_page';
@@ -18,7 +17,9 @@ class ChangePassPage extends StatelessWidget {
           icon: Icon(
             Icons.arrow_back_ios,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
         ),
         /*
          * Texto de inicio sesion
@@ -49,7 +50,7 @@ class ChangePassPage extends StatelessWidget {
             ),
             _textFieldConfirmPassword(),
             SizedBox(height: 100),
-            _buttonSingIn()
+            _buttonSingIn(context)
           ],
         ),
       ),
@@ -79,7 +80,7 @@ Widget _textFieldConfirmPassword() {
   );
 }
 
-Widget _buttonSingIn() {
+Widget _buttonSingIn(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: Color(0xFF011C53),
@@ -91,7 +92,6 @@ Widget _buttonSingIn() {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    onPressed: () {},
     child: Text(
       'Actualizar contraseña',
       style: TextStyle(
@@ -100,6 +100,9 @@ Widget _buttonSingIn() {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
+    onPressed: () {
+      Navigator.of(context).pushNamed('${PrincipalPage.id}');
+    },
   );
 }
 

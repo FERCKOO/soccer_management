@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/calendar.dart';
-import '../Screens/principal.dart';
+import 'Screens/calendar.dart';
+import 'Screens/profile.dart';
+import 'Screens/principal.dart';
 import 'Screens/joinTeam.dart';
 
 class LayoutBottomNavigatorBar extends StatefulWidget {
@@ -18,7 +19,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
     PrincipalPage(),
     CalendarPage(),
     JoinTeamPage(),
-    Text('Pantalla del perfil')
+    PorfilePage()
   ];
 
   int _selectedIndex = 0;

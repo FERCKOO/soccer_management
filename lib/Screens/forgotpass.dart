@@ -1,27 +1,33 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/logIn.dart';
+import 'package:soccer_management/Screens/principal.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 class ForgotPassPage extends StatelessWidget {
   static String id = 'forgotPassword_page';
 
   @override
   Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         leading: IconButton(
-          color: Color(0xFF011C53),
-          icon: Icon(
+          color: const Color(0xFF011C53),
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop(PrincipalPage.id);
+          },
         ),
         /*
          * Texto de inicio sesion
         */
-        title: Text(
+        title: const Text(
           'Recuperar contraseña',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -37,20 +43,28 @@ class ForgotPassPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: sizeScreen.height * .005),
             /*
                * Seccion de formulario
               */
+            const Text(
+              'Escribe tu correo electronico',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFF333333),
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Lato',
+              ),
+            ),
             _textFieldEmail(),
-            SizedBox(height: 100),
-            _buttonSingIn()
+            SizedBox(height: sizeScreen.height * .11),
+            _buttonSingIn(context, sizeScreen)
           ],
         ),
       ),
     ));
   }
-
-  void setState(Null Function() param0) {}
 }
 
 Widget _textFieldEmail() {
@@ -63,11 +77,11 @@ Widget _textFieldEmail() {
   );
 }
 
-Widget _buttonSingIn() {
+Widget _buttonSingIn(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: Color(0xFF011C53),
-      padding: EdgeInsets.symmetric(
+      primary: const Color(0xFF011C53),
+      padding: const EdgeInsets.symmetric(
         horizontal: 100,
         vertical: 20,
       ),
@@ -75,8 +89,7 @@ Widget _buttonSingIn() {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    onPressed: () {},
-    child: Text(
+    child: const Text(
       'Enviar',
       style: TextStyle(
           color: Colors.white,
@@ -84,12 +97,37 @@ Widget _buttonSingIn() {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
+    onPressed: () {
+      //Fañta envio de correo electronico
+      AwesomeDialog(
+          context: context,
+          animType: AnimType.SCALE,
+          title: 'Recuperar contraseña',
+          body: const Center(
+            child: Text(
+              '''Se le ha enviado un correo electronico.\nRevise su bandeja de no deseados o la seccion de spam''',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato'),
+            ),
+          ),
+          btnOkColor: const Color(0xFF011C53),
+          btnOkText: 'Volver al inicio',
+          btnOkOnPress: () {
+            Navigator.of(context)
+                  .pushNamedAndRemoveUntil(LogInPage.id,
+                  (Route<dynamic> route) => false);
+          } ,
+          )
+        .show();
+    },
   );
 }
 
-/**
- * Clase generica de text labels
- */
+/// Clase generica de text labels
+// ignore: camel_case_types
 class _textFieldGeneral extends StatefulWidget {
   final String labelText; //Texto del label
   final String? hintText; //Texto de muestra
@@ -111,11 +149,12 @@ class _textFieldGeneral extends StatefulWidget {
   State<_textFieldGeneral> createState() => _textFieldGeneralState();
 }
 
+// ignore: camel_case_types
 class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 50,
       ),
       child: TextField(
@@ -123,7 +162,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         obscureText: widget.obscureText,
         decoration: InputDecoration(
           prefixIcon: Icon(widget.icon),
-          labelText: '${widget.labelText}',
+          labelText: widget.labelText,
           hintText: widget.hintText,
         ),
         onChanged: (value) {},
