@@ -14,17 +14,17 @@ class LogInPage extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         /*
          * Texto de inicio sesion
         */
-        title: Text(
-          'Iniciar sesión',
+        title: const Text(
+          'Bienvenido',
           textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xFF333333),
+          style: const TextStyle(
+            color: const Color(0xFF333333),
             fontSize: 24,
             fontWeight: FontWeight.bold,
             fontFamily: 'Lato',
@@ -34,39 +34,39 @@ class LogInPage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
+
+            SizedBox(
+              height: sizeScreen.height*.09,
+            ),
+
             /*
              * Imagen del la app.
             */
             Container(
               child: 
-                  Icon(
-                      Icons.image,
-                      size: 100,
+                  Image(
+                    alignment: Alignment.topCenter,
+                    image: const AssetImage(
+                      'assets/images/Logo.png',
                     ),
-
-                    /*Image(
-                    image: AssetImage(
-                      'Logo.png',
-                    ),
-                    width: 10,
-                    height: 20,
+                    width: sizeScreen.width*.4
                   )
-                  */
+                  
               ),
-            SizedBox(height: sizeScreen.height * .01),
+            SizedBox(height: sizeScreen.height * .03),
 
             /**
              * Linea horizontal.
             */
             Container(
-              margin: EdgeInsets.symmetric(
+              margin: const EdgeInsets.symmetric(
                 horizontal: 80,
               ),
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
-                  bottom: BorderSide(
+                  bottom: const BorderSide(
                     color: Color(0xFFE51E3F),
                     width: 2,
                   ),
@@ -78,8 +78,12 @@ class LogInPage extends StatelessWidget {
              * Texto de bienvenida
             */
             Container(
-              child: Text(
-                'BIENVENIDO',
+              margin: EdgeInsetsDirectional.only(
+                top: sizeScreen.height*.03,
+                bottom: sizeScreen.width*.03
+                ),
+              child: const Text(
+                'Inicia sesión',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Color(0xFF333333),
@@ -97,7 +101,7 @@ class LogInPage extends StatelessWidget {
             _textFieldEmail(),
             SizedBox(height: sizeScreen.height * .01),
             _textFieldPassword(),
-            SizedBox(height: sizeScreen.height * .02),
+            SizedBox(height: sizeScreen.height * .05),
             _buttonSingIn(context),
             SizedBox(height: sizeScreen.height * .11),
 
@@ -109,19 +113,18 @@ class LogInPage extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "¿Olvidaste tu contraseña?",
                       style: TextStyle(fontSize: 14, color: Color(0xFF4890B8)),
                     ),
                     GestureDetector(
                       // Detecta alguna accion en texto
                       onTap: (() {
-                        print('obj1');
                         Navigator.pushNamed(context, '${ForgotPassPage.id}');
                       }),
-                      child: Text(
+                      child: const Text(
                         ' Da click aqui',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           color: Color(0xFF4890B8),
                           decoration: TextDecoration.underline,
@@ -143,10 +146,9 @@ class LogInPage extends StatelessWidget {
                   children: [
                     GestureDetector(
                       onTap: (() {
-                        print('object 2');
                         Navigator.pushNamed(context, '${LogUpPage.id}');
                       }),
-                      child: Text(
+                      child: const Text(
                         'Registrate dando click aqui.',
                         style: TextStyle(
                           fontSize: 14,
@@ -190,8 +192,8 @@ Widget _textFieldPassword() {
 Widget _buttonSingIn(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: Color(0xFF011C53),
-      padding: EdgeInsets.symmetric(
+      primary: const Color(0xFF011C53),
+      padding: const EdgeInsets.symmetric(
         horizontal: 100,
         vertical: 20,
       ),
@@ -199,9 +201,9 @@ Widget _buttonSingIn(BuildContext context) {
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    child: Text(
+    child: const Text(
       'Iniciar sesion',
-      style: TextStyle(
+      style: const TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.bold,
@@ -243,13 +245,14 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 50,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
+          border: const OutlineInputBorder(),
           prefixIcon: Icon(widget.icon),
           labelText: '${widget.labelText}',
           hintText: widget.hintText,

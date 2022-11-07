@@ -1,12 +1,15 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/notifications.dart';
 import 'joinTeam.dart';
 
+// ignore: use_key_in_widget_constructors
 class PrincipalPage extends StatelessWidget {
   static String id = "Principal_page";
-  final int _cantTeams = 0;
+  final int _cantTeams = 1;
   @override
   Widget build(BuildContext context) {
 
@@ -74,8 +77,8 @@ Widget _body(context, int _cantTeams) {
            */
       Container(
         child: const Text(
-          'Nombre de jugador',
-          style: const TextStyle(
+          'Mario Ledezma',
+          style: TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.bold,
             fontFamily: 'Lato',
@@ -90,9 +93,9 @@ Widget _body(context, int _cantTeams) {
             */
       Container(
         decoration: const BoxDecoration(
-          border: const Border(
+          border: Border(
             bottom: BorderSide(
-              color: const Color(0xFFE51E3F),
+              color: Color(0xFFE51E3F),
               width: 2,
             ),
           ),
@@ -104,11 +107,12 @@ Widget _body(context, int _cantTeams) {
              * Contenedor de la etiqueta
              */
       _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo'),
+      
       Expanded(
         child: ListView.builder(
           itemCount: _cantTeams,
           itemBuilder: (context, int index) {
-            return GestureDetectorTeams('Nombre liga', 'Nombre equipo');
+            return GestureDetectorTeams('Colibri', 'Venom');
            },
 
         ),
@@ -127,13 +131,14 @@ GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam){
               ),
               child: ListTile(
                 leading: const CircleAvatar(),
-                title: Text('$NameLeague'),
-                subtitle: Text('$NameTeam'),
+                title: Text(NameLeague),
+                subtitle: Text(NameTeam),
               ),
     ),
   );
 }
 
+// ignore: unused_element
 Widget _button(context, Size size) {
 
   return ElevatedButton(
@@ -176,6 +181,7 @@ Widget _etiqueta(String name) {
   );
 }
 
+// ignore: camel_case_types
 class _etiquetaclase extends StatelessWidget {
   final String name;
 
@@ -191,7 +197,7 @@ class _etiquetaclase extends StatelessWidget {
       height: 25,
       width: double.infinity,
       child: Text(
-        '$name',
+        name,
         textAlign: TextAlign.center,
         style: const TextStyle(
           color: Colors.white,

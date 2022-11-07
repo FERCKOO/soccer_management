@@ -9,15 +9,21 @@ class JoinTeamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
 
+    List<String> _teams = [
+      'Colibri',
+      'Karike',
+      'Indoor'
+    ];
+
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         appBar: AppBar(
-          backgroundColor: Color(0xffF4F4F4),
+          backgroundColor: const Color(0xffF4F4F4),
           /*
          * Texto de inicio sesion
         */
-          title: Text(
+          title: const Text(
             'Inscribirme',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -36,9 +42,9 @@ class JoinTeamPage extends StatelessWidget {
               * Imagen del usuario.
             */
             Container(
-              padding: EdgeInsets.only(top: 34),
+              padding: const EdgeInsets.only(top: 34),
               alignment: Alignment.topCenter,
-              child: Icon(
+              child: const Icon(
                 Icons.person_rounded,
                 size: 70,
               ),
@@ -47,8 +53,8 @@ class JoinTeamPage extends StatelessWidget {
            * Nombre del jugador
            */
             Container(
-              child: Text(
-                'Nombre de jugador',
+              child: const Text(
+                'Mario Ledezma',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
@@ -63,7 +69,7 @@ class JoinTeamPage extends StatelessWidget {
              * Linea horizontal.
             */
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
                     color: Color(0xFFE51E3F),
@@ -80,21 +86,12 @@ class JoinTeamPage extends StatelessWidget {
             _etiqueta('Selecciona una liga'),
 
             //Zona de Ligas
-            SizedBox(
-              height: sizeScreen.height*.589,
-              child: ListView(
-                children: [
-                  Container(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 5,
-                    ),
-                    child: ListTile(
-                      leading: CircleAvatar(
-                          ),
-                      title: Text('Nombre liga'),
-                    ),
-                  )
-                ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: _teams.length,
+                itemBuilder: (context, int index) {
+                  return GestureDetectorLeagues(_teams, index);
+                 },
               ),
             ),
           ],
@@ -102,6 +99,21 @@ class JoinTeamPage extends StatelessWidget {
       ),
     );
   }
+}
+
+GestureDetector GestureDetectorLeagues(List<String> teams, int index){
+  return GestureDetector(
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 5,
+                      ),
+                      child: ListTile(
+                        leading: CircleAvatar(
+                            ),
+                        title: Text('${teams.elementAt(index)}'),
+                      ),
+                    ),
+                  );
 }
 
 Widget _etiqueta(String name) {
@@ -118,8 +130,8 @@ class _etiquetaclase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top:5),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.only(top:5),
+      decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
       height: 25,
@@ -127,7 +139,7 @@ class _etiquetaclase extends StatelessWidget {
       child: Text(
         '$name',
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
         ),
       ),

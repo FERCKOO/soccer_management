@@ -92,7 +92,8 @@ Widget _buttonSingUp(BuildContext context) {
       ),
     ),
     onPressed: () {
-      Navigator.of(context).pushNamed(LayoutBottomNavigatorBar.id);
+      Navigator.of(context).pushNamedAndRemoveUntil(LayoutBottomNavigatorBar.id,
+                  (Route<dynamic> route) => false);
     },
     child: Text(
       'Registrarse',

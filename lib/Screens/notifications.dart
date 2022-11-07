@@ -7,12 +7,12 @@ class NotificationsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         leading: IconButton(
-          color: Color(0xFF011C53),
-          icon: Icon(
+          color: const Color(0xFF011C53),
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
           onPressed: () {
@@ -22,7 +22,7 @@ class NotificationsPage extends StatelessWidget {
         /*
          * Texto de inicio sesion
         */
-        title: Text(
+        title: const Text(
           'Notificaciones',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -35,29 +35,29 @@ class NotificationsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           left: 15,
         ),
         children: [
           Container(
-            padding: EdgeInsets.only(top: 20),
-            child: Text(
+            padding: const EdgeInsets.only(top: 20),
+            child: const Text(
               'Dia, semana, mes',
-              style: TextStyle(
-                  color: Color(0xFF333333),
+              style: const TextStyle(
+                  color: const Color(0xFF333333),
                   fontWeight: FontWeight.bold,
                   fontFamily: 'Lato'),
             ),
           ),
           //Notificacion
           Container(
-            padding: EdgeInsets.only(
+            padding: const EdgeInsets.only(
               right: 80,
             ),
             child:
                 ListTile(
-                  title: Text('Tipo de notificacion'),
-                  shape: Border(right: BorderSide(color: Colors.black)),
+                  title: const Text('Tipo de notificacion'),
+                  shape: const Border(right: BorderSide(color: Colors.black)),
                   onTap: () {},
                 ),
           ),
@@ -66,7 +66,7 @@ class NotificationsPage extends StatelessWidget {
            * Falta acomodar esto enseguida de la notificacion
            */
           Container(
-            child: Text('Horas'),
+            child: const Text('Horas'),
           )
         ],
       ),

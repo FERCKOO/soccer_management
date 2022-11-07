@@ -4,7 +4,7 @@ import 'package:horizontal_calendar/horizontal_calendar.dart';
 class CalendarPage extends StatelessWidget {
   static String id = 'Calendar_Page';
 
-  final int _cantTeams = 2;
+  final int _cantTeams = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +46,7 @@ class CalendarPage extends StatelessWidget {
           /**
            * Nombre de la liga
            */
+          /*
           Container(
             child: const Text(
               'Nombre de liga',
@@ -57,6 +58,7 @@ class CalendarPage extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
+          */
           const SizedBox(height: 8),
 
           /**
@@ -123,7 +125,7 @@ class CalendarPage extends StatelessWidget {
           ),
 
           const Text(
-            'Upcoming',
+            'Proximos partidos',
             style: const TextStyle(
               color: Color(0xFF011C53),
               fontSize: 20,
@@ -147,9 +149,9 @@ class CalendarPage extends StatelessWidget {
                     return Row(
                       children: [
                         const Text(
-                          'Fecha del \npartido',
+                          '8 Nov',
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 17,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Lato'
@@ -159,8 +161,8 @@ class CalendarPage extends StatelessWidget {
                           elevation: 10,
                           color: Colors.white,
                           child: SizedBox(
-                            width: sizeScreen.width*.90,
-                            height: (sizeScreen.height*.4) / _cantTeams,
+                            width: sizeScreen.width*.70,
+                            height: sizeScreen.height*.2,
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Column(
@@ -169,7 +171,7 @@ class CalendarPage extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
-                                    'Equipo 1 vs Equipo 2',
+                                    'Venom vs Yoguiños',
                                     style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
@@ -181,7 +183,7 @@ class CalendarPage extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         const Icon(Icons.location_on_outlined),
-                                        const Text('Ubicacion del partido')
+                                        const Text('Indoor CUU')
                                       ],
                                     ),
                                   ),
@@ -189,7 +191,7 @@ class CalendarPage extends StatelessWidget {
                                     child: Row(
                                       children: [
                                         const Icon(Icons.av_timer),
-                                        const Text('Hora del partido')
+                                        const Text('3:00 P.M')
                                       ],
                                     ),
                                   ),
@@ -207,7 +209,7 @@ class CalendarPage extends StatelessWidget {
                                     ),
                                   ),
                                   const Text(
-                                    'Estatus del partido',
+                                    'Por empezar',
                                     style: TextStyle(
                                       fontSize: 15,
                                       color: Colors.black,

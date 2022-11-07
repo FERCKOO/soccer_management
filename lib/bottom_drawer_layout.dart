@@ -48,7 +48,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
               children: [
                 IconButton(
                   icon: Icon(
-                    Icons.home_outlined,
+                    Icons.sports_soccer,
                     color:
                         _selectedIndex != 0 ? Colors.white : Color(0xFFE51E3F),
                   ),
@@ -59,7 +59,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                   },
                 ),
                 Text(
-                  'Home',
+                  'Equipos',
                   style: TextStyle(
                     color:
                         _selectedIndex != 0 ? Colors.white : Color(0xFFE51E3F),
@@ -96,6 +96,13 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                /*
+                const Image(
+                    image: AssetImage(
+                      'assets/images/Liga.png',
+                    ),
+                  ),
+                  */
                 IconButton(
                   icon: Icon(
                     Icons.add,
@@ -107,7 +114,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                   },
                 ),
                 Text(
-                  'Inscribirme',
+                  'Ligas',
                   style: TextStyle(
                     color:
                         _selectedIndex != 2 ? Colors.white : Color(0xFFE51E3F),

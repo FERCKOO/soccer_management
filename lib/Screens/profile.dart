@@ -10,13 +10,13 @@ class PorfilePage extends StatelessWidget {
 
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         appBar: AppBar(
-          backgroundColor: Color(0xffF4F4F4),
+          backgroundColor: const Color(0xffF4F4F4),
           /*
          * Texto de inicio sesion
         */
-          title: Text(
+          title: const Text(
             'Perfil',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -40,21 +40,21 @@ class PorfilePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Icon(
+                const Icon(
                   Icons.person_rounded,
                   size: 50,
                 ),
                 Column(
-                  children: [
+                  children: const [
                     Text(
-                      'Nombre del usuario',
+                      'Mario Ledezma',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Lato'),
                     ),
                     Text(
-                      'Correo electronico',
+                      'mledezma@hotmail.com',
                       style: TextStyle(
                           color: Color(0xFFC8C8C8),
                           fontSize: 15,
@@ -73,11 +73,11 @@ class PorfilePage extends StatelessWidget {
             GestureDetector(
               child: Container(
                 alignment: AlignmentDirectional.topStart,
-                margin: EdgeInsetsDirectional.only(start: 30, end: 50),
-                padding: EdgeInsets.symmetric(
+                margin: const EdgeInsetsDirectional.only(start: 30, end: 50),
+                padding: const EdgeInsets.symmetric(
                   vertical: 18,
                 ),
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
                       color: Color(0xFFC8C8C8),
@@ -85,7 +85,7 @@ class PorfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Editar perfil',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
@@ -95,7 +95,7 @@ class PorfilePage extends StatelessWidget {
                 print('editar');
               },
             ),
-            SizedBox(height: 15),
+            SizedBox(height: sizeScreen.height*.01),
             /**
                * Detector de gestos para click en el container
                * Container con "Notificaciones"
@@ -103,9 +103,9 @@ class PorfilePage extends StatelessWidget {
             GestureDetector(
               child: Container(
                 alignment: AlignmentDirectional.topStart,
-                margin: EdgeInsetsDirectional.only(start: 30, end: 50),
-                padding: EdgeInsets.symmetric(vertical: 18),
-                decoration: BoxDecoration(
+                margin: const EdgeInsetsDirectional.only(start: 30, end: 50),
+                padding: const EdgeInsets.symmetric(vertical: 18),
+                decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
                       color: Color(0xFFC8C8C8),
@@ -113,7 +113,7 @@ class PorfilePage extends StatelessWidget {
                     ),
                   ),
                 ),
-                child: Text(
+                child: const Text(
                   'Notificaciones',
                   textAlign: TextAlign.left,
                   style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
@@ -129,9 +129,9 @@ class PorfilePage extends StatelessWidget {
                */
             Container(
               alignment: AlignmentDirectional.topStart,
-              margin: EdgeInsetsDirectional.only(start: 30, end: 50),
-              padding: EdgeInsets.symmetric(vertical: 18),
-              decoration: BoxDecoration(
+              margin: const EdgeInsetsDirectional.only(start: 30, end: 50),
+              padding: const EdgeInsets.symmetric(vertical: 18),
+              decoration: const BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
                     color: Color(0xFFC8C8C8),
@@ -141,7 +141,7 @@ class PorfilePage extends StatelessWidget {
               ),
               child: Row(
                 children: [
-                  Text(
+                  const Text(
                     'Modo obscuro',
                     textAlign: TextAlign.left,
                     style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
@@ -178,7 +178,6 @@ class PorfilePage extends StatelessWidget {
                 onTap: (() {
                   Navigator.of(context)
                   .pushNamedAndRemoveUntil('${LogInPage.id}', (Route<dynamic> route) => false);
-                  print('Cerrar sesion');
                 }),
               ),
             ),
@@ -202,13 +201,12 @@ class _switchState extends State<_switch> {
   @override
   Widget build(BuildContext context) {
     return Switch(
-        inactiveTrackColor: Color(0xFF3A4280),
-        activeTrackColor: Color(0xFF00002B),
+        inactiveTrackColor: const Color(0xFF3A4280),
+        activeTrackColor: const Color(0xFF00002B),
         value: _value,
         onChanged: (value) {
           setState(() {
             _value = value;
-            print(value);
           });
         });
   }
