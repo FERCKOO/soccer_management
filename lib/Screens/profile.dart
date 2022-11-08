@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/editNotifications.dart';
 import '../Screens/editData.dart';
 import '../Screens/logIn.dart';
 
@@ -94,8 +95,7 @@ class PorfilePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                Navigator.pushNamed(context, '${EditDataPage.id}');
-                print('editar');
+                Navigator.pushNamed(context, EditDataPage.id);
               },
             ),
             SizedBox(height: sizeScreen.height * .01),
@@ -124,7 +124,7 @@ class PorfilePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                print('Notificaciones');
+                Navigator.pushNamed(context, editNotificationsPage.id);
               },
             ),
             SizedBox(height: sizeScreen.height * .05),
@@ -188,8 +188,6 @@ class PorfilePage extends StatelessWidget {
       ),
     );
   }
-
-  void setState(Null Function() param0) {}
 }
 
 class _switch extends StatefulWidget {
