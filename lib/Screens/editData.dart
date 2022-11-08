@@ -45,7 +45,8 @@ class EditDataPage extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(
                       top: sizeScreen.height * .05,
-                      bottom: sizeScreen.height * .06),
+                      bottom: sizeScreen.height * .06
+                    ),
                   alignment: Alignment.topCenter,
                   child: CircleAvatar(
                     radius: sizeScreen.height * .07,
@@ -53,12 +54,14 @@ class EditDataPage extends StatelessWidget {
                       Icons.person_rounded,
                       size: sizeScreen.height * .1,
                     ),
-                  )),
-              _textFieldName(),
+                  )
+                  ),
+
+              _textFieldName(sizeScreen),
               SizedBox(height: sizeScreen.height * .01),
-              _textFieldLastName(),
+              _textFieldLastName(sizeScreen),
               SizedBox(height: sizeScreen.height * .01),
-              _textFieldEmail(),
+              _textFieldEmail(sizeScreen),
               SizedBox(height: sizeScreen.height * .01),
               _formFieldDate(),
               SizedBox(height: sizeScreen.height * .1),
@@ -81,8 +84,8 @@ Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
     style: ElevatedButton.styleFrom(
       primary: const Color(0xffF4F4F4),
       padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .02,
         vertical: sizeScreen.width * .045,
+        horizontal: sizeScreen.width * .02,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -129,29 +132,32 @@ Widget _buttonUpdateData(BuildContext context, Size sizeScreen) {
   );
 }
 
-Widget _textFieldName() {
+Widget _textFieldName(Size size) {
   return _textFieldGeneral(
     labelText: 'Nombre',
     icon: Icons.person_outline,
     hintText: 'Nombre',
+    sizeScreen: size,
     onChanged: () {},
   );
 }
 
-Widget _textFieldLastName() {
+Widget _textFieldLastName(Size size) {
   return _textFieldGeneral(
     labelText: 'Apellido',
     icon: Icons.person_outline,
     hintText: 'Apellido',
+    sizeScreen: size,
     onChanged: () {},
   );
 }
 
-Widget _textFieldEmail() {
+Widget _textFieldEmail(Size size) {
   return _textFieldGeneral(
     labelText: 'Correo',
     icon: Icons.email_outlined,
     hintText: 'example@hotmail.com',
+    sizeScreen: size,
     onChanged: () {},
   );
 }
@@ -170,6 +176,7 @@ class _textFieldGeneral extends StatefulWidget {
   final IconData icon;
   final Function onChanged;
   final bool obscureText;
+  final Size sizeScreen;
 
   const _textFieldGeneral({
     required this.labelText,
@@ -178,6 +185,7 @@ class _textFieldGeneral extends StatefulWidget {
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
+    required this.sizeScreen,
   });
 
   @override
@@ -188,8 +196,8 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 70,
+      margin: EdgeInsets.symmetric(
+        horizontal: widget.sizeScreen.width*.15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
@@ -210,9 +218,10 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
 class _formDateGeneral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Size sizeScreen = MediaQuery.of(context).size;
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 70,
+      margin: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width*.15,
       ),
       child: Form(
         child: Column(

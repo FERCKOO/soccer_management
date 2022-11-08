@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/widgets_propios.dart';
-import '../Screens/principal.dart';
 
 class JoinTeamPage extends StatelessWidget {
   static String id = 'JoinTeam_Page';
@@ -42,7 +40,7 @@ class JoinTeamPage extends StatelessWidget {
               * Imagen del usuario.
             */
             Container(
-              padding: const EdgeInsets.only(top: 34),
+              padding: EdgeInsets.only(top: sizeScreen.width*.1),
               alignment: Alignment.topCenter,
               child: const Icon(
                 Icons.person_rounded,
@@ -83,14 +81,14 @@ class JoinTeamPage extends StatelessWidget {
             /**
              * Contenedor de la etiqueta
              */
-            _etiqueta('Selecciona una liga'),
+            _etiqueta('Selecciona una liga', sizeScreen),
 
             //Zona de Ligas
             Expanded(
               child: ListView.builder(
                 itemCount: _teams.length,
                 itemBuilder: (context, int index) {
-                  return GestureDetectorLeagues(_teams, index);
+                  return GestureDetectorLeagues(_teams, index, sizeScreen);
                  },
               ),
             ),
@@ -101,43 +99,48 @@ class JoinTeamPage extends StatelessWidget {
   }
 }
 
-GestureDetector GestureDetectorLeagues(List<String> teams, int index){
+GestureDetector GestureDetectorLeagues(List<String> teams, int index, Size sizeScreen){
   return GestureDetector(
                     child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 5,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: sizeScreen.width*.01,
                       ),
                       child: ListTile(
                         leading: CircleAvatar(
                             ),
-                        title: Text('${teams.elementAt(index)}'),
+                        title: Text(teams.elementAt(index)),
                       ),
                     ),
                   );
 }
 
-Widget _etiqueta(String name) {
+Widget _etiqueta(String name, Size size) {
   return _etiquetaclase(
     name: name,
+    sizeScreen: size,
   );
 }
 
 class _etiquetaclase extends StatelessWidget {
   final String name;
+  final Size sizeScreen;
 
-  const _etiquetaclase({required this.name});
+  const _etiquetaclase({
+    required this.name,
+    required this.sizeScreen,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top:5),
+      padding: EdgeInsets.only(top: sizeScreen.height*.01),
       decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
-      height: 25,
+      height: sizeScreen.height*.04,
       width: double.infinity,
       child: Text(
-        '$name',
+        name,
         textAlign: TextAlign.center,
         style: const TextStyle(
           color: Colors.white,

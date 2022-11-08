@@ -9,6 +9,7 @@ class CalendarPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size; // Tamaño de la pantalla
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffF4F4F4),
@@ -20,7 +21,7 @@ class CalendarPage extends StatelessWidget {
           title: const Text(
             'Calendario',
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
               color: Color(0xFF333333),
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -36,7 +37,7 @@ class CalendarPage extends StatelessWidget {
               * Imagen de la liga.
             */
           Container(
-            padding: const EdgeInsets.only(top: 34),
+            padding: EdgeInsets.only(top: sizeScreen.height*.05),
             alignment: Alignment.topCenter,
             child: const Icon(
               Icons.image,
@@ -59,7 +60,7 @@ class CalendarPage extends StatelessWidget {
             ),
           ),
           */
-          const SizedBox(height: 8),
+          SizedBox(height: sizeScreen.height*.01),
 
           /**
              * Linea horizontal.
@@ -120,13 +121,13 @@ class CalendarPage extends StatelessWidget {
             ),
           ),
         */
-          const SizedBox(
-            height: 8,
+          SizedBox(
+            height: sizeScreen.height*.02,
           ),
 
           const Text(
             'Proximos partidos',
-            style: const TextStyle(
+            style: TextStyle(
               color: Color(0xFF011C53),
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -134,8 +135,8 @@ class CalendarPage extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(
-            height: 8,
+          SizedBox(
+            height: sizeScreen.height*.01,
           ),
 
           // Carta para los partidos
@@ -150,7 +151,7 @@ class CalendarPage extends StatelessWidget {
                       children: [
                         const Text(
                           '8 Nov',
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 17,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -172,7 +173,7 @@ class CalendarPage extends StatelessWidget {
                                 children: [
                                   const Text(
                                     'Venom vs Yoguiños',
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontSize: 14,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
@@ -181,17 +182,17 @@ class CalendarPage extends StatelessWidget {
                                   ),
                                   Container(
                                     child: Row(
-                                      children: [
-                                        const Icon(Icons.location_on_outlined),
-                                        const Text('Indoor CUU')
+                                      children: const [
+                                        Icon(Icons.location_on_outlined),
+                                        Text('Indoor CUU')
                                       ],
                                     ),
                                   ),
                                   Container(
                                     child: Row(
-                                      children: [
-                                        const Icon(Icons.av_timer),
-                                        const Text('3:00 P.M')
+                                      children: const [
+                                        Icon(Icons.av_timer),
+                                        Text('8:00 P.M')
                                       ],
                                     ),
                                   ),
@@ -243,9 +244,11 @@ class _DropDownState extends State<_DropDown>{
 
   @override
   Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
+
     return Container(
-      margin: const EdgeInsetsDirectional.only(
-        start: 35
+      margin: EdgeInsetsDirectional.only(
+        start: sizeScreen.height*.01
       ),
               alignment: AlignmentDirectional.topStart,
       child: DropdownButton(
@@ -255,13 +258,13 @@ class _DropDownState extends State<_DropDown>{
                   fontSize: 14,
                   fontWeight: FontWeight.bold
                   ),
-              items: [
-                const DropdownMenuItem(
-                  child: const Text('Liga'),
+              items: const [
+                DropdownMenuItem(
+                  child: Text('Liga'),
                   value: 1,
                 ),
-                const DropdownMenuItem(
-                  child: const Text('Equipo'),
+                DropdownMenuItem(
+                  child: Text('Equipo'),
                   value: 2,
                 )
               ],

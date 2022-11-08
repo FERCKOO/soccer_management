@@ -52,23 +52,24 @@ class LogUpPage extends StatelessWidget {
                 size: 70,
               ),
             ),
+            SizedBox(height: sizeScreen.height * .03),
 
             /*
                * Seccion de formulario
               */
-            _textFieldName(),
+            _textFieldName(sizeScreen),
             SizedBox(height: sizeScreen.height * .01),
-            _textFieldLastName(),
+            _textFieldLastName(sizeScreen),
             SizedBox(height: sizeScreen.height * .01),
-            _textFieldEmail(),
+            _textFieldEmail(sizeScreen),
             SizedBox(height: sizeScreen.height * .01),
             _formFieldDate(),
             SizedBox(height: sizeScreen.height * .01),
-            _textFieldPassword(),
+            _textFieldPassword(sizeScreen),
             SizedBox(height: sizeScreen.height * .01),
-            _textFieldConfirmPassword(),
-            SizedBox(height: sizeScreen.height * .015),
-            _buttonSingUp(context),
+            _textFieldConfirmPassword(sizeScreen),
+            SizedBox(height: sizeScreen.height * .017),
+            _buttonSingUp(context, sizeScreen),
           ],
         ),
       ),
@@ -76,13 +77,13 @@ class LogUpPage extends StatelessWidget {
   }
 }
 
-Widget _buttonSingUp(BuildContext context) {
+Widget _buttonSingUp(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
-        horizontal: 100,
-        vertical: 20,
+        vertical: size.width * .06,
+        horizontal: size.width * .22,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -106,29 +107,32 @@ Widget _buttonSingUp(BuildContext context) {
 /*
  * Seccion de metodos y funciones
 */
-Widget _textFieldName() {
+Widget _textFieldName(Size size) {
   return _textFieldGeneral(
     labelText: 'Nombre',
     icon: Icons.person_outline,
     hintText: 'Nombre',
+    sizeScreen: size,
     onChanged: () {},
   );
 }
 
-Widget _textFieldLastName() {
+Widget _textFieldLastName(Size size) {
   return _textFieldGeneral(
     labelText: 'Apellido',
     icon: Icons.person_outline,
     hintText: 'Apellido',
+    sizeScreen: size,
     onChanged: () {},
   );
 }
 
-Widget _textFieldEmail() {
+Widget _textFieldEmail(Size size) {
   return _textFieldGeneral(
     labelText: 'Correo',
     icon: Icons.email_outlined,
     hintText: 'example@hotmail.com',
+    sizeScreen: size,
     onChanged: () {},
   );
 }
@@ -137,23 +141,25 @@ Widget _formFieldDate() {
   return _formDateGeneral();
 }
 
-Widget _textFieldPassword() {
+Widget _textFieldPassword(Size size) {
   return _textFieldGeneral(
     labelText: 'Contraseña',
     icon: Icons.lock_outline_rounded,
     hintText: '*********',
-    onChanged: () {},
     obscureText: true,
+    sizeScreen: size,
+    onChanged: () {},
   );
 }
 
-Widget _textFieldConfirmPassword() {
+Widget _textFieldConfirmPassword(Size size) {
   return _textFieldGeneral(
     labelText: 'Confirmar contraseña',
     icon: Icons.lock_outline_rounded,
     hintText: '*********',
-    onChanged: () {},
+    sizeScreen: size,
     obscureText: true,
+    onChanged: () {},
   );
 }
 
@@ -167,6 +173,7 @@ class _textFieldGeneral extends StatefulWidget {
   final IconData icon;
   final Function onChanged;
   final bool obscureText;
+  final Size sizeScreen;
 
   const _textFieldGeneral({
     required this.labelText,
@@ -175,6 +182,7 @@ class _textFieldGeneral extends StatefulWidget {
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
+    required this.sizeScreen,
   });
 
   @override
@@ -186,7 +194,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: 70,
+        horizontal: widget.sizeScreen.width*.15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
@@ -194,7 +202,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         decoration: InputDecoration(
           border: OutlineInputBorder(),
           suffixIcon: Icon(widget.icon),
-          labelText: '${widget.labelText}',
+          labelText: widget.labelText,
           hintText: widget.hintText,
         ),
         onChanged: (value) {},
@@ -207,9 +215,10 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
 class _formDateGeneral extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final Size sizeScreen = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: 70,
+        horizontal: sizeScreen.width*.15,
       ),
       child: Form(
         child: Column(

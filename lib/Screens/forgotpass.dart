@@ -57,7 +57,8 @@ class ForgotPassPage extends StatelessWidget {
                 fontFamily: 'Lato',
               ),
             ),
-            _textFieldEmail(),
+            SizedBox(height: sizeScreen.height * .05),
+            _textFieldEmail(sizeScreen),
             SizedBox(height: sizeScreen.height * .11),
             _buttonSingIn(context, sizeScreen)
           ],
@@ -67,12 +68,13 @@ class ForgotPassPage extends StatelessWidget {
   }
 }
 
-Widget _textFieldEmail() {
+Widget _textFieldEmail(Size size) {
   return _textFieldGeneral(
     labelText: 'Correo electronico',
     icon: Icons.email_outlined,
     hintText: 'example@hotmail.com',
     obscureText: true,
+    sizeScreen: size,
     onChanged: () {},
   );
 }
@@ -81,9 +83,9 @@ Widget _buttonSingIn(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: const Color(0xFF011C53),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 100,
-        vertical: 20,
+      padding: EdgeInsets.symmetric(
+        vertical: size.width * .05,
+        horizontal: size.width * .2,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -98,14 +100,14 @@ Widget _buttonSingIn(BuildContext context, Size size) {
           fontFamily: 'Lato'),
     ),
     onPressed: () {
-      //Fañta envio de correo electronico
+      //Falta envio de correo electronico
       AwesomeDialog(
           context: context,
           animType: AnimType.SCALE,
           title: 'Recuperar contraseña',
           body: const Center(
             child: Text(
-              '''Se le ha enviado un correo electronico.\nRevise su bandeja de no deseados o la seccion de spam''',
+              'Se le ha enviado un correo electronico.\nRevise su bandeja de no deseados o la seccion de spam',
               textAlign: TextAlign.center,
               style: TextStyle(
                   fontSize: 14,
@@ -135,6 +137,7 @@ class _textFieldGeneral extends StatefulWidget {
   final IconData icon;
   final Function onChanged;
   final bool obscureText;
+  final Size sizeScreen;
 
   const _textFieldGeneral({
     required this.labelText,
@@ -143,6 +146,7 @@ class _textFieldGeneral extends StatefulWidget {
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
+    required this.sizeScreen,
   });
 
   @override
@@ -154,8 +158,8 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 50,
+      margin: EdgeInsets.symmetric(
+        horizontal: widget.sizeScreen.width*.15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,

@@ -50,7 +50,9 @@ class editNotificationsPage extends StatelessWidget {
                     bottom: sizeScreen.height * .15,
                     start: sizeScreen.width * .05,
                     end: sizeScreen.width * .09),
-                padding: const EdgeInsets.symmetric(vertical: 18),
+                padding: EdgeInsets.symmetric(
+                  vertical: sizeScreen.height*.02
+                  ),
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -80,7 +82,9 @@ class editNotificationsPage extends StatelessWidget {
                 alignment: AlignmentDirectional.topStart,
                 margin: EdgeInsetsDirectional.only(
                     start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-                padding: const EdgeInsets.symmetric(vertical: 18),
+                padding: EdgeInsets.symmetric(
+                  vertical: sizeScreen.height*.02
+                ),
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(

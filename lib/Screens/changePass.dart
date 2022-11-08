@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/principal.dart';
 
 class ChangePassPage extends StatelessWidget {
   static String id = 'ChangePassword_page';
@@ -7,14 +6,15 @@ class ChangePassPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         leading: IconButton(
-          color: Color(0xFF011C53),
-          icon: Icon(
+          color: const Color(0xFF011C53),
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
           onPressed: () {
@@ -24,7 +24,7 @@ class ChangePassPage extends StatelessWidget {
         /*
          * Texto de inicio sesion
         */
-        title: Text(
+        title: const Text(
           'Cambiar contraseña',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -40,17 +40,15 @@ class ChangePassPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: 20),
+            SizedBox(height: sizeScreen.height*.01),
             /*
                * Seccion de formulario
               */
-            _textFieldPassword(),
-            SizedBox(
-              height: 25,
-            ),
-            _textFieldConfirmPassword(),
-            SizedBox(height: 100),
-            _buttonSingIn(context)
+            _textFieldPassword(sizeScreen),
+            SizedBox(height: sizeScreen.height*.03),
+            _textFieldConfirmPassword(sizeScreen),
+            SizedBox(height: sizeScreen.height*.1),
+            _buttonSingIn(context, sizeScreen)
           ],
         ),
       ),
@@ -60,39 +58,41 @@ class ChangePassPage extends StatelessWidget {
   void setState(Null Function() param0) {}
 }
 
-Widget _textFieldPassword() {
+Widget _textFieldPassword(Size size) {
   return _textFieldGeneral(
     labelText: 'Nueva Contraseña',
     icon: Icons.lock_outline_rounded,
     hintText: '*********',
     obscureText: true,
+    sizeScreen: size,
     onChanged: () {},
   );
 }
 
-Widget _textFieldConfirmPassword() {
+Widget _textFieldConfirmPassword(Size size) {
   return _textFieldGeneral(
     labelText: 'Confirmar contraseña',
     icon: Icons.lock_outline_rounded,
     hintText: '*********',
     obscureText: true,
+    sizeScreen: size,
     onChanged: () {},
   );
 }
 
-Widget _buttonSingIn(BuildContext context) {
+Widget _buttonSingIn(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: Color(0xFF011C53),
+      primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
-        horizontal: 100,
-        vertical: 20,
+        vertical: size.width * .047,
+        horizontal: size.width * .05,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    child: Text(
+    child: const Text(
       'Actualizar contraseña',
       style: TextStyle(
           color: Colors.white,
@@ -114,6 +114,7 @@ class _textFieldGeneral extends StatefulWidget {
   final IconData icon;
   final Function onChanged;
   final bool obscureText;
+  final Size sizeScreen;
 
   const _textFieldGeneral({
     required this.labelText,
@@ -122,6 +123,7 @@ class _textFieldGeneral extends StatefulWidget {
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
+    required this.sizeScreen
   });
 
   @override
@@ -133,14 +135,14 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: 50,
+        horizontal: widget.sizeScreen.width*.15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
           prefixIcon: Icon(widget.icon),
-          labelText: '${widget.labelText}',
+          labelText: widget.labelText,
           hintText: widget.hintText,
         ),
         onChanged: (value) {},

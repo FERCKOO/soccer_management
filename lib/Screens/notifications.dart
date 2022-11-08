@@ -5,6 +5,8 @@ class NotificationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: const Color(0xffF4F4F4),
@@ -35,39 +37,62 @@ class NotificationsPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: ListView(
-        padding: const EdgeInsets.only(
-          left: 15,
+        padding: EdgeInsets.only(
+          left: sizeScreen.width*.05,
         ),
         children: [
           Container(
-            padding: const EdgeInsets.only(top: 20),
+            padding: EdgeInsets.only(top: sizeScreen.height*.02),
             child: const Text(
-              'Dia, semana, mes',
+              'Al dia',
               style: const TextStyle(
                   color: const Color(0xFF333333),
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Lato'),
+                  fontFamily: 'Lato'
+                ),
             ),
           ),
           //Notificacion
           Container(
-            padding: const EdgeInsets.only(
-              right: 80,
+            padding: EdgeInsets.only(
+              right: sizeScreen.width*.08,
             ),
             child:
                 ListTile(
-                  title: const Text('Tipo de notificacion'),
-                  shape: const Border(right: BorderSide(color: Colors.black)),
+                  title: const Text('Tienes partido a las 8:00 P.M'),
+                  trailing: Text('2 hrs'),
+                  onTap: () {
+                    
+                  },
+                ),
+                
+                
+          ),
+          Container(
+            padding: EdgeInsets.only(top: sizeScreen.height*.02),
+            child: const Text(
+              'Semana',
+              style: const TextStyle(
+                  color: const Color(0xFF333333),
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato'
+                ),
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(
+              right: sizeScreen.width*.08,
+            ),
+            child:
+                ListTile(
+                  title: const Text('Te han aceptado en el equipo Venom'),
+                  trailing: Text('3 dias'),
                   onTap: () {},
                 ),
+                
+                
           ),
-          /**
-           * Tiempo de la notificacion
-           * Falta acomodar esto enseguida de la notificacion
-           */
-          Container(
-            child: const Text('Horas'),
-          )
+          
         ],
       ),
     )

@@ -114,7 +114,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                   },
                 ),
                 Text(
-                  'Ligas',
+                  'Inscribirme',
                   style: TextStyle(
                     color:
                         _selectedIndex != 2 ? Colors.white : Color(0xFFE51E3F),

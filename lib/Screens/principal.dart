@@ -1,7 +1,3 @@
-// ignore_for_file: non_constant_identifier_names
-
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/notifications.dart';
 import 'joinTeam.dart';
@@ -12,6 +8,8 @@ class PrincipalPage extends StatelessWidget {
   final int _cantTeams = 1;
   @override
   Widget build(BuildContext context) {
+    final Size sizeScreen = MediaQuery.of(context).size;
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: const Color(0xffF4F4F4),
@@ -19,7 +17,7 @@ class PrincipalPage extends StatelessWidget {
         backgroundColor: const Color(0xffF4F4F4),
         actions: [
           IconButton(
-            padding: const EdgeInsets.only(right: 15),
+            padding: EdgeInsets.only(right: sizeScreen.width*.02),
             color: const Color(0xFF011C53),
             icon: const Icon(
               Icons.notifications_none,
@@ -46,13 +44,12 @@ class PrincipalPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: _body(context, _cantTeams),
+      body: _body(sizeScreen, _cantTeams),
     ));
   }
 }
 
-Widget _body(context, int _cantTeams) {
-  final size = MediaQuery.of(context).size; // Tamaño total de  la pantalla
+Widget _body(Size sizeScreen, int _cantTeams) {
   bool hTeam; // validacion con Query para saber si se tiene equipo
   (_cantTeams == 0) ? hTeam = false : hTeam = true;
 
@@ -63,7 +60,7 @@ Widget _body(context, int _cantTeams) {
               * Imagen del usuario.
             */
       Container(
-        padding: const EdgeInsets.only(top: 34),
+        padding: EdgeInsets.only(top: sizeScreen.width*.1),
         alignment: Alignment.topCenter,
         child: const Icon(
           Icons.person_rounded,
@@ -84,7 +81,7 @@ Widget _body(context, int _cantTeams) {
           textAlign: TextAlign.center,
         ),
       ),
-      const SizedBox(height: 8),
+      SizedBox(height: sizeScreen.height*.01),
 
       /**
              * Linea horizontal.
@@ -99,18 +96,18 @@ Widget _body(context, int _cantTeams) {
           ),
         ),
       ),
-      const SizedBox(height: 2),
+      SizedBox(height: sizeScreen.height*.002),
 
       /**
              * Contenedor de la etiqueta
              */
-      _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo'),
+      _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo', sizeScreen),
 
       Expanded(
         child: ListView.builder(
           itemCount: _cantTeams,
           itemBuilder: (context, int index) {
-            return GestureDetectorTeams('Colibri', 'Venom');
+            return GestureDetectorTeams('Colibri', 'Venom', sizeScreen);
           },
         ),
       ),
@@ -120,11 +117,11 @@ Widget _body(context, int _cantTeams) {
 }
 
 // widget para los equipos
-GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam) {
+GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam, Size sizeScreen) {
   return GestureDetector(
     child: Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 5,
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width*.01,
       ),
       child: ListTile(
         leading: const CircleAvatar(),
@@ -141,9 +138,9 @@ Widget _button(context, Size size) {
     style: ElevatedButton.styleFrom(
       alignment: Alignment(size.width / 2, size.height),
       primary: const Color(0xFF011C53),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 80,
-        vertical: 20,
+      padding: EdgeInsets.symmetric(
+        vertical: size.width * .05,
+        horizontal: size.width * .2,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -168,26 +165,31 @@ Widget _button(context, Size size) {
  * Seccion de metodos y funciones
 */
 
-Widget _etiqueta(String name) {
+Widget _etiqueta(String name, Size size) {
   return _etiquetaclase(
     name: name,
+    sizeScreen: size,
   );
 }
 
 // ignore: camel_case_types
 class _etiquetaclase extends StatelessWidget {
   final String name;
-
-  const _etiquetaclase({required this.name});
+  final Size sizeScreen;
+  
+  const _etiquetaclase({
+    required this.name,
+    required this.sizeScreen,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 5),
+      padding: EdgeInsets.only(top: sizeScreen.height*.01),
       decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
-      height: 25,
+      height: sizeScreen.height*.04,
       width: double.infinity,
       child: Text(
         name,

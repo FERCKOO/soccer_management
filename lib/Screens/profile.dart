@@ -8,7 +8,7 @@ class PorfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var sizeScreen = MediaQuery.of(context).size;
+    final sizeScreen = MediaQuery.of(context).size;
 
     return SafeArea(
       child: Scaffold(
@@ -76,9 +76,11 @@ class PorfilePage extends StatelessWidget {
               child: Container(
                 alignment: AlignmentDirectional.topStart,
                 margin: EdgeInsetsDirectional.only(
-                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 18,
+                    start: sizeScreen.width * .05,
+                    end: sizeScreen.width * .09
+                  ),
+                padding: EdgeInsets.symmetric(
+                  vertical: sizeScreen.height*.025,
                 ),
                 decoration: const BoxDecoration(
                   border: Border(
@@ -98,7 +100,7 @@ class PorfilePage extends StatelessWidget {
                 Navigator.pushNamed(context, EditDataPage.id);
               },
             ),
-            SizedBox(height: sizeScreen.height * .01),
+            SizedBox(height: sizeScreen.height * .05),
             /**
                * Detector de gestos para click en el container
                * Container con "Notificaciones"
@@ -107,8 +109,10 @@ class PorfilePage extends StatelessWidget {
               child: Container(
                 alignment: AlignmentDirectional.topStart,
                 margin: EdgeInsetsDirectional.only(
-                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-                padding: const EdgeInsets.symmetric(vertical: 18),
+                    start: sizeScreen.width * .05,
+                    end: sizeScreen.width * .09
+                  ),
+                padding: EdgeInsets.symmetric(vertical: sizeScreen.height*.025),
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -127,15 +131,17 @@ class PorfilePage extends StatelessWidget {
                 Navigator.pushNamed(context, editNotificationsPage.id);
               },
             ),
-            SizedBox(height: sizeScreen.height * .05),
+            SizedBox(height: sizeScreen.height * .06),
             /**
                * Container para el dark mode
                */
             Container(
               alignment: AlignmentDirectional.topStart,
               margin: EdgeInsetsDirectional.only(
-                  start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-              padding: const EdgeInsets.symmetric(vertical: 18),
+                  start: sizeScreen.width * .05,
+                  end: sizeScreen.width * .09
+                ),
+              padding: EdgeInsets.symmetric(vertical: sizeScreen.height*.025),
               decoration: const BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
