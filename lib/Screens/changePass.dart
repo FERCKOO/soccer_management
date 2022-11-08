@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/principal.dart';
-import 'package:soccer_management/router/routes.dart';
 
 class ChangePassPage extends StatelessWidget {
   static String id = 'ChangePassword_page';
 
   @override
   Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
     return SafeArea(
         child: Scaffold(
       backgroundColor: Color(0xffF4F4F4),
@@ -100,9 +100,7 @@ Widget _buttonSingIn(BuildContext context) {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
-    onPressed: () {
-      Navigator.of(context).pushNamed('${PrincipalPage.id}');
-    },
+    onPressed: () {},
   );
 }
 

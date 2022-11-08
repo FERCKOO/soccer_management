@@ -12,7 +12,6 @@ class PrincipalPage extends StatelessWidget {
   final int _cantTeams = 1;
   @override
   Widget build(BuildContext context) {
-
     return SafeArea(
         child: Scaffold(
       backgroundColor: const Color(0xffF4F4F4),
@@ -27,8 +26,8 @@ class PrincipalPage extends StatelessWidget {
             ),
             onPressed: () {
               Route route =
-                MaterialPageRoute(builder: (bc) => NotificationsPage());
-                Navigator.of(context).push(route);
+                  MaterialPageRoute(builder: (bc) => NotificationsPage());
+              Navigator.of(context).push(route);
             }, // Accion de la notificacion
           ),
         ],
@@ -48,7 +47,6 @@ class PrincipalPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: _body(context, _cantTeams),
-      //bottomNavigationBar: _BottomBar(),
     ));
   }
 }
@@ -107,14 +105,13 @@ Widget _body(context, int _cantTeams) {
              * Contenedor de la etiqueta
              */
       _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo'),
-      
+
       Expanded(
         child: ListView.builder(
           itemCount: _cantTeams,
           itemBuilder: (context, int index) {
             return GestureDetectorTeams('Colibri', 'Venom');
-           },
-
+          },
         ),
       ),
       //_button(context, size),
@@ -123,30 +120,26 @@ Widget _body(context, int _cantTeams) {
 }
 
 // widget para los equipos
-GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam){
+GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam) {
   return GestureDetector(
     child: Container(
       padding: const EdgeInsets.symmetric(
-                horizontal: 5,
-              ),
-              child: ListTile(
-                leading: const CircleAvatar(),
-                title: Text(NameLeague),
-                subtitle: Text(NameTeam),
-              ),
+        horizontal: 5,
+      ),
+      child: ListTile(
+        leading: const CircleAvatar(),
+        title: Text(NameLeague),
+        subtitle: Text(NameTeam),
+      ),
     ),
   );
 }
 
 // ignore: unused_element
 Widget _button(context, Size size) {
-
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      alignment: Alignment(
-        size.width / 2,
-        size.height
-        ),
+      alignment: Alignment(size.width / 2, size.height),
       primary: const Color(0xFF011C53),
       padding: const EdgeInsets.symmetric(
         horizontal: 80,

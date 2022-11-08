@@ -8,7 +8,6 @@ class LogUpPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final sizeScreen = MediaQuery.of(context).size;
 
     return SafeArea(
@@ -58,19 +57,17 @@ class LogUpPage extends StatelessWidget {
                * Seccion de formulario
               */
             _textFieldName(),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             _textFieldLastName(),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             _textFieldEmail(),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             _formFieldDate(),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             _textFieldPassword(),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             _textFieldConfirmPassword(),
-            SizedBox(
-              height: sizeScreen.height*.015,
-            ),
+            SizedBox(height: sizeScreen.height * .015),
             _buttonSingUp(context),
           ],
         ),
@@ -92,8 +89,8 @@ Widget _buttonSingUp(BuildContext context) {
       ),
     ),
     onPressed: () {
-      Navigator.of(context).pushNamedAndRemoveUntil(LayoutBottomNavigatorBar.id,
-                  (Route<dynamic> route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
     },
     child: Text(
       'Registrarse',
@@ -214,10 +211,7 @@ class _formDateGeneral extends StatelessWidget {
       margin: EdgeInsets.symmetric(
         horizontal: 70,
       ),
-      child: 
-      
-      
-      Form(
+      child: Form(
         child: Column(
           children: <Widget>[
             DateTimeFormField(

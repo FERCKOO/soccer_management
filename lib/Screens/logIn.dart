@@ -5,7 +5,6 @@ import 'package:soccer_management/bottom_drawer_layout.dart';
 import 'package:soccer_management/router/routes.dart';
 
 class LogInPage extends StatelessWidget {
-  
   static String id = 'LogIn_page';
 
   @override
@@ -23,6 +22,7 @@ class LogInPage extends StatelessWidget {
         title: const Text(
           'Bienvenido',
           textAlign: TextAlign.center,
+          // ignore: unnecessary_const
           style: const TextStyle(
             color: const Color(0xFF333333),
             fontSize: 24,
@@ -36,25 +36,20 @@ class LogInPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-
             SizedBox(
-              height: sizeScreen.height*.09,
+              height: sizeScreen.height * .09,
             ),
 
             /*
              * Imagen del la app.
             */
             Container(
-              child: 
-                  Image(
+                child: Image(
                     alignment: Alignment.topCenter,
                     image: const AssetImage(
                       'assets/images/Logo.png',
                     ),
-                    width: sizeScreen.width*.4
-                  )
-                  
-              ),
+                    width: sizeScreen.width * .4)),
             SizedBox(height: sizeScreen.height * .03),
 
             /**
@@ -79,9 +74,7 @@ class LogInPage extends StatelessWidget {
             */
             Container(
               margin: EdgeInsetsDirectional.only(
-                top: sizeScreen.height*.03,
-                bottom: sizeScreen.width*.03
-                ),
+                  top: sizeScreen.height * .03, bottom: sizeScreen.width * .03),
               child: const Text(
                 'Inicia sesión',
                 textAlign: TextAlign.center,
@@ -210,9 +203,8 @@ Widget _buttonSingIn(BuildContext context) {
           fontFamily: 'Lato'),
     ),
     onPressed: () {
-      Navigator.of(context)
-                  .pushNamedAndRemoveUntil(LayoutBottomNavigatorBar.id,
-                  (Route<dynamic> route) => false);
+      Navigator.of(context).pushNamedAndRemoveUntil(
+          LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
     },
   );
 }
