@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/logIn.dart';
+import '../Screens/editData.dart';
+import '../Screens/logIn.dart';
 
 class PorfilePage extends StatelessWidget {
   static String id = 'Porfile_Page';
@@ -31,7 +32,7 @@ class PorfilePage extends StatelessWidget {
         body: Column(
           children: [
             SizedBox(
-              height: sizeScreen.height*.1,
+              height: sizeScreen.height * .1,
             ),
 
             /**
@@ -40,9 +41,9 @@ class PorfilePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                const Icon(
+                Icon(
                   Icons.person_rounded,
-                  size: 50,
+                  size: sizeScreen.width * .11,
                 ),
                 Column(
                   children: const [
@@ -65,7 +66,7 @@ class PorfilePage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: sizeScreen.height*.1),
+            SizedBox(height: sizeScreen.height * .1),
             /**
                * Detector de gestos para click en el container
                * Container con "editar perfil"
@@ -73,7 +74,8 @@ class PorfilePage extends StatelessWidget {
             GestureDetector(
               child: Container(
                 alignment: AlignmentDirectional.topStart,
-                margin: const EdgeInsetsDirectional.only(start: 30, end: 50),
+                margin: EdgeInsetsDirectional.only(
+                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
                 padding: const EdgeInsets.symmetric(
                   vertical: 18,
                 ),
@@ -92,10 +94,11 @@ class PorfilePage extends StatelessWidget {
                 ),
               ),
               onTap: () {
+                Navigator.pushNamed(context, '${EditDataPage.id}');
                 print('editar');
               },
             ),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             /**
                * Detector de gestos para click en el container
                * Container con "Notificaciones"
@@ -103,7 +106,8 @@ class PorfilePage extends StatelessWidget {
             GestureDetector(
               child: Container(
                 alignment: AlignmentDirectional.topStart,
-                margin: const EdgeInsetsDirectional.only(start: 30, end: 50),
+                margin: EdgeInsetsDirectional.only(
+                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 decoration: const BoxDecoration(
                   border: Border(
@@ -123,13 +127,14 @@ class PorfilePage extends StatelessWidget {
                 print('Notificaciones');
               },
             ),
-            SizedBox(height: sizeScreen.height*.05),
+            SizedBox(height: sizeScreen.height * .05),
             /**
                * Container para el dark mode
                */
             Container(
               alignment: AlignmentDirectional.topStart,
-              margin: const EdgeInsetsDirectional.only(start: 30, end: 50),
+              margin: EdgeInsetsDirectional.only(
+                  start: sizeScreen.width * .05, end: sizeScreen.width * .09),
               padding: const EdgeInsets.symmetric(vertical: 18),
               decoration: const BoxDecoration(
                 border: Border(
@@ -150,7 +155,6 @@ class PorfilePage extends StatelessWidget {
                    * Switch para activar el dark mode
                   */
                   _switch()
-
                 ],
               ),
             ),
@@ -160,9 +164,7 @@ class PorfilePage extends StatelessWidget {
                  * en el texto de "Cerrar sesion"
                  */
             Container(
-              margin: EdgeInsetsDirectional.only(
-                top: sizeScreen.height*.1
-              ),
+              margin: EdgeInsetsDirectional.only(top: sizeScreen.height * .1),
               child: GestureDetector(
                 // Detecta alguna accion en texto
 
@@ -176,8 +178,8 @@ class PorfilePage extends StatelessWidget {
                   ),
                 ),
                 onTap: (() {
-                  Navigator.of(context)
-                  .pushNamedAndRemoveUntil('${LogInPage.id}', (Route<dynamic> route) => false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      '${LogInPage.id}', (Route<dynamic> route) => false);
                 }),
               ),
             ),
