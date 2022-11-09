@@ -12,6 +12,7 @@ class JoinTeamPage extends StatelessWidget {
       'Karike',
       'Indoor'
     ];
+    
 
     return SafeArea(
       child: Scaffold(

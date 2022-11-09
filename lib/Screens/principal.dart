@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/notifications.dart';
+import '../Screens/notifications.dart';
+import '../Screens/team.dart';
 import 'joinTeam.dart';
 
 // ignore: use_key_in_widget_constructors
@@ -129,6 +130,7 @@ GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam, Size si
         subtitle: Text(NameTeam),
       ),
     ),
+    onTap: (){},
   );
 }
 

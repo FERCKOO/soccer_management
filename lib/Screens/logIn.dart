@@ -49,7 +49,8 @@ class LogInPage extends StatelessWidget {
                     image: const AssetImage(
                       'assets/images/LogoPNG.png',
                     ),
-                    width: sizeScreen.width * .4)),
+                    width: sizeScreen.width * .4)
+                    ),
             SizedBox(height: sizeScreen.height * .03),
 
             /**
