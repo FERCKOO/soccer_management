@@ -1,7 +1,10 @@
+// ignore_for_file: no_leading_underscores_for_local_identifiers, non_constant_identifier_names, prefer_const_constructors, unused_local_variable
+
 import 'package:flutter/material.dart';
 import '../Screens/notifications.dart';
-import '../Screens/team.dart';
 import 'joinTeam.dart';
+import 'team.dart';
+import 'package:http/http.dart' as http;
 
 // ignore: use_key_in_widget_constructors
 class PrincipalPage extends StatelessWidget {
@@ -18,7 +21,7 @@ class PrincipalPage extends StatelessWidget {
         backgroundColor: const Color(0xffF4F4F4),
         actions: [
           IconButton(
-            padding: EdgeInsets.only(right: sizeScreen.width*.02),
+            padding: EdgeInsets.only(right: sizeScreen.width * .02),
             color: const Color(0xFF011C53),
             icon: const Icon(
               Icons.notifications_none,
@@ -61,7 +64,7 @@ Widget _body(Size sizeScreen, int _cantTeams) {
               * Imagen del usuario.
             */
       Container(
-        padding: EdgeInsets.only(top: sizeScreen.width*.1),
+        padding: EdgeInsets.only(top: sizeScreen.width * .1),
         alignment: Alignment.topCenter,
         child: const Icon(
           Icons.person_rounded,
@@ -71,18 +74,16 @@ Widget _body(Size sizeScreen, int _cantTeams) {
       /**
            * Nombre del jugador
            */
-      Container(
-        child: const Text(
-          'Mario Ledezma',
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Lato',
-          ),
-          textAlign: TextAlign.center,
+      const Text(
+        'Mario Ledezma',
+        style: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato',
         ),
+        textAlign: TextAlign.center,
       ),
-      SizedBox(height: sizeScreen.height*.01),
+      SizedBox(height: sizeScreen.height * .01),
 
       /**
              * Linea horizontal.
@@ -97,18 +98,19 @@ Widget _body(Size sizeScreen, int _cantTeams) {
           ),
         ),
       ),
-      SizedBox(height: sizeScreen.height*.002),
+      SizedBox(height: sizeScreen.height * .002),
 
       /**
-             * Contenedor de la etiqueta
-             */
+       * Contenedor de la etiqueta
+      */
       _etiqueta((!hTeam) ? 'Sin equipos' : 'Selecciona un equipo', sizeScreen),
 
       Expanded(
         child: ListView.builder(
           itemCount: _cantTeams,
           itemBuilder: (context, int index) {
-            return GestureDetectorTeams('Colibri', 'Venom', sizeScreen);
+            return GestureDetectorTeams(
+                'Colibri', 'Venom', sizeScreen, context);
           },
         ),
       ),
@@ -118,11 +120,12 @@ Widget _body(Size sizeScreen, int _cantTeams) {
 }
 
 // widget para los equipos
-GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam, Size sizeScreen) {
+GestureDetector GestureDetectorTeams(
+    String NameLeague, String NameTeam, Size sizeScreen, BuildContext context) {
   return GestureDetector(
     child: Container(
       padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width*.01,
+        horizontal: sizeScreen.width * .01,
       ),
       child: ListTile(
         leading: const CircleAvatar(),
@@ -130,7 +133,9 @@ GestureDetector GestureDetectorTeams(String NameLeague, String NameTeam, Size si
         subtitle: Text(NameTeam),
       ),
     ),
-    onTap: (){},
+    onTap: () {
+      Navigator.pushNamed(context, TeamPage.id);
+    },
   );
 }
 
@@ -139,7 +144,7 @@ Widget _button(context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       alignment: Alignment(size.width / 2, size.height),
-      primary: const Color(0xFF011C53),
+      backgroundColor: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         vertical: size.width * .05,
         horizontal: size.width * .2,
@@ -178,7 +183,7 @@ Widget _etiqueta(String name, Size size) {
 class _etiquetaclase extends StatelessWidget {
   final String name;
   final Size sizeScreen;
-  
+
   const _etiquetaclase({
     required this.name,
     required this.sizeScreen,
@@ -187,11 +192,11 @@ class _etiquetaclase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: sizeScreen.height*.01),
+      padding: EdgeInsets.only(top: sizeScreen.height * .01),
       decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
-      height: sizeScreen.height*.04,
+      height: sizeScreen.height * .04,
       width: double.infinity,
       child: Text(
         name,

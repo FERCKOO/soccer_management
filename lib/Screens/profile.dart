@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/editNotifications.dart';
 import '../Screens/editData.dart';
@@ -76,11 +78,9 @@ class PorfilePage extends StatelessWidget {
               child: Container(
                 alignment: AlignmentDirectional.topStart,
                 margin: EdgeInsetsDirectional.only(
-                    start: sizeScreen.width * .05,
-                    end: sizeScreen.width * .09
-                  ),
+                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
                 padding: EdgeInsets.symmetric(
-                  vertical: sizeScreen.height*.025,
+                  vertical: sizeScreen.height * .025,
                 ),
                 decoration: const BoxDecoration(
                   border: Border(
@@ -109,10 +109,9 @@ class PorfilePage extends StatelessWidget {
               child: Container(
                 alignment: AlignmentDirectional.topStart,
                 margin: EdgeInsetsDirectional.only(
-                    start: sizeScreen.width * .05,
-                    end: sizeScreen.width * .09
-                  ),
-                padding: EdgeInsets.symmetric(vertical: sizeScreen.height*.025),
+                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
+                padding:
+                    EdgeInsets.symmetric(vertical: sizeScreen.height * .025),
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -138,10 +137,8 @@ class PorfilePage extends StatelessWidget {
             Container(
               alignment: AlignmentDirectional.topStart,
               margin: EdgeInsetsDirectional.only(
-                  start: sizeScreen.width * .05,
-                  end: sizeScreen.width * .09
-                ),
-              padding: EdgeInsets.symmetric(vertical: sizeScreen.height*.025),
+                  start: sizeScreen.width * .05, end: sizeScreen.width * .09),
+              padding: EdgeInsets.symmetric(vertical: sizeScreen.height * .025),
               decoration: const BoxDecoration(
                 border: Border(
                   bottom: BorderSide(
@@ -174,6 +171,12 @@ class PorfilePage extends StatelessWidget {
               child: GestureDetector(
                 // Detecta alguna accion en texto
 
+                onTap: (() {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                      LogInPage.id, (Route<dynamic> route) => false);
+                }),
+                // Detecta alguna accion en texto
+
                 child: const Text(
                   'Cerrar sesión',
                   style: TextStyle(
@@ -183,10 +186,6 @@ class PorfilePage extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                 ),
-                onTap: (() {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      '${LogInPage.id}', (Route<dynamic> route) => false);
-                }),
               ),
             ),
           ],

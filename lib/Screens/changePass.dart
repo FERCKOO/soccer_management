@@ -1,5 +1,9 @@
+// ignore_for_file: file_names
+
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
+// ignore: use_key_in_widget_constructors
 class ChangePassPage extends StatelessWidget {
   static String id = 'ChangePassword_page';
 
@@ -40,14 +44,14 @@ class ChangePassPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
             /*
                * Seccion de formulario
               */
             _textFieldPassword(sizeScreen),
-            SizedBox(height: sizeScreen.height*.03),
+            SizedBox(height: sizeScreen.height * .03),
             _textFieldConfirmPassword(sizeScreen),
-            SizedBox(height: sizeScreen.height*.1),
+            SizedBox(height: sizeScreen.height * .1),
             _buttonSingIn(context, sizeScreen)
           ],
         ),
@@ -83,7 +87,7 @@ Widget _textFieldConfirmPassword(Size size) {
 Widget _buttonSingIn(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF011C53),
+      backgroundColor: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         vertical: size.width * .047,
         horizontal: size.width * .05,
@@ -100,13 +104,32 @@ Widget _buttonSingIn(BuildContext context, Size size) {
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
-    onPressed: () {},
+    onPressed: () {
+      AwesomeDialog(
+        context: context,
+        // ignore: deprecated_member_use
+        animType: AnimType.SCALE,
+        title: 'Cambiar contraseña',
+        body: const Center(
+          child: Text(
+            'Se ha actualizado tu contraseña.',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+          ),
+        ),
+        btnOkColor: const Color(0xFF011C53),
+        btnOkText: 'Continuar',
+        btnOkOnPress: () {
+          Navigator.pop(context);
+        },
+      ).show();
+    },
   );
 }
 
-/**
- * Clase generica de text labels
- */
+/// Clase generica de text labels
+// ignore: camel_case_types
 class _textFieldGeneral extends StatefulWidget {
   final String labelText; //Texto del label
   final String? hintText; //Texto de muestra
@@ -116,26 +139,27 @@ class _textFieldGeneral extends StatefulWidget {
   final bool obscureText;
   final Size sizeScreen;
 
-  const _textFieldGeneral({
-    required this.labelText,
-    this.hintText,
-    this.keyboardType,
-    required this.icon,
-    required this.onChanged,
-    this.obscureText = false,
-    required this.sizeScreen
-  });
+  const _textFieldGeneral(
+      {required this.labelText,
+      this.hintText,
+      // ignore: unused_element
+      this.keyboardType,
+      required this.icon,
+      required this.onChanged,
+      this.obscureText = false,
+      required this.sizeScreen});
 
   @override
   State<_textFieldGeneral> createState() => _textFieldGeneralState();
 }
 
+// ignore: camel_case_types
 class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: widget.sizeScreen.width*.15,
+        horizontal: widget.sizeScreen.width * .15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,

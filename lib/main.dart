@@ -4,8 +4,8 @@ import '../router/routes.dart';
 
 void main() => runApp(MyApp());
 
+// ignore: use_key_in_widget_constructors
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      // Pantalla de inicio 
+      // Pantalla de inicio
       initialRoute: LogInPage.id,
       routes: customRoutes,
     );

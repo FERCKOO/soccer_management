@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, prefer_const_constructors, camel_case_types
+
 import 'package:flutter/material.dart';
 
 class JoinTeamPage extends StatelessWidget {
@@ -7,12 +9,7 @@ class JoinTeamPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
 
-    List<String> _teams = [
-      'Colibri',
-      'Karike',
-      'Indoor'
-    ];
-    
+    List<String> _teams = ['Colibri', 'Karike', 'Indoor'];
 
     return SafeArea(
       child: Scaffold(
@@ -41,7 +38,7 @@ class JoinTeamPage extends StatelessWidget {
               * Imagen del usuario.
             */
             Container(
-              padding: EdgeInsets.only(top: sizeScreen.width*.1),
+              padding: EdgeInsets.only(top: sizeScreen.width * .1),
               alignment: Alignment.topCenter,
               child: const Icon(
                 Icons.person_rounded,
@@ -51,18 +48,16 @@ class JoinTeamPage extends StatelessWidget {
             /**
            * Nombre del jugador
            */
-            Container(
-              child: const Text(
-                'Mario Ledezma',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Lato',
-                ),
-                textAlign: TextAlign.center,
+            const Text(
+              'Mario Ledezma',
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Lato',
               ),
+              textAlign: TextAlign.center,
             ),
-            SizedBox(height: sizeScreen.height*.01),
+            SizedBox(height: sizeScreen.height * .01),
 
             /**
              * Linea horizontal.
@@ -77,7 +72,7 @@ class JoinTeamPage extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: sizeScreen.height*.002),
+            SizedBox(height: sizeScreen.height * .002),
 
             /**
              * Contenedor de la etiqueta
@@ -90,7 +85,7 @@ class JoinTeamPage extends StatelessWidget {
                 itemCount: _teams.length,
                 itemBuilder: (context, int index) {
                   return GestureDetectorLeagues(_teams, index, sizeScreen);
-                 },
+                },
               ),
             ),
           ],
@@ -100,19 +95,19 @@ class JoinTeamPage extends StatelessWidget {
   }
 }
 
-GestureDetector GestureDetectorLeagues(List<String> teams, int index, Size sizeScreen){
+GestureDetector GestureDetectorLeagues(
+    List<String> teams, int index, Size sizeScreen) {
   return GestureDetector(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: sizeScreen.width*.01,
-                      ),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                            ),
-                        title: Text(teams.elementAt(index)),
-                      ),
-                    ),
-                  );
+    child: Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width * .01,
+      ),
+      child: ListTile(
+        leading: CircleAvatar(),
+        title: Text(teams.elementAt(index)),
+      ),
+    ),
+  );
 }
 
 Widget _etiqueta(String name, Size size) {
@@ -134,11 +129,11 @@ class _etiquetaclase extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: sizeScreen.height*.01),
+      padding: EdgeInsets.only(top: sizeScreen.height * .01),
       decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
-      height: sizeScreen.height*.04,
+      height: sizeScreen.height * .04,
       width: double.infinity,
       child: Text(
         name,

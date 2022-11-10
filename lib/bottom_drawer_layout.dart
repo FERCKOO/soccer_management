@@ -14,12 +14,11 @@ class LayoutBottomNavigatorBar extends StatefulWidget {
 }
 
 class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
-  
   static final List<Widget> _viewsOptions = <Widget>[
     PrincipalPage(),
     CalendarPage(),
     JoinTeamPage(),
-    PorfilePage()
+    PorfilePage(),
   ];
 
   int _selectedIndex = 0;
@@ -37,7 +36,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
         child: _viewsOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomAppBar(
-        color: Color(0xFF3A4280),
+        color: const Color(0xFF3A4280),
         child: Row(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -49,11 +48,11 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 IconButton(
                   icon: Icon(
                     Icons.sports_soccer,
-                    color:
-                        _selectedIndex != 0 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 0
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                   onPressed: () {
-                    focusColor:
                     Colors.black;
                     _onItemTapped(0);
                   },
@@ -61,8 +60,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 Text(
                   'Equipos',
                   style: TextStyle(
-                    color:
-                        _selectedIndex != 0 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 0
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                 ),
               ],
@@ -75,8 +75,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 IconButton(
                   icon: Icon(
                     Icons.calendar_month,
-                    color:
-                        _selectedIndex != 1 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 1
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                   onPressed: () {
                     _onItemTapped(1);
@@ -85,8 +86,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 Text(
                   'Calendario',
                   style: TextStyle(
-                    color:
-                        _selectedIndex != 1 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 1
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                 ),
               ],
@@ -106,8 +108,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 IconButton(
                   icon: Icon(
                     Icons.add,
-                    color:
-                        _selectedIndex != 2 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 2
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                   onPressed: () {
                     _onItemTapped(2);
@@ -116,10 +119,11 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 Text(
                   'Inscribirme',
                   style: TextStyle(
-                    color:
-                        _selectedIndex != 2 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 2
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
-                ),      
+                ),
               ],
             ),
 
@@ -130,8 +134,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 IconButton(
                   icon: Icon(
                     Icons.person_outline,
-                    color:
-                        _selectedIndex != 3 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 3
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                   onPressed: () {
                     _onItemTapped(3);
@@ -140,8 +145,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                 Text(
                   'Perfil',
                   style: TextStyle(
-                    color:
-                        _selectedIndex != 3 ? Colors.white : Color(0xFFE51E3F),
+                    color: _selectedIndex != 3
+                        ? Colors.white
+                        : const Color(0xFFE51E3F),
                   ),
                 ),
               ],

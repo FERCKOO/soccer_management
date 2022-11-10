@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:horizontal_calendar/horizontal_calendar.dart';
 
+// ignore: use_key_in_widget_constructors
 class CalendarPage extends StatelessWidget {
   static String id = 'Calendar_Page';
 
@@ -31,13 +31,12 @@ class CalendarPage extends StatelessWidget {
           centerTitle: true,
         ),
         body: SizedBox.expand(
-            child: Column(
-              children: [
+            child: Column(children: [
           /*
               * Imagen de la liga.
             */
           Container(
-            padding: EdgeInsets.only(top: sizeScreen.height*.05),
+            padding: EdgeInsets.only(top: sizeScreen.height * .05),
             alignment: Alignment.topCenter,
             child: const Icon(
               Icons.image,
@@ -60,7 +59,7 @@ class CalendarPage extends StatelessWidget {
             ),
           ),
           */
-          SizedBox(height: sizeScreen.height*.01),
+          SizedBox(height: sizeScreen.height * .01),
 
           /**
              * Linea horizontal.
@@ -122,7 +121,7 @@ class CalendarPage extends StatelessWidget {
           ),
         */
           SizedBox(
-            height: sizeScreen.height*.02,
+            height: sizeScreen.height * .02,
           ),
 
           const Text(
@@ -136,7 +135,7 @@ class CalendarPage extends StatelessWidget {
           ),
 
           SizedBox(
-            height: sizeScreen.height*.01,
+            height: sizeScreen.height * .01,
           ),
 
           // Carta para los partidos
@@ -152,18 +151,17 @@ class CalendarPage extends StatelessWidget {
                         const Text(
                           '8 Nov',
                           style: TextStyle(
-                            fontSize: 17,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Lato'
-                          ),
+                              fontSize: 17,
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Lato'),
                         ),
                         Card(
                           elevation: 10,
                           color: Colors.white,
                           child: SizedBox(
-                            width: sizeScreen.width*.70,
-                            height: sizeScreen.height*.2,
+                            width: sizeScreen.width * .70,
+                            height: sizeScreen.height * .2,
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Column(
@@ -177,24 +175,19 @@ class CalendarPage extends StatelessWidget {
                                         fontSize: 14,
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold,
-                                        fontFamily: 'Lato'
-                                        ), //Textstyle
+                                        fontFamily: 'Lato'), //Textstyle
                                   ),
-                                  Container(
-                                    child: Row(
-                                      children: const [
-                                        Icon(Icons.location_on_outlined),
-                                        Text('Indoor CUU')
-                                      ],
-                                    ),
+                                  Row(
+                                    children: const [
+                                      Icon(Icons.location_on_outlined),
+                                      Text('Indoor CUU')
+                                    ],
                                   ),
-                                  Container(
-                                    child: Row(
-                                      children: const [
-                                        Icon(Icons.av_timer),
-                                        Text('8:00 P.M')
-                                      ],
-                                    ),
+                                  Row(
+                                    children: const [
+                                      Icon(Icons.av_timer),
+                                      Text('8:00 P.M')
+                                    ],
                                   ),
                                   /**
                              * Linea horizontal.
@@ -232,48 +225,41 @@ class CalendarPage extends StatelessWidget {
   void setState(Null Function() param0) {}
 }
 
-class _DropDown extends StatefulWidget{
+class _DropDown extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _DropDownState();
-
 }
 
-class _DropDownState extends State<_DropDown>{
-    int? _value = 1;
-
+class _DropDownState extends State<_DropDown> {
+  int? _value = 1;
 
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
 
     return Container(
-      margin: EdgeInsetsDirectional.only(
-        start: sizeScreen.height*.01
-      ),
-              alignment: AlignmentDirectional.topStart,
+      margin: EdgeInsetsDirectional.only(start: sizeScreen.height * .01),
+      alignment: AlignmentDirectional.topStart,
       child: DropdownButton(
-              value: _value,
-              style: const TextStyle(
-                color: Colors.black,
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold
-                  ),
-              items: const [
-                DropdownMenuItem(
-                  child: Text('Liga'),
-                  value: 1,
-                ),
-                DropdownMenuItem(
-                  child: Text('Equipo'),
-                  value: 2,
-                )
-              ],
-              onChanged: (value) {
-                setState(() {
-                  _value = value as int?;
-                });
-              },
-            ),
+        value: _value,
+        style: const TextStyle(
+            color: Colors.black, fontSize: 14, fontWeight: FontWeight.bold),
+        items: const [
+          DropdownMenuItem(
+            value: 1,
+            child: Text('Liga'),
+          ),
+          DropdownMenuItem(
+            value: 2,
+            child: Text('Equipo'),
+          )
+        ],
+        onChanged: (value) {
+          setState(() {
+            _value = value as int?;
+          });
+        },
+      ),
     );
   }
 }

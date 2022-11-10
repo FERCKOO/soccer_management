@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, camel_case_types, use_key_in_widget_constructors
+
 import 'package:flutter/material.dart';
 
 class editNotificationsPage extends StatelessWidget {
@@ -50,9 +52,8 @@ class editNotificationsPage extends StatelessWidget {
                     bottom: sizeScreen.height * .15,
                     start: sizeScreen.width * .05,
                     end: sizeScreen.width * .09),
-                padding: EdgeInsets.symmetric(
-                  vertical: sizeScreen.height*.02
-                  ),
+                padding:
+                    EdgeInsets.symmetric(vertical: sizeScreen.height * .02),
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
@@ -82,9 +83,8 @@ class editNotificationsPage extends StatelessWidget {
                 alignment: AlignmentDirectional.topStart,
                 margin: EdgeInsetsDirectional.only(
                     start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-                padding: EdgeInsets.symmetric(
-                  vertical: sizeScreen.height*.02
-                ),
+                padding:
+                    EdgeInsets.symmetric(vertical: sizeScreen.height * .02),
                 decoration: const BoxDecoration(
                   border: Border(
                     bottom: BorderSide(
