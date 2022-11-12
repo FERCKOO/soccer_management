@@ -1,8 +1,11 @@
+// ignore_for_file: unused_element
+
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/logIn.dart';
 import 'package:soccer_management/Screens/principal.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
+// ignore: use_key_in_widget_constructors
 class ForgotPassPage extends StatelessWidget {
   static String id = 'forgotPassword_page';
 
@@ -82,7 +85,7 @@ Widget _textFieldEmail(Size size) {
 Widget _buttonSingIn(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF011C53),
+      backgroundColor: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         vertical: size.width * .05,
         horizontal: size.width * .2,
@@ -102,28 +105,25 @@ Widget _buttonSingIn(BuildContext context, Size size) {
     onPressed: () {
       //Falta envio de correo electronico
       AwesomeDialog(
-          context: context,
-          animType: AnimType.SCALE,
-          title: 'Recuperar contraseña',
-          body: const Center(
-            child: Text(
-              'Se le ha enviado un correo electronico.\nRevise su bandeja de no deseados o la seccion de spam',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Lato'),
-            ),
+        context: context,
+        // ignore: deprecated_member_use
+        animType: AnimType.SCALE,
+        title: 'Recuperar contraseña',
+        body: const Center(
+          child: Text(
+            'Se le ha enviado un correo electronico.\nRevise su bandeja de no deseados o la seccion de spam',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
           ),
-          btnOkColor: const Color(0xFF011C53),
-          btnOkText: 'Volver al inicio',
-          btnOkOnPress: () {
-            Navigator.of(context)
-                  .pushNamedAndRemoveUntil(LogInPage.id,
-                  (Route<dynamic> route) => false);
-          } ,
-          )
-        .show();
+        ),
+        btnOkColor: const Color(0xFF011C53),
+        btnOkText: 'Volver al inicio',
+        btnOkOnPress: () {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+              LogInPage.id, (Route<dynamic> route) => false);
+        },
+      ).show();
     },
   );
 }
@@ -142,11 +142,11 @@ class _textFieldGeneral extends StatefulWidget {
   const _textFieldGeneral({
     required this.labelText,
     this.hintText,
-    this.keyboardType,
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
     required this.sizeScreen,
+    this.keyboardType,
   });
 
   @override
@@ -159,7 +159,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: widget.sizeScreen.width*.15,
+        horizontal: widget.sizeScreen.width * .15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,

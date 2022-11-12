@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, avoid_print
+
 import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
 
@@ -12,12 +14,12 @@ class LogUpPage extends StatelessWidget {
 
     return SafeArea(
         child: Scaffold(
-      backgroundColor: Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
-        backgroundColor: Color(0xffF4F4F4),
+        backgroundColor: const Color(0xffF4F4F4),
         leading: IconButton(
-          color: Color(0xFF011C53),
-          icon: Icon(
+          color: const Color(0xFF011C53),
+          icon: const Icon(
             Icons.arrow_back_ios,
           ),
           onPressed: () {
@@ -27,7 +29,7 @@ class LogUpPage extends StatelessWidget {
         /*
          * Teto de regristro 
         */
-        title: Text(
+        title: const Text(
           'Registro',
           textAlign: TextAlign.center,
           style: TextStyle(
@@ -46,11 +48,9 @@ class LogUpPage extends StatelessWidget {
             /*
                * Imagen del usuario.
               */
-            Container(
-              child: Icon(
-                Icons.person_rounded,
-                size: 70,
-              ),
+            const Icon(
+              Icons.person_rounded,
+              size: 70,
             ),
             SizedBox(height: sizeScreen.height * .03),
 
@@ -80,7 +80,7 @@ class LogUpPage extends StatelessWidget {
 Widget _buttonSingUp(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: Color(0xFF011C53),
+      backgroundColor: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         vertical: size.width * .06,
         horizontal: size.width * .22,
@@ -93,7 +93,7 @@ Widget _buttonSingUp(BuildContext context, Size size) {
       Navigator.of(context).pushNamedAndRemoveUntil(
           LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
     },
-    child: Text(
+    child: const Text(
       'Registrarse',
       style: TextStyle(
           color: Colors.white,
@@ -194,13 +194,13 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: widget.sizeScreen.width*.15,
+        horizontal: widget.sizeScreen.width * .15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-          border: OutlineInputBorder(),
+          border: const OutlineInputBorder(),
           suffixIcon: Icon(widget.icon),
           labelText: widget.labelText,
           hintText: widget.hintText,
@@ -218,7 +218,7 @@ class _formDateGeneral extends StatelessWidget {
     final Size sizeScreen = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width*.15,
+        horizontal: sizeScreen.width * .15,
       ),
       child: Form(
         child: Column(

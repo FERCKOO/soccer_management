@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, unnecessary_string_interpolations, avoid_print
+
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/changePass.dart';
@@ -45,8 +47,7 @@ class EditDataPage extends StatelessWidget {
               Container(
                   padding: EdgeInsets.only(
                       top: sizeScreen.height * .05,
-                      bottom: sizeScreen.height * .06
-                    ),
+                      bottom: sizeScreen.height * .06),
                   alignment: Alignment.topCenter,
                   child: CircleAvatar(
                     radius: sizeScreen.height * .07,
@@ -54,9 +55,7 @@ class EditDataPage extends StatelessWidget {
                       Icons.person_rounded,
                       size: sizeScreen.height * .1,
                     ),
-                  )
-                  ),
-
+                  )),
               _textFieldName(sizeScreen),
               SizedBox(height: sizeScreen.height * .01),
               _textFieldLastName(sizeScreen),
@@ -82,7 +81,7 @@ class EditDataPage extends StatelessWidget {
 Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xffF4F4F4),
+      backgroundColor: const Color(0xffF4F4F4),
       padding: EdgeInsets.symmetric(
         vertical: sizeScreen.width * .045,
         horizontal: sizeScreen.width * .02,
@@ -109,7 +108,7 @@ Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
 Widget _buttonUpdateData(BuildContext context, Size sizeScreen) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF011C53),
+      backgroundColor: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         horizontal: sizeScreen.width * .11,
         vertical: sizeScreen.width * .045,
@@ -197,7 +196,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: widget.sizeScreen.width*.15,
+        horizontal: widget.sizeScreen.width * .15,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
@@ -221,7 +220,7 @@ class _formDateGeneral extends StatelessWidget {
     final Size sizeScreen = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width*.15,
+        horizontal: sizeScreen.width * .15,
       ),
       child: Form(
         child: Column(

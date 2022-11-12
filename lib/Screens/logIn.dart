@@ -1,8 +1,9 @@
+// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element
+
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/forgotpass.dart';
 import 'package:soccer_management/Screens/logup.dart';
 import 'package:soccer_management/bottom_drawer_layout.dart';
-import 'package:soccer_management/router/routes.dart';
 
 class LogInPage extends StatelessWidget {
   static String id = 'LogIn_page';
@@ -24,7 +25,7 @@ class LogInPage extends StatelessWidget {
           textAlign: TextAlign.center,
           // ignore: unnecessary_const
           style: const TextStyle(
-            color: const Color(0xFF333333),
+            color: Color(0xFF333333),
             fontSize: 24,
             fontWeight: FontWeight.bold,
             fontFamily: 'Lato',
@@ -43,14 +44,12 @@ class LogInPage extends StatelessWidget {
             /*
              * Imagen del la app.
             */
-            Container(
-                child: Image(
-                    alignment: Alignment.topCenter,
-                    image: const AssetImage(
-                      'assets/images/LogoPNG.png',
-                    ),
-                    width: sizeScreen.width * .4)
-                    ),
+            Image(
+                alignment: Alignment.topCenter,
+                image: const AssetImage(
+                  'assets/images/LogoPNG.png',
+                ),
+                width: sizeScreen.width * .4),
             SizedBox(height: sizeScreen.height * .03),
 
             /**
@@ -62,7 +61,7 @@ class LogInPage extends StatelessWidget {
               ),
               decoration: const BoxDecoration(
                 border: Border(
-                  bottom: const BorderSide(
+                  bottom: BorderSide(
                     color: Color(0xFFE51E3F),
                     width: 2,
                   ),
@@ -103,30 +102,28 @@ class LogInPage extends StatelessWidget {
               * Seccion de actualizacion de contraseña
             */
             Center(
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "¿Olvidaste tu contraseña?",
-                      style: TextStyle(fontSize: 14, color: Color(0xFF4890B8)),
-                    ),
-                    GestureDetector(
-                      // Detecta alguna accion en texto
-                      onTap: (() {
-                        Navigator.pushNamed(context, '${ForgotPassPage.id}');
-                      }),
-                      child: const Text(
-                        ' Da click aqui',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF4890B8),
-                          decoration: TextDecoration.underline,
-                        ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "¿Olvidaste tu contraseña?",
+                    style: TextStyle(fontSize: 14, color: Color(0xFF4890B8)),
+                  ),
+                  GestureDetector(
+                    // Detecta alguna accion en texto
+                    onTap: (() {
+                      Navigator.pushNamed(context, ForgotPassPage.id);
+                    }),
+                    child: const Text(
+                      ' Da click aqui',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4890B8),
+                        decoration: TextDecoration.underline,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: sizeScreen.height * .01),
@@ -134,25 +131,23 @@ class LogInPage extends StatelessWidget {
               * Seccion para registrarse
             */
             Center(
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      onTap: (() {
-                        Navigator.pushNamed(context, '${LogUpPage.id}');
-                      }),
-                      child: const Text(
-                        'Registrate dando click aqui.',
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xFF4890B8),
-                          decoration: TextDecoration.underline,
-                        ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: (() {
+                      Navigator.pushNamed(context, LogUpPage.id);
+                    }),
+                    child: const Text(
+                      'Registrate dando click aqui.',
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xFF4890B8),
+                        decoration: TextDecoration.underline,
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ],
@@ -186,7 +181,7 @@ Widget _textFieldPassword() {
 Widget _buttonSingIn(BuildContext context) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF011C53),
+      backgroundColor: const Color(0xFF011C53),
       padding: const EdgeInsets.symmetric(
         horizontal: 100,
         vertical: 20,
@@ -197,7 +192,7 @@ Widget _buttonSingIn(BuildContext context) {
     ),
     child: const Text(
       'Iniciar sesion',
-      style: const TextStyle(
+      style: TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.bold,
@@ -247,7 +242,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           prefixIcon: Icon(widget.icon),
-          labelText: '${widget.labelText}',
+          labelText: widget.labelText,
           hintText: widget.hintText,
         ),
         onChanged: (value) {},

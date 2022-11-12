@@ -1,3 +1,5 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors, duplicate_ignore
+
 import 'package:flutter/material.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -38,64 +40,53 @@ class NotificationsPage extends StatelessWidget {
       ),
       body: ListView(
         padding: EdgeInsets.only(
-          left: sizeScreen.width*.05,
+          left: sizeScreen.width * .05,
         ),
         children: [
           Container(
-            padding: EdgeInsets.only(top: sizeScreen.height*.02),
+            padding: EdgeInsets.only(top: sizeScreen.height * .02),
             child: const Text(
               'Al dia',
-              style: const TextStyle(
-                  color: const Color(0xFF333333),
+              style: TextStyle(
+                  color: Color(0xFF333333),
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Lato'
-                ),
+                  fontFamily: 'Lato'),
             ),
           ),
           //Notificacion
           Container(
             padding: EdgeInsets.only(
-              right: sizeScreen.width*.08,
+              right: sizeScreen.width * .08,
             ),
-            child:
-                ListTile(
-                  title: const Text('Tienes partido a las 8:00 P.M'),
-                  trailing: Text('2 hrs'),
-                  onTap: () {
-                    
-                  },
-                ),
-                
-                
+            child: ListTile(
+              title: const Text('Tienes partido a las 8:00 P.M'),
+              // ignore: prefer_const_constructors
+              trailing: Text('2 hrs'),
+              onTap: () {},
+            ),
           ),
           Container(
-            padding: EdgeInsets.only(top: sizeScreen.height*.02),
+            padding: EdgeInsets.only(top: sizeScreen.height * .02),
             child: const Text(
               'Semana',
-              style: const TextStyle(
-                  color: const Color(0xFF333333),
+              style: TextStyle(
+                  color: Color(0xFF333333),
                   fontWeight: FontWeight.bold,
-                  fontFamily: 'Lato'
-                ),
+                  fontFamily: 'Lato'),
             ),
           ),
           Container(
             padding: EdgeInsets.only(
-              right: sizeScreen.width*.08,
+              right: sizeScreen.width * .08,
             ),
-            child:
-                ListTile(
-                  title: const Text('Te han aceptado en el equipo Venom'),
-                  trailing: Text('3 dias'),
-                  onTap: () {},
-                ),
-                
-                
+            child: ListTile(
+              title: const Text('Te han aceptado en el equipo Venom'),
+              trailing: Text('3 dias'),
+              onTap: () {},
+            ),
           ),
-          
         ],
       ),
-    )
-    );
+    ));
   }
 }

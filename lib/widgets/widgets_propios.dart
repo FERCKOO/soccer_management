@@ -1,13 +1,13 @@
 // clase widget para labels
+// ignore_for_file: slash_for_doc_comments, camel_case_types, unused_element, avoid_print
+
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
-
 
 /**
  * Clase generica de text labels
  */
 class _textFieldGeneral extends StatefulWidget {
-
   final String labelText; //Texto del label
   final String? hintText; //Texto de muestra
   final TextInputType? keyboardType;
@@ -32,17 +32,17 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 70,
       ),
       child: TextField(
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-            prefixIcon: Icon(widget.icon),
-            labelText: '${widget.labelText}',
-            hintText: widget.hintText,
-          ),
+          prefixIcon: Icon(widget.icon),
+          labelText: widget.labelText,
+          hintText: widget.hintText,
+        ),
         onChanged: (value) {},
       ),
     );
@@ -51,11 +51,10 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
 
 // clase fecha de nacimiento
 class _formDateGeneral extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
+      margin: const EdgeInsets.symmetric(
         horizontal: 70,
       ),
       child: Form(
@@ -77,7 +76,7 @@ class _formDateGeneral extends StatelessWidget {
             ),
           ],
         ),
-    ),
+      ),
     );
   }
 }
@@ -89,7 +88,7 @@ Widget _etiqueta(String name) {
   );
 }
 
-class _etiquetaclase extends StatelessWidget{
+class _etiquetaclase extends StatelessWidget {
   final String name;
 
   const _etiquetaclase({required this.name});
@@ -97,15 +96,15 @@ class _etiquetaclase extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Color(0xFF011C53),
       ),
       height: 25,
       width: double.infinity,
       child: Text(
-        '$name',
+        name,
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
         ),
       ),
