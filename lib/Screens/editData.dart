@@ -81,7 +81,7 @@ class EditDataPage extends StatelessWidget {
 Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xffF4F4F4),
+      primary: const Color(0xffF4F4F4),
       padding: EdgeInsets.symmetric(
         vertical: sizeScreen.width * .045,
         horizontal: sizeScreen.width * .02,
@@ -108,7 +108,7 @@ Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
 Widget _buttonUpdateData(BuildContext context, Size sizeScreen) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFF011C53),
+      primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         horizontal: sizeScreen.width * .11,
         vertical: sizeScreen.width * .045,

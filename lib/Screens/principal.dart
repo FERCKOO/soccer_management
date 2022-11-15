@@ -144,7 +144,7 @@ Widget _button(context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       alignment: Alignment(size.width / 2, size.height),
-      backgroundColor: const Color(0xFF011C53),
+      primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         vertical: size.width * .05,
         horizontal: size.width * .2,

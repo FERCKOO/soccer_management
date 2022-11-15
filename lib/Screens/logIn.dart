@@ -1,12 +1,39 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element
+// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, avoid_print
+import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:soccer_management/Screens/forgotpass.dart';
 import 'package:soccer_management/Screens/logup.dart';
-import 'package:soccer_management/bottom_drawer_layout.dart';
+import '../bottom_drawer_layout.dart';
+import '../models/method_user_model.dart';
+import 'package:http/http.dart' as http;
+import '../api/soccer_management_api.dart';
 
-class LogInPage extends StatelessWidget {
+class LogInPage extends StatefulWidget {
   static String id = 'LogIn_page';
+  
+
+  void setState(Null Function() param0) {}
+  
+  @override
+  State<StatefulWidget> createState() => LogInPageState();
+}
+
+class LogInPageState extends State<LogInPage>{
+
+  final email = TextEditingController(); // Variable para el email
+  final pass = TextEditingController(); // Variable para la contraseña
+
+  String? emailAux;
+  String? passAux;
+
+  /* Se corre al inicio del programa
+  @override
+  void initState() {
+    super.initState();
+    getMethodUserName();
+  }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -91,13 +118,26 @@ class LogInPage extends StatelessWidget {
               */
 
             SizedBox(height: sizeScreen.height * .01),
-            _textFieldEmail(),
+            _textFieldEmail(email),
             SizedBox(height: sizeScreen.height * .01),
-            _textFieldPassword(),
+            _textFieldPassword(pass),
             SizedBox(height: sizeScreen.height * .05),
-            _buttonSingIn(context),
-            SizedBox(height: sizeScreen.height * .11),
+/*
+            // Verificar si está extrayendo el dato del correo
+            _FutureBuilderGeneral(
+              future: getMethodUserEmail(),
+              data: emailAux,
+              ),
+            // Verificar si está extrayendo el dato de la contraseña
+            _FutureBuilderGeneral(
+              future: getMethodUserPass(),
+              data: passAux,
+            ),
+*/
+   
 
+            _buttonSingIn(context, email, pass, emailAux, passAux),
+            SizedBox(height: sizeScreen.height * .11),
             /*
               * Seccion de actualizacion de contraseña
             */
@@ -156,32 +196,78 @@ class LogInPage extends StatelessWidget {
     ));
   }
 
-  void setState(Null Function() param0) {}
 }
 
-Widget _textFieldEmail() {
+class _FutureBuilderGeneral extends StatefulWidget {
+
+  final Future<dynamic> future;
+  late String? data;
+
+  _FutureBuilderGeneral({
+    required this.future,
+    required this.data
+  });
+  
+  @override
+  State<_FutureBuilderGeneral> createState() => _FutureBuilderGeneralState();
+
+  
+}
+
+class _FutureBuilderGeneralState extends State<_FutureBuilderGeneral> {
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: widget.future,
+      builder: (context, snapshot) {
+      if (snapshot.hasData) {
+
+        widget.data = snapshot.data as String?;
+        print('Esto hay en widget.data: ${widget.data}');
+
+        return Text('Todo bien con la contraseña ${snapshot.data}');
+      } else if (snapshot.hasError){ 
+        print(snapshot.error);
+        return Text('Error');
+      }
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    },
+    );
+  }
+}
+
+Widget _textFieldEmail(email) {
   return _textFieldGeneral(
     labelText: 'Correo',
     icon: Icons.email_outlined,
     hintText: 'example@hotmail.com',
+    myControler: email,
     onChanged: () {},
   );
 }
 
-Widget _textFieldPassword() {
+Widget _textFieldPassword(pass) {
   return _textFieldGeneral(
     labelText: 'Contraseña',
     icon: Icons.lock_outline_rounded,
     hintText: '*********',
-    onChanged: () {},
     obscureText: true,
+    myControler: pass,
+    onChanged: () {},
   );
 }
 
-Widget _buttonSingIn(BuildContext context) {
+Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
+  String _emailVar = '';
+  String _passVar = '';
+
+
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFF011C53),
+      primary: const Color(0xFF011C53),
       padding: const EdgeInsets.symmetric(
         horizontal: 100,
         vertical: 20,
@@ -199,11 +285,52 @@ Widget _buttonSingIn(BuildContext context) {
           fontFamily: 'Lato'),
     ),
     onPressed: () {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
+      _emailVar = email.text; // Se recupera el texto digitado
+      _passVar = pass.text;  // Se recupera la contraseña registrada
+      
+      // Limpieza de los controladores
+      @override
+      void dispose(){
+        email.dispose();
+        pass.dispose();
+      }
+
+      //Si no estan vacios los TextField
+      if (_emailVar != '' && _passVar != '') {
+        /*(_emailVar == emailAux) ? print('Ta bien el correo') : print('Verifica el correo');
+
+        (_passVar == passAux) ? print('Ta bien la contraseña') : print ('Verifica la contraseña');
+        
+        print(getMethodUserEmail());
+        print(emailAux);
+        print(passAux);
+
+         showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: 
+                Text('Su email es: $emailAux, y usted digitó: $_emailVar, su contraseña es: $passAux y usted digito: $_passVar'),
+              );
+            },
+          );*/
+        Navigator.of(context).pushNamedAndRemoveUntil(
+        LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
+       } else { // Si estan vacias mostrar un dialogo para avisar
+        showDialog(
+            context: context,
+            builder: (context) {
+              return AlertDialog(
+                content: Text('Verifique que su usuario y contraseña esten correctos.'),
+              );
+            },
+          );
+       }
     },
   );
 }
+
+
 
 /**
  * Clase generica de text labels
@@ -215,6 +342,7 @@ class _textFieldGeneral extends StatefulWidget {
   final IconData icon;
   final Function onChanged;
   final bool obscureText;
+  final TextEditingController myControler;
 
   const _textFieldGeneral({
     required this.labelText,
@@ -223,6 +351,7 @@ class _textFieldGeneral extends StatefulWidget {
     required this.icon,
     required this.onChanged,
     this.obscureText = false,
+    required this.myControler
   });
 
   @override
@@ -232,11 +361,13 @@ class _textFieldGeneral extends StatefulWidget {
 class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
+    
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 50,
       ),
       child: TextField(
+        controller: widget.myControler,
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(

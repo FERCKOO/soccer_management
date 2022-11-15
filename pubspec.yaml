@@ -34,6 +34,7 @@ dependencies:
   filter_list: ^1.0.2
   horizontal_calendar: ^1.0.1
   awesome_dialog: ^3.0.2
+  dio: ^4.0.6
 
 dev_dependencies:
   flutter_test:

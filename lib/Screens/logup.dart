@@ -80,7 +80,7 @@ class LogUpPage extends StatelessWidget {
 Widget _buttonSingUp(BuildContext context, Size size) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFF011C53),
+      primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
         vertical: size.width * .06,
         horizontal: size.width * .22,
