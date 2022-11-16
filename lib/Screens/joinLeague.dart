@@ -1,44 +1,38 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, prefer_const_constructors, camel_case_types
 
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import '../bottom_drawer_layout.dart';
+import 'joinTeam.dart';
 
-class JoinTeamPage extends StatefulWidget {
-  static String id = 'JoinTeam_Page';
+class nameOfTeam{
+  
+  final String? nameTeam;
 
-  @override
-  State<StatefulWidget> createState() => JoinTeamPageState();
+  nameOfTeam(
+    this.nameTeam,
+  );
 }
 
-class JoinTeamPageState extends State<JoinTeamPage> {
+class JoinLeaguePage extends StatelessWidget {
+  static String id = 'JoinLeague_Page';
+
+
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
-    //final nameOfTeam nameTeamSelected = ModalRoute.of(context)?.settings.arguments;
 
-    List<String> _teams = ['Venom', 'Yoguiños', 'Salazar', 'Panditas', 'Farm'
-                            'aba'];
+    List<String> _teams = ['Colibri', 'Karike', 'Indoor'];
 
     return SafeArea(
       child: Scaffold(
         backgroundColor: const Color(0xffF4F4F4),
         appBar: AppBar(
           backgroundColor: const Color(0xffF4F4F4),
-          leading: IconButton(
-            color: const Color(0xFF011C53),
-            icon: const Icon(
-              Icons.arrow_back_ios,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
+
           /*
          * Texto de inicio sesion
         */
           title: const Text(
-            'Liga',
+            'Inscribirme',
             textAlign: TextAlign.center,
             style: TextStyle(
               color: Color(0xFF333333),
@@ -59,15 +53,15 @@ class JoinTeamPageState extends State<JoinTeamPage> {
               padding: EdgeInsets.only(top: sizeScreen.width * .1),
               alignment: Alignment.topCenter,
               child: const Icon(
-                Icons.image,
+                Icons.person_rounded,
                 size: 70,
               ),
             ),
             /**
            * Nombre del jugador
            */
-            Text(
-              'Nombre del equipo',
+            const Text(
+              'Mario Ledezma',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -102,8 +96,24 @@ class JoinTeamPageState extends State<JoinTeamPage> {
               child: ListView.builder(
                 itemCount: _teams.length,
                 itemBuilder: (context, int index) {
-                  return GestureDetectorLeagues(
-                      _teams, index, sizeScreen, context);
+                  return GestureDetector(
+                    child: Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: sizeScreen.width * .01,
+                      ),
+                      child: ListTile(
+                        leading: CircleAvatar(),
+                        title: Text(_teams.elementAt(index)),
+                      ),
+                    ),
+                    onTap: () {
+                      
+                      print(_teams.elementAt(index));
+                      Navigator.pushNamed(context, JoinTeamPage.id, arguments: nameOfTeam(
+                        _teams.elementAt(index),
+                      ));
+                    },
+                  );
                 },
               ),
             ),
@@ -112,49 +122,6 @@ class JoinTeamPageState extends State<JoinTeamPage> {
       ),
     );
   }
-}
-
-GestureDetector GestureDetectorLeagues(
-    List<String> teams, int index, Size sizeScreen, BuildContext context) {
-  return GestureDetector(
-    child: Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .01,
-      ),
-      child: ListTile(
-        leading: CircleAvatar(),
-        title: Text(teams.elementAt(index)),
-        trailing: IconButton(
-          icon: Icon(Icons.add),
-          color: Color(0xFF011C53),
-          onPressed: () {
-            AwesomeDialog(
-              context: context,
-              // ignore: deprecated_member_use
-              animType: AnimType.SCALE,
-              title: 'Solicitud de ingreso',
-              body: Center(
-                child: Text(
-                  'Has enviado invitacion al equipo ${teams.elementAt(index)}',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Lato'),
-                ),
-              ),
-              btnOkColor: const Color(0xFF011C53),
-              btnOkText: 'Continuar',
-              btnOkOnPress: () {
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
-              },
-            ).show();
-          },
-        ),
-      ),
-    ),
-  );
 }
 
 Widget _etiqueta(String name, Size size) {

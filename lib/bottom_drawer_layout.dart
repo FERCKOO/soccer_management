@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'Screens/calendar.dart';
 import 'Screens/profile.dart';
 import 'Screens/principal.dart';
-import 'Screens/joinTeam.dart';
+import 'Screens/joinLeague.dart';
 
 class LayoutBottomNavigatorBar extends StatefulWidget {
   static String id = 'bottom_drawer_layout';
@@ -17,7 +17,7 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
   static final List<Widget> _viewsOptions = <Widget>[
     PrincipalPage(),
     CalendarPage(),
-    JoinTeamPage(),
+    JoinLeaguePage(),
     PorfilePage(),
   ];
 

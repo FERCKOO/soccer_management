@@ -83,9 +83,9 @@ class TeamPage extends StatelessWidget {
             child: Row(
               children: [
                 SizedBox(width: sizeScreen.width * .03),
-                const CircleAvatar(),
+                CircleAvatar(radius: sizeScreen.width*.1,),
                 SizedBox(
-                  width: sizeScreen.width * .35,
+                  width: sizeScreen.width * .2,
                 ),
                 /**
                  * Nombre del jugador
@@ -194,7 +194,7 @@ class TeamPage extends StatelessWidget {
                                   horizontal: sizeScreen.width * .01,
                                 ),
                                 child: ListTile(
-                                  leading: CircleAvatar(),
+                                  leading: CircleAvatar(backgroundColor: Colors.red,),
                                   title: Text(players.elementAt(index)),
                                   trailing: Text('${playersGoals.elementAt(index)}'),
                                 ),

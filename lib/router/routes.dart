@@ -1,10 +1,11 @@
 import 'package:flutter/widgets.dart';
-import 'package:soccer_management/Screens/changePass.dart';
-import 'package:soccer_management/Screens/editNotifications.dart';
-import 'package:soccer_management/Screens/team.dart';
+import '../Screens/changePass.dart';
+import '../Screens/editNotifications.dart';
+import '../Screens/joinTeam.dart';
+import '../Screens/team.dart';
 import '../Screens/editData.dart';
 import '../Screens/forgotpass.dart';
-import '../Screens/joinTeam.dart';
+import '../Screens/joinLeague.dart';
 import '../Screens/logIn.dart';
 import '../Screens/profile.dart';
 import '../bottom_drawer_layout.dart';
@@ -19,6 +20,7 @@ var customRoutes = <String, WidgetBuilder>{
   ForgotPassPage.id: (_) => ForgotPassPage(),
   PrincipalPage.id: (_) => PrincipalPage(),
   CalendarPage.id: (_) => CalendarPage(),
+  JoinLeaguePage.id: (_) => JoinLeaguePage(),
   JoinTeamPage.id: (_) => JoinTeamPage(),
   PorfilePage.id: (_) => PorfilePage(),
   EditDataPage.id: (_) => EditDataPage(),

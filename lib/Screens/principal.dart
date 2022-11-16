@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import '../Screens/notifications.dart';
-import 'joinTeam.dart';
+import 'joinLeague.dart';
 import 'team.dart';
 import 'package:http/http.dart' as http;
 
@@ -162,7 +162,7 @@ Widget _button(context, Size size) {
           fontFamily: 'Lato'),
     ),
     onPressed: () {
-      Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
+      Route route = MaterialPageRoute(builder: (bc) => JoinLeaguePage());
       Navigator.of(context).push(route);
     },
   );
