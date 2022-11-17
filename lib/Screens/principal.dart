@@ -19,6 +19,17 @@ class PrincipalPage extends StatelessWidget {
       backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
         backgroundColor: const Color(0xffF4F4F4),
+        leading: IconButton(
+          padding: EdgeInsets.only(right: sizeScreen.width * .02),
+          color: const Color(0xFF011C53),
+          icon: const Icon(
+            Icons.notifications_none,
+          ),
+          onPressed: () {
+            Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
+            Navigator.of(context).push(route);
+          },
+        ),
         actions: [
           IconButton(
             padding: EdgeInsets.only(right: sizeScreen.width * .02),

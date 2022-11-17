@@ -17,7 +17,6 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
   static final List<Widget> _viewsOptions = <Widget>[
     PrincipalPage(),
     CalendarPage(),
-    JoinTeamPage(),
     PorfilePage(),
   ];
 
@@ -98,16 +97,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                /*
-                const Image(
-                    image: AssetImage(
-                      'assets/images/Liga.png',
-                    ),
-                  ),
-                  */
                 IconButton(
                   icon: Icon(
-                    Icons.add,
+                    Icons.person_outline,
                     color: _selectedIndex != 2
                         ? Colors.white
                         : const Color(0xFFE51E3F),
@@ -117,35 +109,9 @@ class _LayoutBottomNavigatorBarState extends State<LayoutBottomNavigatorBar> {
                   },
                 ),
                 Text(
-                  'Inscribirme',
-                  style: TextStyle(
-                    color: _selectedIndex != 2
-                        ? Colors.white
-                        : const Color(0xFFE51E3F),
-                  ),
-                ),
-              ],
-            ),
-
-            // Cuarto icono
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton(
-                  icon: Icon(
-                    Icons.person_outline,
-                    color: _selectedIndex != 3
-                        ? Colors.white
-                        : const Color(0xFFE51E3F),
-                  ),
-                  onPressed: () {
-                    _onItemTapped(3);
-                  },
-                ),
-                Text(
                   'Perfil',
                   style: TextStyle(
-                    color: _selectedIndex != 3
+                    color: _selectedIndex != 2
                         ? Colors.white
                         : const Color(0xFFE51E3F),
                   ),

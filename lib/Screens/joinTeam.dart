@@ -16,6 +16,15 @@ class JoinTeamPage extends StatelessWidget {
         backgroundColor: const Color(0xffF4F4F4),
         appBar: AppBar(
           backgroundColor: const Color(0xffF4F4F4),
+          leading: IconButton(
+            color: const Color(0xFF011C53),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           /*
          * Texto de inicio sesion
         */
