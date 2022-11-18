@@ -1,9 +1,9 @@
 // ignore_for_file: use_key_in_widget_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/editNotifications.dart';
-import '../Screens/editData.dart';
-import '../Screens/logIn.dart';
+import 'package:soccer_management/ScreensUser/editNotifications.dart';
+import '../logIn.dart';
+import 'editData.dart';
 
 class PorfilePage extends StatelessWidget {
   static String id = 'Porfile_Page';

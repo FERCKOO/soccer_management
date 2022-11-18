@@ -1,8 +1,8 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, non_constant_identifier_names, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
-import '../Screens/notifications.dart';
 import 'joinTeam.dart';
+import 'notifications.dart';
 import 'team.dart';
 
 // ignore: use_key_in_widget_constructors

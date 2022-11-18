@@ -2,8 +2,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/forgotpass.dart';
-import 'package:soccer_management/Screens/logup.dart';
+import 'package:soccer_management/ScreensUser/forgotpass.dart';
+import 'package:soccer_management/logup.dart';
 import '../bottom_drawer_layout.dart';
 import '../models/method_user_model.dart';
 import 'package:http/http.dart' as http;
@@ -11,16 +11,14 @@ import '../api/soccer_management_api.dart';
 
 class LogInPage extends StatefulWidget {
   static String id = 'LogIn_page';
-  
 
   void setState(Null Function() param0) {}
-  
+
   @override
   State<StatefulWidget> createState() => LogInPageState();
 }
 
-class LogInPageState extends State<LogInPage>{
-
+class LogInPageState extends State<LogInPage> {
   final email = TextEditingController(); // Variable para el email
   final pass = TextEditingController(); // Variable para la contraseña
 
@@ -134,7 +132,6 @@ class LogInPageState extends State<LogInPage>{
               data: passAux,
             ),
 */
-   
 
             _buttonSingIn(context, email, pass, emailAux, passAux),
             SizedBox(height: sizeScreen.height * .11),
@@ -195,46 +192,37 @@ class LogInPageState extends State<LogInPage>{
       ),
     ));
   }
-
 }
 
 class _FutureBuilderGeneral extends StatefulWidget {
-
   final Future<dynamic> future;
   late String? data;
 
-  _FutureBuilderGeneral({
-    required this.future,
-    required this.data
-  });
-  
+  _FutureBuilderGeneral({required this.future, required this.data});
+
   @override
   State<_FutureBuilderGeneral> createState() => _FutureBuilderGeneralState();
-
-  
 }
 
 class _FutureBuilderGeneralState extends State<_FutureBuilderGeneral> {
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
       future: widget.future,
       builder: (context, snapshot) {
-      if (snapshot.hasData) {
+        if (snapshot.hasData) {
+          widget.data = snapshot.data as String?;
+          print('Esto hay en widget.data: ${widget.data}');
 
-        widget.data = snapshot.data as String?;
-        print('Esto hay en widget.data: ${widget.data}');
-
-        return Text('Todo bien con la contraseña ${snapshot.data}');
-      } else if (snapshot.hasError){ 
-        print(snapshot.error);
-        return Text('Error');
-      }
-      return Center(
-        child: CircularProgressIndicator(),
-      );
-    },
+          return Text('Todo bien con la contraseña ${snapshot.data}');
+        } else if (snapshot.hasError) {
+          print(snapshot.error);
+          return Text('Error');
+        }
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
   }
 }
@@ -264,7 +252,6 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
   String _emailVar = '';
   String _passVar = '';
 
-
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: const Color(0xFF011C53),
@@ -286,11 +273,11 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
     ),
     onPressed: () {
       _emailVar = email.text; // Se recupera el texto digitado
-      _passVar = pass.text;  // Se recupera la contraseña registrada
-      
+      _passVar = pass.text; // Se recupera la contraseña registrada
+
       // Limpieza de los controladores
       @override
-      void dispose(){
+      void dispose() {
         email.dispose();
         pass.dispose();
       }
@@ -314,23 +301,40 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
               );
             },
           );*/
-        Navigator.of(context).pushNamedAndRemoveUntil(
-        LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
-       } else { // Si estan vacias mostrar un dialogo para avisar
+        (int.parse(_passVar) == 0)
+            ? print("0")
+            : (int.parse(_passVar) == 1)
+                ? //print("1")
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                    LayoutBottomNavigatorBarUser.id,
+                    (Route<dynamic> route) => false)
+                : (int.parse(_passVar) == 2)
+                    ? //print("2")
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        LayoutBottomNavigatorBarReferee.id,
+                        (Route<dynamic> route) => false)
+                    : showDialog(
+                        context: context,
+                        builder: (context) {
+                          return const AlertDialog(
+                            content: Text(
+                                'Verifique que su usuario y contraseña esten correctos.'),
+                          );
+                        },
+                      );
+      } else {
         showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text('Verifique que su usuario y contraseña esten correctos.'),
-              );
-            },
-          );
-       }
+          context: context,
+          builder: (context) {
+            return const AlertDialog(
+              content: Text('Llene todos los campos'),
+            );
+          },
+        );
+      }
     },
   );
 }
-
-
 
 /**
  * Clase generica de text labels
@@ -344,15 +348,14 @@ class _textFieldGeneral extends StatefulWidget {
   final bool obscureText;
   final TextEditingController myControler;
 
-  const _textFieldGeneral({
-    required this.labelText,
-    this.hintText,
-    this.keyboardType,
-    required this.icon,
-    required this.onChanged,
-    this.obscureText = false,
-    required this.myControler
-  });
+  const _textFieldGeneral(
+      {required this.labelText,
+      this.hintText,
+      this.keyboardType,
+      required this.icon,
+      required this.onChanged,
+      this.obscureText = false,
+      required this.myControler});
 
   @override
   State<_textFieldGeneral> createState() => _textFieldGeneralState();
@@ -361,7 +364,6 @@ class _textFieldGeneral extends StatefulWidget {
 class _textFieldGeneralState extends State<_textFieldGeneral> {
   @override
   Widget build(BuildContext context) {
-    
     return Container(
       margin: const EdgeInsets.symmetric(
         horizontal: 50,

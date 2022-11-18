@@ -1,9 +1,10 @@
 // ignore_for_file: unused_element
 
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/logIn.dart';
-import 'package:soccer_management/Screens/principal.dart';
+import 'package:soccer_management/ScreensUser/principal.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+
+import '../logIn.dart';
 
 // ignore: use_key_in_widget_constructors
 class ForgotPassPage extends StatelessWidget {

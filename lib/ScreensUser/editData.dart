@@ -1,112 +1,136 @@
-// ignore_for_file: use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, avoid_print
+// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, unnecessary_string_interpolations, avoid_print
 
-import 'package:flutter/material.dart';
 import 'package:date_field/date_field.dart';
+import 'package:flutter/material.dart';
+import 'package:soccer_management/ScreensUser/changePass.dart';
 
-import '../bottom_drawer_layout.dart';
-
-class LogUpPage extends StatelessWidget {
-  static String id = "logUp_page";
+class EditDataPage extends StatelessWidget {
+  static String id = 'EditData_Page';
 
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
 
     return SafeArea(
-        child: Scaffold(
-      backgroundColor: const Color(0xffF4F4F4),
-      appBar: AppBar(
+      child: Scaffold(
         backgroundColor: const Color(0xffF4F4F4),
-        leading: IconButton(
-          color: const Color(0xFF011C53),
-          icon: const Icon(
-            Icons.arrow_back_ios,
-          ),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        /*
-         * Teto de regristro 
-        */
-        title: const Text(
-          'Registro',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Color(0xFF333333),
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            fontFamily: 'Lato',
-          ),
-        ),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            /*
-               * Imagen del usuario.
-              */
-            const Icon(
-              Icons.person_rounded,
-              size: 70,
+        appBar: AppBar(
+          backgroundColor: const Color(0xffF4F4F4),
+          leading: IconButton(
+            color: const Color(0xFF011C53),
+            icon: const Icon(
+              Icons.arrow_back_ios,
             ),
-            SizedBox(height: sizeScreen.height * .03),
-
-            /*
-               * Seccion de formulario
-              */
-            _textFieldName(sizeScreen),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldLastName(sizeScreen),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldEmail(sizeScreen),
-            SizedBox(height: sizeScreen.height * .01),
-            _formFieldDate(),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldPassword(sizeScreen),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldConfirmPassword(sizeScreen),
-            SizedBox(height: sizeScreen.height * .017),
-            _buttonSingUp(context, sizeScreen),
-          ],
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          /*
+         * Texto de inicio sesion
+        */
+          title: const Text(
+            'Editar perfil',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFF333333),
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Lato',
+            ),
+          ),
+          centerTitle: true,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                  padding: EdgeInsets.only(
+                      top: sizeScreen.height * .05,
+                      bottom: sizeScreen.height * .06),
+                  alignment: Alignment.topCenter,
+                  child: CircleAvatar(
+                    radius: sizeScreen.height * .07,
+                    child: Icon(
+                      Icons.person_rounded,
+                      size: sizeScreen.height * .1,
+                    ),
+                  )),
+              _textFieldName(sizeScreen),
+              SizedBox(height: sizeScreen.height * .01),
+              _textFieldLastName(sizeScreen),
+              SizedBox(height: sizeScreen.height * .01),
+              _textFieldEmail(sizeScreen),
+              SizedBox(height: sizeScreen.height * .01),
+              _formFieldDate(),
+              SizedBox(height: sizeScreen.height * .1),
+              _buttonChangePass(context, sizeScreen),
+              SizedBox(height: sizeScreen.height * .015),
+              _buttonUpdateData(context, sizeScreen),
+            ],
+          ),
         ),
       ),
-    ));
+    );
   }
 }
 
-Widget _buttonSingUp(BuildContext context, Size size) {
+/*
+ * Seccion de metodos y funciones
+*/
+Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
-      primary: const Color(0xFF011C53),
+      primary: const Color(0xffF4F4F4),
       padding: EdgeInsets.symmetric(
-        vertical: size.width * .06,
-        horizontal: size.width * .22,
+        vertical: sizeScreen.width * .045,
+        horizontal: sizeScreen.width * .02,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
     ),
-    onPressed: () {
-      Navigator.of(context).pushNamedAndRemoveUntil(
-          LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
-    },
     child: const Text(
-      'Registrarse',
+      'Cambiar contraseña',
+      style: TextStyle(
+          color: Colors.black,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato'),
+    ),
+    onPressed: () {
+      Route route = MaterialPageRoute(builder: (bc) => ChangePassPage());
+      Navigator.of(context).push(route);
+    },
+  );
+}
+
+Widget _buttonUpdateData(BuildContext context, Size sizeScreen) {
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: const Color(0xFF011C53),
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width * .11,
+        vertical: sizeScreen.width * .045,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+    ),
+    child: const Text(
+      'Actualizar datos',
       style: TextStyle(
           color: Colors.white,
           fontSize: 18,
           fontWeight: FontWeight.bold,
           fontFamily: 'Lato'),
     ),
+    onPressed: () {
+      Navigator.pop(context);
+    },
   );
 }
 
-/*
- * Seccion de metodos y funciones
-*/
 Widget _textFieldName(Size size) {
   return _textFieldGeneral(
     labelText: 'Nombre',
@@ -139,28 +163,6 @@ Widget _textFieldEmail(Size size) {
 
 Widget _formFieldDate() {
   return _formDateGeneral();
-}
-
-Widget _textFieldPassword(Size size) {
-  return _textFieldGeneral(
-    labelText: 'Contraseña',
-    icon: Icons.lock_outline_rounded,
-    hintText: '*********',
-    obscureText: true,
-    sizeScreen: size,
-    onChanged: () {},
-  );
-}
-
-Widget _textFieldConfirmPassword(Size size) {
-  return _textFieldGeneral(
-    labelText: 'Confirmar contraseña',
-    icon: Icons.lock_outline_rounded,
-    hintText: '*********',
-    sizeScreen: size,
-    obscureText: true,
-    onChanged: () {},
-  );
 }
 
 /**
@@ -202,7 +204,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         decoration: InputDecoration(
           border: const OutlineInputBorder(),
           suffixIcon: Icon(widget.icon),
-          labelText: widget.labelText,
+          labelText: '${widget.labelText}',
           hintText: widget.hintText,
         ),
         onChanged: (value) {},

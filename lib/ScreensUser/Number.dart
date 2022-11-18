@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/principal.dart';
+import 'package:soccer_management/ScreensUser/principal.dart';
 import 'package:soccer_management/bottom_drawer_layout.dart';
 
 class NumberPage extends StatelessWidget {
@@ -179,7 +179,7 @@ Widget _button(context, Size size) {
     ),
     onPressed: () {
       Navigator.of(context).pushNamedAndRemoveUntil(
-          LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
+          LayoutBottomNavigatorBarUser.id, (Route<dynamic> route) => false);
     },
   );
 }
