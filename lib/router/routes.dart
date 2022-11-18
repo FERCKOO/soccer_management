@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:soccer_management/Screens/Number.dart';
 import 'package:soccer_management/Screens/changePass.dart';
 import 'package:soccer_management/Screens/editNotifications.dart';
 import 'package:soccer_management/Screens/team.dart';
@@ -25,4 +26,5 @@ var customRoutes = <String, WidgetBuilder>{
   ChangePassPage.id: (_) => ChangePassPage(),
   editNotificationsPage.id: (_) => editNotificationsPage(),
   TeamPage.id: (_) => TeamPage(),
+  NumberPage.id: (_) => NumberPage(),
 };

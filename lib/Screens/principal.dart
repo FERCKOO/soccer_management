@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import '../Screens/notifications.dart';
 import 'joinTeam.dart';
 import 'team.dart';
-import 'package:http/http.dart' as http;
 
 // ignore: use_key_in_widget_constructors
 class PrincipalPage extends StatelessWidget {
@@ -23,7 +22,8 @@ class PrincipalPage extends StatelessWidget {
           padding: EdgeInsets.only(right: sizeScreen.width * .02),
           color: const Color(0xFF011C53),
           icon: const Icon(
-            Icons.notifications_none,
+            Icons.add,
+            size: 30,
           ),
           onPressed: () {
             Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
@@ -134,10 +134,9 @@ Widget _body(Size sizeScreen, int _cantTeams) {
 GestureDetector GestureDetectorTeams(
     String NameLeague, String NameTeam, Size sizeScreen, BuildContext context) {
   return GestureDetector(
-    child: Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .01,
-      ),
+    child: Card(
+      elevation: 7,
+      shadowColor: Color(0xFFE51E3F),
       child: ListTile(
         leading: const CircleAvatar(),
         title: Text(NameLeague),

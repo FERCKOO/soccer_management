@@ -107,10 +107,9 @@ class JoinTeamPage extends StatelessWidget {
 GestureDetector GestureDetectorLeagues(
     List<String> teams, int index, Size sizeScreen) {
   return GestureDetector(
-    child: Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .01,
-      ),
+    child: Card(
+      elevation: 7,
+      shadowColor: Color(0xFFE51E3F),
       child: ListTile(
         leading: CircleAvatar(),
         title: Text(teams.elementAt(index)),

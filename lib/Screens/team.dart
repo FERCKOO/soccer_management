@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/Number.dart';
 import 'package:soccer_management/models/method_teams_user_model.dart';
 import '../api/soccer_management_api.dart';
 import 'package:http/http.dart' as http;
@@ -22,14 +23,14 @@ class TeamPage extends StatelessWidget {
 
   int _totalGoals = 0;
 
-  int sumGoals(_totalGoals){
-    
+  int sumGoals(_totalGoals) {
     for (var element in playersGoals) {
       _totalGoals += playersGoals[element];
     }
 
     return _totalGoals;
   }
+
 /*
   Funcionamiento pendiente con el archivo 
   soccer_management_api
@@ -159,53 +160,51 @@ class TeamPage extends StatelessWidget {
             children: [
               const Text(
                 'Goles',
-                style: TextStyle(
-
-                ),
+                style: TextStyle(),
               ),
+              SizedBox(
+                width: sizeScreen.width * .014,
+              )
             ],
           ),
-
           (players.isEmpty)
               ? Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
-                    Text(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: const [
+                      Text(
                         'Sin jugadores',
                         style: TextStyle(
                             fontSize: 15,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Lato'),
                       ),
-                  ],
-                ),
-              )
-              : Expanded(
-                  child:
-                      ListView.builder(
-                          itemCount: players.length,
-                          itemBuilder: (context, int index) {
-
-                            _totalGoals += playersGoals.elementAt(index); 
-                            return GestureDetector(
-                              child: Container(
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: sizeScreen.width * .01,
-                                ),
-                                child: ListTile(
-                                  leading: CircleAvatar(),
-                                  title: Text(players.elementAt(index)),
-                                  trailing: Text('${playersGoals.elementAt(index)}'),
-                                ),
-                              ),
-                              onTap: () {
-                                Navigator.pushNamed(context, TeamPage.id);
-                              },
-                            );
-                          }
-                          ),
+                    ],
                   ),
+                )
+              : Expanded(
+                  child: ListView.builder(
+                      itemCount: players.length,
+                      itemBuilder: (context, int index) {
+                        _totalGoals += playersGoals.elementAt(index);
+                        return GestureDetector(
+                          child: Card(
+                            elevation: 7,
+                            shadowColor: Color(0xFFE51E3F),
+                            child: ListTile(
+                              leading: CircleAvatar(),
+                              title: Text(players.elementAt(index)),
+                              trailing:
+                                  Text('${playersGoals.elementAt(index)}'),
+                            ),
+                          ),
+                          onTap: () {
+                            //Prueba de la pagina para seleccionar numero y posicion
+                            Navigator.pushNamed(context, NumberPage.id);
+                          },
+                        );
+                      }),
+                ),
         ],
       ),
     ));
