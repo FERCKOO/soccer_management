@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/logIn.dart';
 import '../router/routes.dart';
+import 'logIn.dart';
 
 void main() => runApp(MyApp());
 

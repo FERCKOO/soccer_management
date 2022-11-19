@@ -117,10 +117,9 @@ class JoinTeamPageState extends State<JoinTeamPage> {
 GestureDetector GestureDetectorLeagues(
     List<String> teams, int index, Size sizeScreen, BuildContext context) {
   return GestureDetector(
-    child: Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .01,
-      ),
+    child: Card(
+      elevation: 7,
+      shadowColor: Color(0xFFE51E3F),
       child: ListTile(
         leading: CircleAvatar(),
         title: Text(teams.elementAt(index)),
@@ -147,7 +146,7 @@ GestureDetector GestureDetectorLeagues(
               btnOkText: 'Continuar',
               btnOkOnPress: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    LayoutBottomNavigatorBar.id, (Route<dynamic> route) => false);
+                    LayoutBottomNavigatorBarUser.id, (Route<dynamic> route) => false);
               },
             ).show();
           },

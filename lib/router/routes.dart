@@ -1,21 +1,24 @@
 import 'package:flutter/widgets.dart';
-import 'package:soccer_management/Screens/MatchToPlay.dart';
-import '../Screens/changePass.dart';
-import '../Screens/editNotifications.dart';
-import '../Screens/joinTeam.dart';
-import '../Screens/team.dart';
-import '../Screens/editData.dart';
-import '../Screens/forgotpass.dart';
-import '../Screens/joinLeague.dart';
-import '../Screens/logIn.dart';
-import '../Screens/profile.dart';
+import '../ScreensUser/Number.dart';
+import '../ScreensUser/editNotifications.dart';
+import '../ScreensUser/team.dart';
+import '../ScreensUser/MatchToPlay.dart';
+import '../ScreensUser/changePass.dart';
+import '../ScreensUser/editData.dart';
+import '../ScreensUser/forgotpass.dart';
+import '../ScreensUser/joinLeague.dart';
+import '../ScreensUser/joinTeam.dart';
+import '../ScreensUser/profile.dart';
 import '../bottom_drawer_layout.dart';
-import '../Screens/logup.dart';
-import '../Screens/calendar.dart';
-import '../Screens/principal.dart';
+import '../ScreensUser/calendar.dart';
+import '../ScreensUser/principal.dart';
+import '../logup.dart';
+import '../logIn.dart';
 
 var customRoutes = <String, WidgetBuilder>{
-  LayoutBottomNavigatorBar.id: (_) => const LayoutBottomNavigatorBar(),
+  LayoutBottomNavigatorBarUser.id: (_) => const LayoutBottomNavigatorBarUser(),
+  LayoutBottomNavigatorBarReferee.id: (_) =>
+      const LayoutBottomNavigatorBarReferee(),
   LogUpPage.id: (_) => LogUpPage(),
   LogInPage.id: (_) => LogInPage(),
   ForgotPassPage.id: (_) => ForgotPassPage(),
@@ -29,4 +32,5 @@ var customRoutes = <String, WidgetBuilder>{
   ChangePassPage.id: (_) => ChangePassPage(),
   editNotificationsPage.id: (_) => editNotificationsPage(),
   TeamPage.id: (_) => TeamPage(),
+  NumberPage.id: (_) => NumberPage(),
 };

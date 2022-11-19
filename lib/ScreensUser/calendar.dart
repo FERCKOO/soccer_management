@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:soccer_management/Screens/MatchToPlay.dart';
+import '../ScreensUser/MatchToPlay.dart';
 
 // ignore: use_key_in_widget_constructors
 class CalendarPage extends StatelessWidget {

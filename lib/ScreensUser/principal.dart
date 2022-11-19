@@ -1,10 +1,9 @@
 // ignore_for_file: no_leading_underscores_for_local_identifiers, non_constant_identifier_names, prefer_const_constructors, unused_local_variable
 
 import 'package:flutter/material.dart';
-import '../Screens/notifications.dart';
-import 'joinLeague.dart';
+import '../ScreensUser/notifications.dart';
+import 'joinTeam.dart';
 import 'team.dart';
-import 'package:http/http.dart' as http;
 
 // ignore: use_key_in_widget_constructors
 class PrincipalPage extends StatelessWidget {
@@ -19,6 +18,18 @@ class PrincipalPage extends StatelessWidget {
       backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
         backgroundColor: const Color(0xffF4F4F4),
+        leading: IconButton(
+          padding: EdgeInsets.only(right: sizeScreen.width * .02),
+          color: const Color(0xFF011C53),
+          icon: const Icon(
+            Icons.add,
+            size: 30,
+          ),
+          onPressed: () {
+            Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
+            Navigator.of(context).push(route);
+          },
+        ),
         actions: [
           IconButton(
             padding: EdgeInsets.only(right: sizeScreen.width * .02),
@@ -123,10 +134,9 @@ Widget _body(Size sizeScreen, int _cantTeams) {
 GestureDetector GestureDetectorTeams(
     String NameLeague, String NameTeam, Size sizeScreen, BuildContext context) {
   return GestureDetector(
-    child: Container(
-      padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .01,
-      ),
+    child: Card(
+      elevation: 7,
+      shadowColor: Color(0xFFE51E3F),
       child: ListTile(
         leading: const CircleAvatar(),
         title: Text(NameLeague),
@@ -162,7 +172,7 @@ Widget _button(context, Size size) {
           fontFamily: 'Lato'),
     ),
     onPressed: () {
-      Route route = MaterialPageRoute(builder: (bc) => JoinLeaguePage());
+      Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
       Navigator.of(context).push(route);
     },
   );
