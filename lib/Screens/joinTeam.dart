@@ -17,8 +17,8 @@ class JoinTeamPageState extends State<JoinTeamPage> {
     final sizeScreen = MediaQuery.of(context).size;
     //final nameOfTeam nameTeamSelected = ModalRoute.of(context)?.settings.arguments;
 
-    List<String> _teams = ['Venom', 'Yoguiños', 'Salazar', 'Panditas', 'Farm'
-                            'aba'];
+    List<String> _teams = ['Venom', 'Yoguiños', 'Salazar', 'Panditas', 'Farm',
+                            'ambar'];
 
     return SafeArea(
       child: Scaffold(

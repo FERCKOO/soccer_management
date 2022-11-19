@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soccer_management/Screens/MatchToPlay.dart';
 
 // ignore: use_key_in_widget_constructors
 class CalendarPage extends StatelessWidget {
@@ -156,63 +157,68 @@ class CalendarPage extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Lato'),
                         ),
-                        Card(
-                          elevation: 10,
-                          color: Colors.white,
-                          child: SizedBox(
-                            width: sizeScreen.width * .70,
-                            height: sizeScreen.height * .2,
-                            child: Padding(
-                              padding: const EdgeInsets.all(20.0),
-                              child: Column(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Venom vs Yoguiños',
-                                    style: TextStyle(
-                                        fontSize: 14,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Lato'), //Textstyle
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Icon(Icons.location_on_outlined),
-                                      Text('Indoor CUU')
-                                    ],
-                                  ),
-                                  Row(
-                                    children: const [
-                                      Icon(Icons.av_timer),
-                                      Text('8:00 P.M')
-                                    ],
-                                  ),
-                                  /**
-                             * Linea horizontal.
-                            */
-                                  Container(
-                                    decoration: const BoxDecoration(
-                                      border: Border(
-                                        bottom: BorderSide(
-                                          color: Colors.grey,
-                                          width: 1.5,
+                        GestureDetector(
+                          child: Card(
+                            elevation: 10,
+                            color: Colors.white,
+                            child: SizedBox(
+                              width: sizeScreen.width * .70,
+                              height: sizeScreen.height * .2,
+                              child: Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Text(
+                                      'Venom vs Yoguiños',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Lato'), //Textstyle
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Icon(Icons.location_on_outlined),
+                                        Text('Indoor CUU')
+                                      ],
+                                    ),
+                                    Row(
+                                      children: const [
+                                        Icon(Icons.av_timer),
+                                        Text('8:00 P.M')
+                                      ],
+                                    ),
+                                    /**
+                               * Linea horizontal.
+                              */
+                                    Container(
+                                      decoration: const BoxDecoration(
+                                        border: Border(
+                                          bottom: BorderSide(
+                                            color: Colors.grey,
+                                            width: 1.5,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  const Text(
-                                    'Por empezar',
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      color: Colors.black,
+                                    const Text(
+                                      'Por empezar',
+                                      style: TextStyle(
+                                        fontSize: 15,
+                                        color: Colors.black,
+                                      ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ),
+                          onTap: () {
+                            Navigator.pushNamed(context, MatchToPlay.id);
+                          },
                         ),
                       ],
                     );
