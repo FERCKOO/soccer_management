@@ -12,6 +12,7 @@ import '../ScreensUser/profile.dart';
 import '../bottom_drawer_layout.dart';
 import '../ScreensUser/calendar.dart';
 import '../ScreensUser/principal.dart';
+import '../ScreensReferee/match.dart';
 import '../logup.dart';
 import '../logIn.dart';
 
@@ -33,4 +34,5 @@ var customRoutes = <String, WidgetBuilder>{
   editNotificationsPage.id: (_) => editNotificationsPage(),
   TeamPage.id: (_) => TeamPage(),
   NumberPage.id: (_) => NumberPage(),
+  MatchPage.id: (_) => MatchPage(),
 };

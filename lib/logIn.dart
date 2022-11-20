@@ -301,14 +301,14 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
               );
             },
           );*/
-        (int.parse(_passVar) == 0)
+        (int.parse(_passVar) == 0) // Si eres representante
             ? print("0")
-            : (int.parse(_passVar) == 1)
+            : (int.parse(_passVar) == 1) // Si eres usuario comun
                 ? //print("1")
                 Navigator.of(context).pushNamedAndRemoveUntil(
                     LayoutBottomNavigatorBarUser.id,
                     (Route<dynamic> route) => false)
-                : (int.parse(_passVar) == 2)
+                : (int.parse(_passVar) == 2) // Si eres arbitro
                     ? //print("2")
                     Navigator.of(context).pushNamedAndRemoveUntil(
                         LayoutBottomNavigatorBarReferee.id,
@@ -322,7 +322,7 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
                           );
                         },
                       );
-      } else {
+      } else { 
         showDialog(
           context: context,
           builder: (context) {

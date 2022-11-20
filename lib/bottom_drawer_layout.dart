@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'ScreensUser/calendar.dart' as user;
 import 'ScreensUser/profile.dart' as user;
 import 'ScreensUser/principal.dart' as user;
-import 'ScreensUser/joinTeam.dart' as user;
 import 'ScreensReferee/principal.dart' as referee;
 
 class LayoutBottomNavigatorBarUser extends StatefulWidget {
-  static String id = 'bottom_drawer_layout';
+  static String id = 'bottom_drawer_layout_user';
 
   const LayoutBottomNavigatorBarUser({Key? key}) : super(key: key);
 
@@ -19,7 +18,6 @@ class _LayoutBottomNavigatorBarUserState
   static final List<Widget> _viewsOptions = <Widget>[
     user.PrincipalPage(),
     user.CalendarPage(),
-    user.JoinTeamPage(),
     user.PorfilePage(),
   ];
 
@@ -129,7 +127,7 @@ class _LayoutBottomNavigatorBarUserState
 }
 
 class LayoutBottomNavigatorBarReferee extends StatefulWidget {
-  static String id = 'bottom_drawer_layout';
+  static String id = 'bottom_drawer_layout_referee';
 
   const LayoutBottomNavigatorBarReferee({Key? key}) : super(key: key);
 
