@@ -1,11 +1,18 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, unnecessary_string_interpolations, avoid_print
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:date_field/date_field.dart';
 import 'package:flutter/material.dart';
 import 'package:soccer_management/ScreensUser/changePass.dart';
 
+import '../api/bd_users.dart';
+
 class EditDataPage extends StatelessWidget {
   static String id = 'EditData_Page';
+
+  final firstName = TextEditingController();
+  final lastName = TextEditingController();
+  final email = TextEditingController(); // Variable para el email
 
   @override
   Widget build(BuildContext context) {
@@ -56,17 +63,18 @@ class EditDataPage extends StatelessWidget {
                       size: sizeScreen.height * .1,
                     ),
                   )),
-              _textFieldName(sizeScreen),
+              _textFieldName(sizeScreen, firstName),
               SizedBox(height: sizeScreen.height * .01),
-              _textFieldLastName(sizeScreen),
+              _textFieldLastName(sizeScreen, lastName),
               SizedBox(height: sizeScreen.height * .01),
-              _textFieldEmail(sizeScreen),
+              _textFieldEmail(sizeScreen, email),
               SizedBox(height: sizeScreen.height * .01),
               _formFieldDate(),
               SizedBox(height: sizeScreen.height * .1),
               _buttonChangePass(context, sizeScreen),
               SizedBox(height: sizeScreen.height * .015),
-              _buttonUpdateData(context, sizeScreen),
+              _buttonUpdateData(
+                  context, sizeScreen, firstName, lastName, email),
             ],
           ),
         ),
@@ -78,6 +86,44 @@ class EditDataPage extends StatelessWidget {
 /*
  * Seccion de metodos y funciones
 */
+
+Widget _textFieldName(Size size, fName) {
+  return _textFieldGeneral(
+    labelText: 'Nombre',
+    icon: Icons.person_outline,
+    hintText: 'Nombre',
+    sizeScreen: size,
+    myControler: fName,
+    onChanged: () {},
+  );
+}
+
+Widget _textFieldLastName(Size size, lName) {
+  return _textFieldGeneral(
+    labelText: 'Apellido',
+    icon: Icons.person_outline,
+    hintText: 'Apellido',
+    sizeScreen: size,
+    myControler: lName,
+    onChanged: () {},
+  );
+}
+
+Widget _textFieldEmail(Size size, email) {
+  return _textFieldGeneral(
+    labelText: 'Correo',
+    icon: Icons.email_outlined,
+    hintText: 'example@hotmail.com',
+    sizeScreen: size,
+    myControler: email,
+    onChanged: () {},
+  );
+}
+
+Widget _formFieldDate() {
+  return _formDateGeneral();
+}
+
 Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
@@ -105,7 +151,12 @@ Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
   );
 }
 
-Widget _buttonUpdateData(BuildContext context, Size sizeScreen) {
+Widget _buttonUpdateData(
+    BuildContext context, Size sizeScreen, fName, lName, email) {
+  String _fNameVar = '';
+  String _lNameVar = '';
+  String _emailVar = '';
+
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: const Color(0xFF011C53),
@@ -126,44 +177,97 @@ Widget _buttonUpdateData(BuildContext context, Size sizeScreen) {
           fontFamily: 'Lato'),
     ),
     onPressed: () {
+      _fNameVar = fName.text;
+      _lNameVar = lName.text;
+      _emailVar = email.text; // Se recupera el texto digitado
+
+      // Limpieza de los controladores
+      @override
+      void dispose() {
+        fName.dispose();
+        lName.dispose();
+        email.dispose();
+      }
+
+      if (_emailVar != '' && _fNameVar != '' && _lNameVar != '') {
+        if (_emailVar.contains('@hotmail.com') ||
+            _emailVar.contains('@outlook.com') ||
+            _emailVar.contains('@gmail.com')) {
+          // Si el email digitado existe...
+          if (users.containsKey(_emailVar)) {
+            AwesomeDialog(
+              dialogType: DialogType.warning,
+              context: context,
+              // ignore: deprecated_member_use
+              animType: AnimType.SCALE,
+              title: 'Correo electronico',
+              body: const Center(
+                child: Text(
+                  'El correo digitado ya esta registrado.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Lato'),
+                ),
+              ),
+              btnOkColor: const Color(0xFF011C53),
+              btnOkText: 'Ok',
+              btnOkOnPress: () {},
+            ).show();
+          } else
+            users.update(correoo, (key) => _emailVar);
+        } else {
+          AwesomeDialog(
+            dialogType: DialogType.noHeader,
+            context: context,
+            // ignore: deprecated_member_use
+            animType: AnimType.SCALE,
+            title: 'Correo electronico',
+            body: const Center(
+              child: Text(
+                'Verifique que su correo contenga alguna de las siguientes extenciones.\n@hotmail.com, @gmail.com ó @outlook.com',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato'),
+              ),
+            ),
+            btnOkColor: const Color(0xFF011C53),
+            btnOkText: 'Ok',
+            btnOkOnPress: () {},
+          ).show();
+        }
+      } else {
+        AwesomeDialog(
+          dialogType: DialogType.noHeader,
+          context: context,
+          // ignore: deprecated_member_use
+          animType: AnimType.SCALE,
+          title: 'Campos',
+          body: const Center(
+            child: Text(
+              'Llene todos los campos.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato'),
+            ),
+          ),
+          btnOkColor: const Color(0xFF011C53),
+          btnOkText: 'Ok',
+          btnOkOnPress: () {},
+        ).show();
+      }
+
       Navigator.pop(context);
     },
   );
 }
 
-Widget _textFieldName(Size size) {
-  return _textFieldGeneral(
-    labelText: 'Nombre',
-    icon: Icons.person_outline,
-    hintText: 'Nombre',
-    sizeScreen: size,
-    onChanged: () {},
-  );
-}
 
-Widget _textFieldLastName(Size size) {
-  return _textFieldGeneral(
-    labelText: 'Apellido',
-    icon: Icons.person_outline,
-    hintText: 'Apellido',
-    sizeScreen: size,
-    onChanged: () {},
-  );
-}
-
-Widget _textFieldEmail(Size size) {
-  return _textFieldGeneral(
-    labelText: 'Correo',
-    icon: Icons.email_outlined,
-    hintText: 'example@hotmail.com',
-    sizeScreen: size,
-    onChanged: () {},
-  );
-}
-
-Widget _formFieldDate() {
-  return _formDateGeneral();
-}
 
 /**
  * Clase generica de text labels
@@ -175,6 +279,7 @@ class _textFieldGeneral extends StatefulWidget {
   final IconData icon;
   final Function onChanged;
   final bool obscureText;
+  final TextEditingController myControler;
   final Size sizeScreen;
 
   const _textFieldGeneral({
@@ -185,6 +290,7 @@ class _textFieldGeneral extends StatefulWidget {
     required this.onChanged,
     this.obscureText = false,
     required this.sizeScreen,
+    required this.myControler,
   });
 
   @override
@@ -199,6 +305,7 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
         horizontal: widget.sizeScreen.width * .15,
       ),
       child: TextField(
+        controller: widget.myControler,
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(

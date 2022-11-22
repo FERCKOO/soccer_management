@@ -48,7 +48,7 @@ class MatchToPlay extends StatelessWidget {
             padding: EdgeInsets.only(top: sizeScreen.width * .03),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: [ 
                 /*
                  * Imagen del equipo 1.
                 */
@@ -168,10 +168,117 @@ class MatchToPlay extends StatelessWidget {
           SizedBox(height: sizeScreen.height * .01),
           _etiqueta('Jugadores', sizeScreen),
           SizedBox(height: sizeScreen.height * .01),
-          (players_firstTeam.isEmpty)
+          
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Verifica si el primer equipo está vacio
+                (players_firstTeam.isEmpty)
+                    ? Container(
+                        alignment: Alignment.center,
+                        width: sizeScreen.width / 2,
+                        child: const Text(
+                          'Sin jugadores',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Lato'),
+                        ),
+                      )
+                    :
+                    /**
+                         * Listview del primer equipo
+                         */
+                    Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: players_firstTeam.length,
+                          itemBuilder: (context, int index) {
+                            return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              elevation: 4,
+                              shadowColor: const Color(0xFFE51E3F),
+                              child: ListTile(
+                                leading: const CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                ),
+                                title: Text(
+                                  (players_firstTeam.elementAt(index))
+                                      .toString(),
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Lato',
+                                      fontSize: 16),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                // Verifica si el segundo equipo esta vacio
+                (players_secondTeam.isEmpty)
+                    ? Container(
+                        decoration: const BoxDecoration(
+                          border: Border(
+                            left: BorderSide(
+                              width: 1.5,
+                            ),
+                          ),
+                        ),
+                        width: sizeScreen.width / 2,
+                        alignment: Alignment.center,
+                        child: const Text(
+                          'Sin jugadores',
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Lato'),
+                        ),
+                      )
+                    :
+                    /**
+                         * Listview del segundo equipo
+                         */
+                    Expanded(
+                        child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: players_secondTeam.length,
+                          itemBuilder: (context, int index) {
+                            return Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                              elevation: 4,
+                              shadowColor: Color(0xFFE51E3F),
+                              child: ListTile(
+                                leading: CircleAvatar(
+                                  backgroundColor: Colors.red,
+                                ),
+                                title: Text(
+                                    (players_secondTeam.elementAt(index))
+                                        .toString(),
+                                        style: const TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Lato',
+                                      fontSize: 16),
+                                      ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+              ],
+            ),
+          ),
+
+
+          /*(players_firstTeam.isEmpty)
               ? Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: const [
                       Text(
                         'Sin jugadores',
@@ -248,7 +355,7 @@ class MatchToPlay extends StatelessWidget {
                       ],
                     ),
                   ),
-                ),
+                ),*/
         ],
       ),
     ));

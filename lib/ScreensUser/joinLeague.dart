@@ -1,10 +1,11 @@
 // ignore_for_file: file_names, use_key_in_widget_constructors, no_leading_underscores_for_local_identifiers, non_constant_identifier_names, prefer_const_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:soccer_management/api/bd_users.dart';
 import 'joinTeam.dart';
+import '../api/bd_users.dart';
 
-class nameOfTeam{
-  
+class nameOfTeam {
   final String? nameTeam;
 
   nameOfTeam(
@@ -14,7 +15,6 @@ class nameOfTeam{
 
 class JoinLeaguePage extends StatelessWidget {
   static String id = 'JoinLeague_Page';
-
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,15 @@ class JoinLeaguePage extends StatelessWidget {
         backgroundColor: const Color(0xffF4F4F4),
         appBar: AppBar(
           backgroundColor: const Color(0xffF4F4F4),
-
+          leading: IconButton(
+            color: const Color(0xFF011C53),
+            icon: const Icon(
+              Icons.arrow_back_ios,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
           /*
          * Texto de inicio sesion
         */
@@ -60,8 +68,10 @@ class JoinLeaguePage extends StatelessWidget {
             /**
            * Nombre del jugador
            */
-            const Text(
-              'Mario Ledezma',
+            Text(
+              (userName.containsKey(correoo))
+                  ? '${userName[correoo]}'
+                  : 'Error al obtener el nombre',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -97,21 +107,22 @@ class JoinLeaguePage extends StatelessWidget {
                 itemCount: _teams.length,
                 itemBuilder: (context, int index) {
                   return GestureDetector(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: sizeScreen.width * .01,
-                      ),
+                    child: Card(
+                      elevation: 7,
+                      shadowColor: Color(0xFFE51E3F),
                       child: ListTile(
                         leading: CircleAvatar(),
                         title: Text(_teams.elementAt(index)),
                       ),
                     ),
                     onTap: () {
-                      
-                      print(_teams.elementAt(index));
-                      Navigator.pushNamed(context, JoinTeamPage.id, arguments: nameOfTeam(
-                        _teams.elementAt(index),
-                      ));
+                      ligaa = _teams.elementAt(index);
+
+                      print(ligaa);
+                      Navigator.pushNamed(context, JoinTeamPage.id,
+                          arguments: nameOfTeam(
+                            _teams.elementAt(index),
+                          ));
                     },
                   );
                 },

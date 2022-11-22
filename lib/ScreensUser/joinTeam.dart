@@ -2,6 +2,7 @@
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import '../api/bd_users.dart';
 import '../bottom_drawer_layout.dart';
 
 class JoinTeamPage extends StatefulWidget {
@@ -67,7 +68,7 @@ class JoinTeamPageState extends State<JoinTeamPage> {
            * Nombre del jugador
            */
             Text(
-              'Nombre del equipo',
+              ligaa,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class JoinTeamPageState extends State<JoinTeamPage> {
             /**
              * Contenedor de la etiqueta
              */
-            _etiqueta('Selecciona una liga', sizeScreen),
+            _etiqueta('Selecciona un equipo', sizeScreen),
 
             //Zona de Ligas
             Expanded(

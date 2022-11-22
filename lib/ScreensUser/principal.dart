@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import '../ScreensUser/notifications.dart';
+import '../api/bd_users.dart';
+import 'joinLeague.dart';
 import 'joinTeam.dart';
 import 'team.dart';
 
@@ -26,7 +28,7 @@ class PrincipalPage extends StatelessWidget {
             size: 30,
           ),
           onPressed: () {
-            Route route = MaterialPageRoute(builder: (bc) => JoinTeamPage());
+            Route route = MaterialPageRoute(builder: (bc) => JoinLeaguePage());
             Navigator.of(context).push(route);
           },
         ),
@@ -85,8 +87,8 @@ Widget _body(Size sizeScreen, int _cantTeams) {
       /**
            * Nombre del jugador
            */
-      const Text(
-        'Mario Ledezma',
+      Text(
+        (userName.containsKey(correoo)) ? '${userName[correoo]}' : 'Error al obtener el nombre',
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,

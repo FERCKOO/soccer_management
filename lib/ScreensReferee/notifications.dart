@@ -80,7 +80,7 @@ class NotificationsPageReferee extends StatelessWidget {
               right: sizeScreen.width * .08,
             ),
             child: ListTile(
-              title: const Text('Tienes que pitar un partido a las 3:P.M'),
+              title: const Text('Tienes que pitar un partido a las 3:00 P.M'),
               trailing: Text('3 dias'),
               onTap: () {},
             ),

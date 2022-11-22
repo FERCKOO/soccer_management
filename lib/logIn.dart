@@ -1,6 +1,6 @@
-// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, avoid_print
+// ignore_for_file: file_names, use_key_in_widget_constructors, slash_for_doc_comments, camel_case_types, unused_element, avoid_print, curly_braces_in_flow_control_structures
 import 'dart:async';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:soccer_management/ScreensUser/forgotpass.dart';
 import 'package:soccer_management/logup.dart';
@@ -8,6 +8,7 @@ import '../bottom_drawer_layout.dart';
 import '../models/method_user_model.dart';
 import 'package:http/http.dart' as http;
 import '../api/soccer_management_api.dart';
+import '../api/bd_users.dart';
 
 class LogInPage extends StatefulWidget {
   static String id = 'LogIn_page';
@@ -63,7 +64,7 @@ class LogInPageState extends State<LogInPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             SizedBox(
-              height: sizeScreen.height * .09,
+              height: sizeScreen.height * .03,
             ),
 
             /*
@@ -72,7 +73,7 @@ class LogInPageState extends State<LogInPage> {
             Image(
                 alignment: Alignment.topCenter,
                 image: const AssetImage(
-                  'assets/images/LogoPNG.png',
+                  'assets/images/LogoPng.png',
                 ),
                 width: sizeScreen.width * .4),
             SizedBox(height: sizeScreen.height * .03),
@@ -81,8 +82,8 @@ class LogInPageState extends State<LogInPage> {
              * Linea horizontal.
             */
             Container(
-              margin: const EdgeInsets.symmetric(
-                horizontal: 80,
+              margin: EdgeInsets.symmetric(
+                horizontal: sizeScreen.width * .2,
               ),
               decoration: const BoxDecoration(
                 border: Border(
@@ -134,7 +135,7 @@ class LogInPageState extends State<LogInPage> {
 */
 
             _buttonSingIn(context, email, pass, emailAux, passAux),
-            SizedBox(height: sizeScreen.height * .11),
+            SizedBox(height: sizeScreen.height * .08),
             /*
               * Seccion de actualizacion de contraseña
             */
@@ -249,15 +250,17 @@ Widget _textFieldPassword(pass) {
 }
 
 Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
+  final sizeScreen = MediaQuery.of(context).size;
+
   String _emailVar = '';
   String _passVar = '';
 
   return ElevatedButton(
     style: ElevatedButton.styleFrom(
       primary: const Color(0xFF011C53),
-      padding: const EdgeInsets.symmetric(
-        horizontal: 100,
-        vertical: 20,
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width * .18,
+        vertical: sizeScreen.height * .029,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -301,36 +304,115 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
               );
             },
           );*/
-        (int.parse(_passVar) == 0) // Si eres representante
-            ? print("0")
-            : (int.parse(_passVar) == 1) // Si eres usuario comun
-                ? //print("1")
-                Navigator.of(context).pushNamedAndRemoveUntil(
-                    LayoutBottomNavigatorBarUser.id,
-                    (Route<dynamic> route) => false)
-                : (int.parse(_passVar) == 2) // Si eres arbitro
-                    ? //print("2")
-                    Navigator.of(context).pushNamedAndRemoveUntil(
-                        LayoutBottomNavigatorBarReferee.id,
-                        (Route<dynamic> route) => false)
-                    : showDialog(
+
+        // correo arbitro: jMadero@hotmail.com  Contraseña: jm
+
+        // Si contiene una extenicion de correo electronico...
+        if (_emailVar.contains('@hotmail.com') ||
+                _emailVar.contains('@outlook.com') ||
+                _emailVar.contains('@gmail.com'))
+            {
+            // Si existe el correo en el arreglo...
+            if (users.containsKey(_emailVar))
+               { // Si contraseña es la misma en el arreglo...
+                 if (users[_emailVar] == _passVar)
+                    { // Si el correo es de arbitro...
+                    if (_emailVar == 'jMadero@hotmail.com')
+                        { //Ingresa como arbitro print('Arbitro')
+                        correoo = _emailVar;
+
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            LayoutBottomNavigatorBarReferee.id,
+                            (Route<dynamic> route) => false);
+                        }else { //Ingresa como usuario comun print(users['Usuario])
+                        correoo = _emailVar;
+                        Navigator.of(context).pushNamedAndRemoveUntil(
+                            LayoutBottomNavigatorBarUser.id,
+                            (Route<dynamic> route) => false);
+                        }
+                    } else AwesomeDialog(
+                        dialogType: DialogType.error,
                         context: context,
-                        builder: (context) {
-                          return const AlertDialog(
-                            content: Text(
-                                'Verifique que su usuario y contraseña esten correctos.'),
-                          );
-                        },
-                      );
-      } else { 
-        showDialog(
+                        // ignore: deprecated_member_use
+                        animType: AnimType.SCALE,
+                        title: 'Contraseña',
+                        body: const Center(
+                          child: Text(
+                            'Su contraseña es erronea.',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Lato'),
+                          ),
+                        ),
+                        btnOkColor: const Color(0xFF011C53),
+                        btnOkText: 'Ok',
+                        btnOkOnPress: () {},
+                      ).show();
+               } else AwesomeDialog(
+                    dialogType: DialogType.noHeader,
+                    context: context,
+                    // ignore: deprecated_member_use
+                    animType: AnimType.SCALE,
+                    title: 'registro',
+                    body: const Center(
+                      child: Text(
+                        'Usted no está registrado.\nSe le redireccionará a la pantalla de registro',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Lato'),
+                      ),
+                    ),
+                    btnOkColor: const Color(0xFF011C53),
+                    btnOkText: 'Ok',
+                    btnOkOnPress: () {
+                      Navigator.pushNamed(context, LogUpPage.id);
+                    },
+                  ).show();
+            } else AwesomeDialog(
+                dialogType: DialogType.noHeader,
+                context: context,
+                // ignore: deprecated_member_use
+                animType: AnimType.SCALE,
+                title: 'Correo electronico',
+                body: const Center(
+                  child: Text(
+                    'Verifique que su correo contenga alguna de las siguientes extenciones.\n@hotmail.com, @gmail.com ó @outlook.com',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Lato'),
+                  ),
+                ),
+                btnOkColor: const Color(0xFF011C53),
+                btnOkText: 'Ok',
+                btnOkOnPress: () {},
+              ).show();
+      } else {
+        AwesomeDialog(
+          dialogType: DialogType.noHeader,
           context: context,
-          builder: (context) {
-            return const AlertDialog(
-              content: Text('Llene todos los campos'),
-            );
-          },
-        );
+          // ignore: deprecated_member_use
+          animType: AnimType.SCALE,
+          title: 'Campos',
+          body: const Center(
+            child: Text(
+              'Llene todos los campos.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Lato'),
+            ),
+          ),
+          btnOkColor: const Color(0xFF011C53),
+          btnOkText: 'Ok',
+          btnOkOnPress: () {},
+        ).show();
       }
     },
   );

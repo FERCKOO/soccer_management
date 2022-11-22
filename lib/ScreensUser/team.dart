@@ -82,16 +82,14 @@ class TeamPage extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: sizeScreen.width * .03),
             child: Row(
+              mainAxisAlignment:  MainAxisAlignment.center,
               children: [
-                SizedBox(width: sizeScreen.width * .03),
                 CircleAvatar(
                   radius: sizeScreen.width * .1,
                 ),
-                SizedBox(
-                  width: sizeScreen.width * .2,
-                ),
+                SizedBox(width: sizeScreen.width * .03),
                 /**
-                 * Nombre del jugador
+                 * Nombre del equipo
                  */
                 const Text(
                   'Venom',
@@ -100,7 +98,7 @@ class TeamPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                     fontFamily: 'Lato',
                   ),
-                  textAlign: TextAlign.center,
+                  //textAlign: TextAlign.center,
                 ),
               ],
             ),
@@ -165,7 +163,7 @@ class TeamPage extends StatelessWidget {
                 style: TextStyle(),
               ),
               SizedBox(
-                width: sizeScreen.width * .014,
+                width: sizeScreen.width * .03,
               )
             ],
           ),
@@ -194,10 +192,10 @@ class TeamPage extends StatelessWidget {
                             elevation: 7,
                             shadowColor: Color(0xFFE51E3F),
                             child: ListTile(
-                              leading: CircleAvatar(),
+                              leading: CircleAvatar(backgroundColor: Colors.red,),
                               title: Text(players.elementAt(index)),
                               trailing:
-                                  Text('${playersGoals.elementAt(index)}'),
+                                  Text((playersGoals.elementAt(index)).toString()  ),
                             ),
                           ),
                           onTap: () {

@@ -19,6 +19,8 @@ class MatchPageState extends State<MatchPage> {
 
   int goals = 0;
 
+  //final code = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
@@ -28,7 +30,7 @@ class MatchPageState extends State<MatchPage> {
       backgroundColor: const Color(0xffF4F4F4),
       appBar: AppBar(
         backgroundColor: const Color(0xffF4F4F4),
-        leading: IconButton(
+        /*leading: IconButton(
           color: const Color(0xFF011C53),
           icon: const Icon(
             Icons.arrow_back_ios,
@@ -36,7 +38,7 @@ class MatchPageState extends State<MatchPage> {
           onPressed: () {
             Navigator.pop(context);
           },
-        ),
+        ),*/
         /*
          * Texto del top
         */
@@ -340,7 +342,12 @@ class MatchPageState extends State<MatchPage> {
                                       ),
                                       title: Text(
                                           (players_secondTeam.elementAt(index))
-                                              .toString()),
+                                              .toString(),
+                                              style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontFamily: 'Lato',
+                                            fontSize: 16),
+                                            ),
                                     ),
                                   ),
                                   Column(
@@ -440,51 +447,78 @@ class _etiquetaclase extends StatelessWidget {
 }
 
 // Funcion para terminar el partido
-void endMatch(BuildContext context){
+void endMatch(BuildContext context) {
+  final sizeScreen = MediaQuery.of(context).size;
   String cadena = generateRandomString(4);
-  final code = TextEditingController();
+  final code = TextEditingController(); // Obtener el codigo digitado
+  String c = '';
+
+  int _selectedIndex = 0;
+
+  void setState(Null Function() param0) {}
 
   AwesomeDialog(
-        context: context,
-        // ignore: deprecated_member_use
-        animType: AnimType.SCALE,
-        title: 'Finalizar partido',
-        body: Center(
-          child: Column(
-            children: [
-              Text(
-                'Para finalizar el encuentro digite el siguiente codigo:',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
-              ),
-              Container(
-                child: Text(
-                  cadena,
-                  style: TextStyle(
-                    color: Colors.red,
-                    fontFamily: 'Lato',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20
-                  ),
-                  ),
-              ),
-            _textFieldCodeConfirmation(code, chainn: cadena),
-            ],
+    context: context,
+    // ignore: deprecated_member_use
+    animType: AnimType.SCALE,
+    title: 'Finalizar partido',
+    body: Center(
+      child: Column(
+        children: [
+          Text(
+            'Para finalizar el encuentro digite el siguiente codigo:',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                fontSize: 14, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
           ),
-        ),
-        btnOkColor: const Color(0xFF011C53),
-        btnOkText: 'Finalizar',
-        btnOkOnPress: () {
-          
-          //Prints para checar que trae el textlabel y la cadena
+          Container(
+            child: Text(
+              // Codigo generado automaticamente
+              cadena,
+              style: TextStyle(
+                  color: Colors.red,
+                  fontFamily: 'Lato',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20),
+            ),
+          ),
+          _textFieldCodeConfirmation(
+            code,
+            _selectedIndex,
+          ), // Fiel donde se digitara el codigo
 
-          /*
+          SizedBox(height: sizeScreen.height * .01),
+          _buttonVerifyCode(context, _selectedIndex, c, code, cadena),
+          SizedBox(height: sizeScreen.height * .01),
+        ],
+      ),
+    ),
+
+    /*btnOkColor: const Color(0xFF011C53),
+    btnOkText: 'Finalizar',
+    btnOkOnPress: () {
+      c = code.text;
+
+      // Limpieza del controlador
+      @override
+      void dispose() {
+        code.dispose();
+      }
+      _onItemTapped(1);
+
+
+      (c == cadena) ?
+      print('Son iguales')
+      : print(c);
+
+      //Prints para checar que trae el textlabel y la cadena
+
+      /*
           Navigator.of(context).pushNamedAndRemoveUntil(
               LayoutBottomNavigatorBarReferee.id, (Route<dynamic> route) => false);
           */
-        },
-      ).show();
+    },*/
+  ).show();
 }
 
 // Funcion para generar un codigo especial para terminar el partido
@@ -497,11 +531,10 @@ String generateRandomString(int len) {
   return randomString;
 }
 
-Widget _textFieldCodeConfirmation(code, {required String chainn}) {
+Widget _textFieldCodeConfirmation(code, _selectedIndex) {
   return _textFieldGeneral(
     hintText: 'Código de confirmacion',
     myControler: code,
-    chain: chainn,
     onChanged: () {},
   );
 }
@@ -515,40 +548,33 @@ class _textFieldGeneral extends StatefulWidget {
   final Function onChanged;
   final bool obscureText;
   final TextEditingController myControler;
-  final chain;
 
-  const _textFieldGeneral(
-      {
-      this.hintText,
-      this.keyboardType,
-      required this.onChanged,
-      this.obscureText = false,
-      required this.myControler,
-      required this.chain,
-      });
+  const _textFieldGeneral({
+    this.hintText,
+    this.keyboardType,
+    required this.onChanged,
+    this.obscureText = false,
+    required this.myControler,
+  });
 
   @override
   State<_textFieldGeneral> createState() => _textFieldGeneralState();
 }
 
 class _textFieldGeneralState extends State<_textFieldGeneral> {
-
-  // Aqui se validará el icono
-
   @override
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
 
     return Container(
       margin: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width*.1,
+        horizontal: sizeScreen.width * .1,
       ),
       child: TextField(
         controller: widget.myControler,
         keyboardType: widget.keyboardType,
         obscureText: widget.obscureText,
         decoration: InputDecoration(
-          // prefixIcon: , validar icono
           border: const OutlineInputBorder(),
           hintText: widget.hintText,
         ),
@@ -556,4 +582,48 @@ class _textFieldGeneralState extends State<_textFieldGeneral> {
       ),
     );
   }
+}
+
+Widget _buttonVerifyCode(BuildContext context, selectItem, c, code, cadena) {
+  final sizeScreen = MediaQuery.of(context).size;
+
+  return ElevatedButton(
+    style: ElevatedButton.styleFrom(
+      primary: const Color(0xFF011C53),
+      padding: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width * .18,
+        vertical: sizeScreen.height * .029,
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+    ),
+    child: const Text(
+      'Finalizar',
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato'),
+    ),
+    onPressed: () {
+      c = code.text;
+
+      // Limpieza de los controladores
+      @override
+      void dispose() {
+        code.dispose();
+      }
+
+      // Verificar que sea el mismo codigo
+      if (c != '') {
+        // Si son iguales...
+        (c == cadena)
+            ? Navigator.of(context).pushNamedAndRemoveUntil(
+                LayoutBottomNavigatorBarReferee.id,
+                (Route<dynamic> route) => false)
+            : null;
+      } else {}
+    },
+  );
 }

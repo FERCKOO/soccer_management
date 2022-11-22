@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:soccer_management/ScreensUser/editNotifications.dart';
+import '../api/bd_users.dart';
 import '../logIn.dart';
 import 'editData.dart';
 
@@ -49,16 +50,16 @@ class PorfilePage extends StatelessWidget {
                   size: sizeScreen.width * .11,
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Text(
-                      'Mario Ledezma',
+                      (userName.containsKey(correoo)) ? '${userName[correoo]}' : 'Error al obtener el nombre',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Lato'),
                     ),
                     Text(
-                      'mledezma@hotmail.com',
+                      (userName.containsKey(correoo)) ? correoo : 'Error al obtener el correo',
                       style: TextStyle(
                           color: Color(0xFFC8C8C8),
                           fontSize: 15,
