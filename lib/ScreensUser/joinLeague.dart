@@ -69,8 +69,10 @@ class JoinLeaguePage extends StatelessWidget {
            * Nombre del jugador
            */
             Text(
-              (userName.containsKey(correoo))
-                  ? '${userName[correoo]}'
+              (usersName.containsKey(correoo))
+                  ? '${usersName[correoo]}'
+                  : (refereesName.containsKey(correoo))
+                  ? '${refereesName[correoo]}'
                   : 'Error al obtener el nombre',
               style: TextStyle(
                 fontSize: 16,

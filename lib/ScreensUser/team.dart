@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:soccer_management/ScreensUser/Number.dart';
+import 'package:soccer_management/api/bd_users.dart';
 import 'package:soccer_management/models/method_teams_user_model.dart';
 import '../api/soccer_management_api.dart';
 import 'package:http/http.dart' as http;
@@ -11,14 +12,6 @@ import 'package:http/http.dart' as http;
 class TeamPage extends StatelessWidget {
   static String id = 'Team_Page';
 
-  List players = [
-    'Lucas perez',
-    'Angel Diaz',
-    'Luis Dominguez',
-    'Bryton Ramirez',
-    'Luis Saenz',
-    'Alan Lopez'
-  ];
   List<int> playersGoals = [1, 0, 3, 8, 3, 8];
 
   int _totalGoals = 0;
@@ -167,7 +160,7 @@ class TeamPage extends StatelessWidget {
               )
             ],
           ),
-          (players.isEmpty)
+          (players_firstTeam.isEmpty)
               ? Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -184,7 +177,7 @@ class TeamPage extends StatelessWidget {
                 )
               : Expanded(
                   child: ListView.builder(
-                      itemCount: players.length,
+                      itemCount: players_firstTeam.length,
                       itemBuilder: (context, int index) {
                         _totalGoals += playersGoals.elementAt(index);
                         return GestureDetector(
@@ -193,7 +186,7 @@ class TeamPage extends StatelessWidget {
                             shadowColor: Color(0xFFE51E3F),
                             child: ListTile(
                               leading: CircleAvatar(backgroundColor: Colors.red,),
-                              title: Text(players.elementAt(index)),
+                              title: Text('${players_firstTeam[index]}'),
                               trailing:
                                   Text((playersGoals.elementAt(index)).toString()  ),
                             ),

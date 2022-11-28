@@ -6,8 +6,16 @@ import 'package:date_field/date_field.dart';
 import '../bottom_drawer_layout.dart';
 import '../api/bd_users.dart';
 
-class LogUpPage extends StatelessWidget {
+class LogUpPage extends StatefulWidget {
   static String id = "logUp_page";
+  
+  @override
+  State<StatefulWidget> createState() => LogUpPageState();
+}
+
+
+class LogUpPageState extends State<LogUpPage>{
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,45 +56,122 @@ class LogUpPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            /*
-               * Imagen del usuario.
-              */
-            const Icon(
-              Icons.person_rounded,
-              size: 70,
-            ),
-            SizedBox(height: sizeScreen.height * .03),
+      body: Column(
+        children: [
+          SizedBox(height: sizeScreen.height*.1),
+          /*
+             * Imagen del usuario.
+            */
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(
+                Icons.person_rounded,
+                size: 70,
+              ),
+              SizedBox(width: sizeScreen.width * .01),
+          _buttonSingUp(context, sizeScreen, firstName, lastName, email, pass,
+              confPass),
+            ],
+          ),
+          SizedBox(height: sizeScreen.height * .03),
 
-            /*
-               * Seccion de formulario
-              */
-            _textFieldName(sizeScreen, firstName),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldLastName(sizeScreen, lastName),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldEmail(sizeScreen, email),
-            SizedBox(height: sizeScreen.height * .01),
-            _formFieldDate(),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldPassword(sizeScreen, pass),
-            SizedBox(height: sizeScreen.height * .01),
-            _textFieldConfirmPassword(sizeScreen, confPass),
-            SizedBox(height: sizeScreen.height * .017),
-            _buttonSingUp(context, sizeScreen, firstName, lastName, email, pass,
-                confPass),
-          ],
-        ),
+          /*
+             * Seccion de formulario
+            */
+          _textFieldName(sizeScreen, firstName),
+          SizedBox(height: sizeScreen.height * .01),
+          _textFieldLastName(sizeScreen, lastName),
+          SizedBox(height: sizeScreen.height * .01),
+          _textFieldEmail(sizeScreen, email),
+          SizedBox(height: sizeScreen.height * .01),
+          //_formFieldDate(),
+          //Cambiar la manera de digitar la fecha de nacimiento
+          //_textFieldAge(sizeScreen, pass),
+          SizedBox(height: sizeScreen.height * .01),
+          _textFieldPassword(sizeScreen, pass),
+          SizedBox(height: sizeScreen.height * .01),
+          _textFieldConfirmPassword(sizeScreen, confPass),
+          
+        ],
       ),
     ));
   }
 }
 
+/*
+ * Seccion de metodos y funciones
+*/
+Widget _textFieldName(Size size, fName) {
+  return _textFieldGeneral(
+    labelText: 'Nombre',
+    icon: Icons.person_outline,
+    hintText: 'Nombre',
+    sizeScreen: size,
+    myControler: fName,
+  );
+}
+
+Widget _textFieldLastName(Size size, lName) {
+  return _textFieldGeneral(
+    labelText: 'Apellido',
+    icon: Icons.person_outline,
+    hintText: 'Apellido',
+    sizeScreen: size,
+    myControler: lName,
+  );
+}
+
+Widget _textFieldEmail(Size size, email) {
+  return _textFieldGeneral(
+    labelText: 'Correo',
+    icon: Icons.email_outlined,
+    hintText: 'example@hotmail.com',
+    sizeScreen: size,
+    myControler: email,
+  );
+}
+
+Widget _formFieldDate() {
+  return _formDateGeneral();
+}
+
+Widget _textFieldPassword(Size size, pass) {
+  return _textFieldGeneral(
+    labelText: 'Contraseña',
+    icon: Icons.lock_outline_rounded,
+    hintText: '*********',
+    obscureText: true,
+    sizeScreen: size,
+    myControler: pass,
+  );
+}
+
+Widget _textFieldConfirmPassword(Size size, confPass) {
+  return _textFieldGeneral(
+    labelText: 'Confirmar contraseña',
+    icon: Icons.lock_outline_rounded,
+    hintText: '*********',
+    sizeScreen: size,
+    obscureText: true,
+    myControler: confPass,
+  );
+}
+
+Widget _textFieldAge(Size size, confPass) {
+  return _textFieldGeneralAge(
+    labelText: 'Fecha de  ',
+    icon: Icons.lock_outline_rounded,
+    hintText: 'Fecha de ',
+    sizeScreen: size,
+    obscureText: true,
+    myControler: confPass,
+  );
+}
+
 Widget _buttonSingUp(
     BuildContext context, Size size, fName, lName, email, pass, confPass) {
+  
   String _fNameVar = '';
   String _lNameVar = '';
   String _emailVar = '';
@@ -97,14 +182,29 @@ Widget _buttonSingUp(
     style: ElevatedButton.styleFrom(
       primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
-        horizontal: size.width * .18,
+        horizontal: size.width * .1,
         vertical: size.height * .029,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
     ),
+    child: const Text(
+      'Registrarse',
+      style: TextStyle(
+          color: Colors.white,
+          fontSize: 18,
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Lato'),
+    ),
     onPressed: () {
+      /*Por mientras
+      correoo = 'gaaarcia.na@gmail.com';
+      Navigator.of(context).pushNamedAndRemoveUntil(
+                LayoutBottomNavigatorBarUser.id,
+                (Route<dynamic> route) => false);
+      */
+      
       _fNameVar = fName.text;
       _lNameVar = lName.text;
       _emailVar = email.text; // Se recupera el texto digitado
@@ -178,10 +278,12 @@ Widget _buttonSingUp(
           } else {
             // Si todo esta bien Ingresa como usuario comun
             users.addAll({_emailVar: _passVar});
-            userName.addAll({_emailVar: '$_fNameVar $_lNameVar'});
+            usersName.addAll({_emailVar: '$_fNameVar $_lNameVar'});
 
             print(users);
-            print(userName);
+            print(usersName);
+            print(referees);
+            print(refereesName);
 
             correoo = _emailVar; // Se guarda el correo digitado
 
@@ -233,81 +335,13 @@ Widget _buttonSingUp(
           btnOkOnPress: () {},
         ).show();
       }
+    
     },
-    child: const Text(
-      'Registrarse',
-      style: TextStyle(
-          color: Colors.white,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Lato'),
-    ),
+    
   );
 }
 
-/*
- * Seccion de metodos y funciones
-*/
-Widget _textFieldName(Size size, fName) {
-  return _textFieldGeneral(
-    labelText: 'Nombre',
-    icon: Icons.person_outline,
-    hintText: 'Nombre',
-    sizeScreen: size,
-    myControler: fName,
-    onChanged: () {},
-  );
-}
 
-Widget _textFieldLastName(Size size, lName) {
-  return _textFieldGeneral(
-    labelText: 'Apellido',
-    icon: Icons.person_outline,
-    hintText: 'Apellido',
-    sizeScreen: size,
-    myControler: lName,
-    onChanged: () {},
-  );
-}
-
-Widget _textFieldEmail(Size size, email) {
-  return _textFieldGeneral(
-    labelText: 'Correo',
-    icon: Icons.email_outlined,
-    hintText: 'example@hotmail.com',
-    sizeScreen: size,
-    myControler: email,
-    onChanged: () {},
-  );
-}
-
-Widget _formFieldDate() {
-  return _formDateGeneral();
-}
-
-Widget _textFieldPassword(Size size, pass) {
-  return _textFieldGeneral(
-    labelText: 'Contraseña',
-    icon: Icons.lock_outline_rounded,
-    hintText: '*********',
-    obscureText: true,
-    sizeScreen: size,
-    myControler: pass,
-    onChanged: () {},
-  );
-}
-
-Widget _textFieldConfirmPassword(Size size, confPass) {
-  return _textFieldGeneral(
-    labelText: 'Confirmar contraseña',
-    icon: Icons.lock_outline_rounded,
-    hintText: '*********',
-    sizeScreen: size,
-    obscureText: true,
-    myControler: confPass,
-    onChanged: () {},
-  );
-}
 
 /**
  * Clase generica de text labels
@@ -317,7 +351,6 @@ class _textFieldGeneral extends StatefulWidget {
   final String? hintText; //Texto de muestra
   final TextInputType? keyboardType;
   final IconData icon;
-  final Function onChanged;
   final bool obscureText;
   final TextEditingController myControler;
   final Size sizeScreen;
@@ -327,7 +360,6 @@ class _textFieldGeneral extends StatefulWidget {
     this.hintText,
     this.keyboardType,
     required this.icon,
-    required this.onChanged,
     this.obscureText = false,
     required this.sizeScreen,
     required this.myControler,
@@ -372,7 +404,9 @@ class _formDateGeneral extends StatelessWidget {
       child: Form(
         child: Column(
           children: <Widget>[
-            DateTimeFormField(
+            
+            
+            /*DateTimeFormField(
               decoration: const InputDecoration(
                 hintStyle: TextStyle(color: Colors.black45),
                 errorStyle: TextStyle(color: Colors.redAccent),
@@ -385,8 +419,56 @@ class _formDateGeneral extends StatelessWidget {
               onDateSelected: (DateTime value) {
                 print(value);
               },
-            ),
+            ),*/
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class _textFieldGeneralAge extends StatefulWidget {
+  final String labelText; //Texto del label
+  final String? hintText; //Texto de muestra
+  final TextInputType? keyboardType;
+  final IconData icon;
+  final bool obscureText;
+  final TextEditingController myControler;
+  final Size sizeScreen;
+
+  const _textFieldGeneralAge({
+    required this.labelText,
+    this.hintText,
+    this.keyboardType,
+    required this.icon,
+    this.obscureText = false,
+    required this.sizeScreen,
+    required this.myControler,
+  });
+
+  @override
+  State<_textFieldGeneralAge> createState() => _textFieldGeneralAgeState();
+}
+
+class _textFieldGeneralAgeState extends State<_textFieldGeneralAge> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(
+        horizontal: widget.sizeScreen.width * .15,
+      ),
+      child: Expanded(
+        child: TextField(
+          controller: widget.myControler,
+          keyboardType: widget.keyboardType,
+          obscureText: widget.obscureText,
+          decoration: InputDecoration(
+            border: const OutlineInputBorder(),
+            suffixIcon: Icon(widget.icon),
+            labelText: widget.labelText,
+            hintText: widget.hintText,
+          ),
+          onChanged: (value) {},
         ),
       ),
     );

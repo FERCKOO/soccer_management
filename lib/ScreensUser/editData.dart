@@ -47,36 +47,40 @@ class EditDataPage extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                  padding: EdgeInsets.only(
-                      top: sizeScreen.height * .05,
-                      bottom: sizeScreen.height * .06),
-                  alignment: Alignment.topCenter,
-                  child: CircleAvatar(
-                    radius: sizeScreen.height * .07,
-                    child: Icon(
-                      Icons.person_rounded,
-                      size: sizeScreen.height * .1,
-                    ),
-                  )),
-              _textFieldName(sizeScreen, firstName),
-              SizedBox(height: sizeScreen.height * .01),
-              _textFieldLastName(sizeScreen, lastName),
-              SizedBox(height: sizeScreen.height * .01),
-              _textFieldEmail(sizeScreen, email),
-              SizedBox(height: sizeScreen.height * .01),
-              _formFieldDate(),
-              SizedBox(height: sizeScreen.height * .1),
-              _buttonChangePass(context, sizeScreen),
-              SizedBox(height: sizeScreen.height * .015),
-              _buttonUpdateData(
-                  context, sizeScreen, firstName, lastName, email),
-            ],
-          ),
+        body: Column(
+          children: [
+          SizedBox(height: sizeScreen.height*.1),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: sizeScreen.height * .07,
+                  child: Icon(
+                    Icons.person_rounded,
+                    size: sizeScreen.height * .1,
+                  ),
+                ),
+                SizedBox(width: sizeScreen.width * .013),
+            Column(
+              children: [
+                _buttonChangePass(context, sizeScreen),
+                SizedBox(height: sizeScreen.height * .013),
+                _buttonUpdateData(
+                    context, sizeScreen, firstName, lastName, email),
+              ],
+            ),
+              ],
+            ),
+            SizedBox(height: sizeScreen.height * .03),
+            _textFieldName(sizeScreen, firstName),
+            SizedBox(height: sizeScreen.height * .01),
+            _textFieldLastName(sizeScreen, lastName),
+            SizedBox(height: sizeScreen.height * .01),
+            _textFieldEmail(sizeScreen, email),
+            SizedBox(height: sizeScreen.height * .01),
+            _formFieldDate(),
+            
+          ],
         ),
       ),
     );
@@ -129,8 +133,8 @@ Widget _buttonChangePass(BuildContext context, Size sizeScreen) {
     style: ElevatedButton.styleFrom(
       primary: const Color(0xffF4F4F4),
       padding: EdgeInsets.symmetric(
+        horizontal: sizeScreen.width * .011,
         vertical: sizeScreen.width * .045,
-        horizontal: sizeScreen.width * .02,
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
@@ -161,7 +165,7 @@ Widget _buttonUpdateData(
     style: ElevatedButton.styleFrom(
       primary: const Color(0xFF011C53),
       padding: EdgeInsets.symmetric(
-        horizontal: sizeScreen.width * .11,
+        horizontal: sizeScreen.width * .06,
         vertical: sizeScreen.width * .045,
       ),
       shape: RoundedRectangleBorder(
@@ -194,7 +198,7 @@ Widget _buttonUpdateData(
             _emailVar.contains('@outlook.com') ||
             _emailVar.contains('@gmail.com')) {
           // Si el email digitado existe...
-          if (users.containsKey(_emailVar)) {
+          if (users.containsKey(_emailVar) || referees.containsKey(_emailVar)) {
             AwesomeDialog(
               dialogType: DialogType.warning,
               context: context,
@@ -216,7 +220,37 @@ Widget _buttonUpdateData(
               btnOkOnPress: () {},
             ).show();
           } else
-            users.update(correoo, (key) => _emailVar);
+            {
+            if (users.containsKey(_emailVar)){
+              users.update(correoo, (key) => _emailVar);
+              usersName.update(correoo, (key) => '$_fNameVar $_lNameVar');
+            } else {
+              referees.update(correoo, (key) => _emailVar);
+              refereesName.update(correoo, (key) => '$_fNameVar $_lNameVar');
+            }
+            AwesomeDialog(
+            dialogType: DialogType.noHeader,
+            context: context,
+            // ignore: deprecated_member_use
+            animType: AnimType.SCALE,
+            title: 'Datos actualizados',
+            body: const Center(
+              child: Text(
+                'Sus datos se han actualizado correctamente.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato'),
+              ),
+            ),
+            btnOkColor: const Color(0xFF011C53),
+            btnOkText: 'Ok',
+            btnOkOnPress: () {
+              Navigator.pop(context);
+            },
+          ).show();
+            }
         } else {
           AwesomeDialog(
             dialogType: DialogType.noHeader,
@@ -261,8 +295,6 @@ Widget _buttonUpdateData(
           btnOkOnPress: () {},
         ).show();
       }
-
-      Navigator.pop(context);
     },
   );
 }

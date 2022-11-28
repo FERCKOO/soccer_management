@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import '../api/bd_users.dart';
 import '../bottom_drawer_layout.dart';
 
 class MatchPage extends StatefulWidget {
@@ -13,12 +14,6 @@ class MatchPage extends StatefulWidget {
 }
 
 class MatchPageState extends State<MatchPage> {
-  final players_firstTeam = <int>[9, 10, 3, 18, 18, 3, 7, 20];
-
-  final players_secondTeam = <int>[5, 2, 8, 3, 15, 18, 29];
-
-  int goals = 0;
-
   //final code = TextEditingController();
 
   @override
@@ -39,6 +34,7 @@ class MatchPageState extends State<MatchPage> {
             Navigator.pop(context);
           },
         ),*/
+
         /*
          * Texto del top
         */
@@ -236,8 +232,7 @@ class MatchPageState extends State<MatchPage> {
                                         backgroundColor: Colors.red,
                                       ),
                                       title: Text(
-                                        (players_firstTeam.elementAt(index))
-                                            .toString(),
+                                        '#${players_firstTeam.keys.elementAt(index)} ${players_firstTeam.values.elementAt(index).split(' ').first}',
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'Lato',
@@ -245,50 +240,7 @@ class MatchPageState extends State<MatchPage> {
                                       ),
                                     ),
                                   ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        '$goals',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Lato'),
-                                      ),
-                                      SizedBox(
-                                        height: sizeScreen.height * .005,
-                                      ),
-                                      Row(
-                                        children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                padding: EdgeInsets.all(0.0),
-                                                minimumSize: sizeScreen * .01),
-                                            child: Icon(Icons.remove_circle),
-                                            onPressed: () {},
-                                          ),
-                                          SizedBox(
-                                            width: sizeScreen.width * .02,
-                                          ),
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.all(0.0),
-                                                minimumSize: sizeScreen * .01),
-                                            child: Icon(Icons.add_circle),
-                                            onPressed: () {},
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                                  _goles(sizeScreen),
                                   SizedBox(
                                     height: sizeScreen.height * .09,
                                   )
@@ -341,59 +293,15 @@ class MatchPageState extends State<MatchPage> {
                                         backgroundColor: Colors.red,
                                       ),
                                       title: Text(
-                                          (players_secondTeam.elementAt(index))
-                                              .toString(),
-                                              style: const TextStyle(
+                                        '#${players_secondTeam.keys.elementAt(index)} ${(players_secondTeam.values.elementAt(index)).split(' ').first}',
+                                        style: const TextStyle(
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'Lato',
                                             fontSize: 16),
-                                            ),
+                                      ),
                                     ),
                                   ),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        '$goals',
-                                        style: TextStyle(
-                                            fontSize: 20,
-                                            fontWeight: FontWeight.bold,
-                                            fontFamily: 'Lato'),
-                                      ),
-                                      SizedBox(
-                                        height: sizeScreen.height * .005,
-                                      ),
-                                      Row(
-                                        children: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                padding: EdgeInsets.all(0.0),
-                                                minimumSize: sizeScreen * .01),
-                                            child: Icon(Icons.remove_circle),
-                                            onPressed: () {},
-                                          ),
-                                          SizedBox(
-                                            width: sizeScreen.width * .02,
-                                          ),
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius:
-                                                      BorderRadius.circular(15),
-                                                ),
-                                                padding:
-                                                    const EdgeInsets.all(0.0),
-                                                minimumSize: sizeScreen * .01),
-                                            child: Icon(Icons.add_circle),
-                                            onPressed: () {},
-                                          ),
-                                        ],
-                                      )
-                                    ],
-                                  ),
+                                  _goles(sizeScreen),
                                   SizedBox(
                                     height: sizeScreen.height * .09,
                                   )
@@ -409,6 +317,59 @@ class MatchPageState extends State<MatchPage> {
         ],
       ),
     ));
+  }
+}
+
+Widget _goles(sizeScreen) {
+  return _golesClase(
+    sizeScreen: sizeScreen,
+  );
+}
+
+class _golesClase extends StatefulWidget {
+  final Size sizeScreen;
+
+  _golesClase({
+    required this.sizeScreen,
+  });
+
+  @override
+  State<StatefulWidget> createState() => _golesClaseState();
+}
+
+class _golesClaseState extends State<_golesClase> {
+  var goals = 0;
+
+  void putGoal() async {
+    setState(() {
+      goals++;
+    });
+  }
+
+  void removeGoal() async {
+    setState(() {
+      goals--;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        GestureDetector(
+          child: Text(
+            '${goals}',
+            style: const TextStyle(
+                fontSize: 30, fontWeight: FontWeight.bold, fontFamily: 'Lato'),
+          ),
+          onDoubleTap: putGoal,
+          onLongPress: removeGoal,
+        ),
+        SizedBox(
+          width: widget.sizeScreen.width * .015,
+        )
+      ],
+    );
   }
 }
 
@@ -449,13 +410,11 @@ class _etiquetaclase extends StatelessWidget {
 // Funcion para terminar el partido
 void endMatch(BuildContext context) {
   final sizeScreen = MediaQuery.of(context).size;
-  String cadena = generateRandomString(4);
+  String cadena = generateRandomString();
   final code = TextEditingController(); // Obtener el codigo digitado
   String c = '';
 
   int _selectedIndex = 0;
-
-  void setState(Null Function() param0) {}
 
   AwesomeDialog(
     context: context,
@@ -493,41 +452,16 @@ void endMatch(BuildContext context) {
         ],
       ),
     ),
-
-    /*btnOkColor: const Color(0xFF011C53),
-    btnOkText: 'Finalizar',
-    btnOkOnPress: () {
-      c = code.text;
-
-      // Limpieza del controlador
-      @override
-      void dispose() {
-        code.dispose();
-      }
-      _onItemTapped(1);
-
-
-      (c == cadena) ?
-      print('Son iguales')
-      : print(c);
-
-      //Prints para checar que trae el textlabel y la cadena
-
-      /*
-          Navigator.of(context).pushNamedAndRemoveUntil(
-              LayoutBottomNavigatorBarReferee.id, (Route<dynamic> route) => false);
-          */
-    },*/
   ).show();
 }
 
 // Funcion para generar un codigo especial para terminar el partido
-String generateRandomString(int len) {
+String generateRandomString() {
   var r = Random();
   const _chars =
       'AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890';
   String randomString =
-      List.generate(len, (index) => _chars[r.nextInt(_chars.length)]).join();
+      List.generate(4, (index) => _chars[r.nextInt(_chars.length)]).join();
   return randomString;
 }
 

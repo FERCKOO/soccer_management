@@ -313,11 +313,11 @@ Widget _buttonSingIn(BuildContext context, email, pass, emailAux, passAux) {
                 _emailVar.contains('@gmail.com'))
             {
             // Si existe el correo en el arreglo...
-            if (users.containsKey(_emailVar))
+            if (users.containsKey(_emailVar) || referees.containsKey(_emailVar))
                { // Si contraseña es la misma en el arreglo...
-                 if (users[_emailVar] == _passVar)
+                 if (users[_emailVar] == _passVar || referees[_emailVar] == _passVar)
                     { // Si el correo es de arbitro...
-                    if (_emailVar == 'jMadero@hotmail.com')
+                    if (referees.containsKey(_emailVar))
                         { //Ingresa como arbitro print('Arbitro')
                         correoo = _emailVar;
 

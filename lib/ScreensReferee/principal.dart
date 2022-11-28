@@ -1,5 +1,7 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
+import '../api/bd_users.dart';
 import 'notifications.dart';
 import 'match.dart';
 
@@ -33,46 +35,50 @@ class Principal extends StatelessWidget {
             ),
           ),
           actions: [
-          IconButton(
-            padding: EdgeInsets.only(right: sizeScreen.width * .02),
-            color: const Color(0xFF011C53),
-            icon: const Icon(
-              Icons.notifications_none,
+            IconButton(
+              padding: EdgeInsets.only(right: sizeScreen.width * .02),
+              color: const Color(0xFF011C53),
+              icon: const Icon(
+                Icons.notifications_none,
+              ),
+              onPressed: () {
+                Route route = MaterialPageRoute(
+                    builder: (bc) => NotificationsPageReferee());
+                Navigator.of(context).push(route);
+              }, // Accion de la notificacion
             ),
-            onPressed: () {
-              Route route =
-                  MaterialPageRoute(builder: (bc) => NotificationsPageReferee());
-              Navigator.of(context).push(route);
-            }, // Accion de la notificacion
-          ),
-        ],
+          ],
         ),
         body: SizedBox.expand(
             child: Column(children: [
           /*
               * Imagen del usuario.
             */
-      Container(
-        padding: EdgeInsets.only(top: sizeScreen.width * .1),
-        alignment: Alignment.topCenter,
-        child: const Icon(
-          Icons.person_rounded,
-          size: 70,
-        ),
-      ),
-      /**
+          Container(
+            padding: EdgeInsets.only(top: sizeScreen.width * .1),
+            alignment: Alignment.topCenter,
+            child: const Icon(
+              Icons.person_rounded,
+              size: 70,
+            ),
+          ),
+          /**
            * Nombre del jugador
            */
-      const Text(
-        'Mario Ledezma',
-        style: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          fontFamily: 'Lato',
-        ),
-        textAlign: TextAlign.center,
-      ),
-      SizedBox(height: sizeScreen.height * .01),
+          Text(
+            (usersName.containsKey(correoo))
+                ? '${usersName[correoo]}'
+                : (refereesName.containsKey(correoo))
+                    ? '${refereesName[correoo]}'
+                    : 'Error al obtener el nombre',
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Lato',
+            ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: sizeScreen.height * .01),
 
           /**
              * Linea horizontal.
@@ -182,8 +188,31 @@ class Principal extends StatelessWidget {
                               ),
                             ),
                           ),
-                          onTap: (){
-                             Navigator.pushNamed(context, MatchPage.id);
+                          onTap: () {
+                            AwesomeDialog(
+                              dialogType: DialogType.warning,
+                              context: context,
+                              // ignore: deprecated_member_use
+                              animType: AnimType.SCALE,
+                              title: 'Inicio partido',
+                              body: const Center(
+                                child: Text(
+                                  'Usted está a punto de comenzar el partido.',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                      fontFamily: 'Lato'),
+                                ),
+                              ),
+                              btnOkColor: const Color(0xFF011C53),
+                              btnOkText: 'Ir al partido',
+                              btnOkOnPress: () {
+                                Navigator.of(context).pushNamedAndRemoveUntil(
+                                    MatchPage.id,
+                                    (Route<dynamic> route) => false);
+                              },
+                            ).show();
                           },
                         ),
                       ],

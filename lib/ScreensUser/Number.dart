@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:soccer_management/ScreensUser/principal.dart';
 import 'package:soccer_management/bottom_drawer_layout.dart';
 
+import '../api/bd_users.dart';
+
 class NumberPage extends StatelessWidget {
   static String id = 'Number_page';
 
@@ -56,8 +58,12 @@ class NumberPage extends StatelessWidget {
           /**
            * Nombre del jugador
            */
-          const Text(
-            'Mario Ledezma',
+          Text(
+            (usersName.containsKey(correoo))
+            ? '${usersName[correoo]}'
+            : (refereesName.containsKey(correoo))
+                ? '${refereesName[correoo]}'
+                : 'Error al obtener el nombre',
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.bold,

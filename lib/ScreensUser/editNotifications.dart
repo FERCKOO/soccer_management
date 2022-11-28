@@ -1,5 +1,6 @@
 // ignore_for_file: file_names, camel_case_types, use_key_in_widget_constructors
 
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 class editNotificationsPage extends StatelessWidget {
@@ -70,7 +71,7 @@ class editNotificationsPage extends StatelessWidget {
                       style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
                     ),
                     /**
-                   * Switch para activar el dark mode
+                   * Switch
                   */
                     _switchNotifyPhone(),
                   ],
@@ -101,7 +102,7 @@ class editNotificationsPage extends StatelessWidget {
                       style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
                     ),
                     /**
-                   * Switch para activar el dark mode
+                   * Switch
                   */
                     _switchNotifyEmail(),
                   ],
@@ -116,14 +117,31 @@ class editNotificationsPage extends StatelessWidget {
 }
 
 Widget _switchNotifyEmail() {
-  return _switch();
+  return _switch(
+    text: '''Indique con cuantas horas de antelacion quiere que le lleguen notificaciones a su correo.
+                          ''',
+    items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10'],
+  );
 }
 
 Widget _switchNotifyPhone() {
-  return _switch();
+  return _switch(
+    text: '''Indique con cuantas horas de antelacion quiere que le lleguen notificaciones a su telefono.
+                          ''',
+    items: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
+  );
 }
 
 class _switch extends StatefulWidget {
+  final String text;
+  final items;
+
+  _switch({
+    required this.text,
+    required this.items
+    
+  });
+
   @override
   State<StatefulWidget> createState() => _switchState();
 }
@@ -141,6 +159,86 @@ class _switchState extends State<_switch> {
           setState(() {
             _value = value;
           });
+
+          (_value)
+              ? AwesomeDialog(
+                  dialogType: DialogType.noHeader,
+                  context: context,
+                  // ignore: deprecated_member_use
+                  animType: AnimType.SCALE,
+                  title: 'Notificacion',
+                  body: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          widget.text,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Lato'),
+                        ),
+                        _DropDown(
+                          text: '   Hora',
+                          items: widget.items,
+                        ),
+                      ],
+                    ),
+                  ),
+                  btnOkColor: const Color(0xFF011C53),
+                  btnOkText: 'Ok',
+                  btnOkOnPress: () {},
+                ).show()
+              : null;
         });
+  }
+}
+
+class _DropDown extends StatefulWidget {
+  String text;
+  var items = [''];
+
+  _DropDown({
+    required this.text,
+    required this.items
+  });
+
+  @override
+  State<StatefulWidget> createState() => _DropDownState();
+}
+
+class _DropDownState extends State<_DropDown> {
+  String? _value;
+
+  @override
+  Widget build(BuildContext context) {
+    final sizeScreen = MediaQuery.of(context).size;
+
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(5),
+        border: Border.all(color: Colors.grey.shade500),
+      ),
+      child: SizedBox(
+        width: sizeScreen.width * .85,
+        height: sizeScreen.height * .058,
+        child: DropdownButtonHideUnderline(
+          child: DropdownButton(
+              isExpanded: true,
+              hint: Text(widget.text),
+              value: _value,
+              style: const TextStyle(color: Colors.black, fontSize: 14),
+              items: widget.items.map((String posiciones) {
+                return DropdownMenuItem(
+                  value: posiciones,
+                  child: Text(posiciones),
+                );
+              }).toList(),
+              onChanged: (String? newValue) => setState(() {
+                    _value = newValue!;
+                  })),
+        ),
+      ),
+    );
   }
 }

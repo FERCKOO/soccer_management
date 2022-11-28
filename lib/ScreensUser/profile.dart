@@ -52,14 +52,22 @@ class PorfilePage extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      (userName.containsKey(correoo)) ? '${userName[correoo]}' : 'Error al obtener el nombre',
+                      (usersName.containsKey(correoo))
+                          ? '${usersName[correoo]}'
+                          : (refereesName.containsKey(correoo))
+                              ? '${refereesName[correoo]}'
+                              : 'Error al obtener el nombre',
                       style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                           fontFamily: 'Lato'),
                     ),
                     Text(
-                      (userName.containsKey(correoo)) ? correoo : 'Error al obtener el correo',
+                      (usersName.containsKey(correoo))
+                          ? correoo
+                          : (refereesName.containsKey(correoo))
+                          ? correoo
+                          : 'Error al obtener el correo',
                       style: TextStyle(
                           color: Color(0xFFC8C8C8),
                           fontSize: 15,

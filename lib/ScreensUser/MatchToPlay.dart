@@ -1,12 +1,10 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_local_variable
 import 'package:flutter/material.dart';
 
+import '../api/bd_users.dart';
+
 class MatchToPlay extends StatelessWidget {
   static String id = 'MatchToPlay_Page';
-
-  List players_firstTeam = [9, 10, 3, 18, 18, 3, 7, 20];
-
-  List players_secondTeam = [1, 8, 10, 7, 35, 2, 17, 14, 15];
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +46,7 @@ class MatchToPlay extends StatelessWidget {
             padding: EdgeInsets.only(top: sizeScreen.width * .03),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [ 
+              children: [
                 /*
                  * Imagen del equipo 1.
                 */
@@ -168,7 +166,6 @@ class MatchToPlay extends StatelessWidget {
           SizedBox(height: sizeScreen.height * .01),
           _etiqueta('Jugadores', sizeScreen),
           SizedBox(height: sizeScreen.height * .01),
-          
           Expanded(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -206,8 +203,7 @@ class MatchToPlay extends StatelessWidget {
                                   backgroundColor: Colors.red,
                                 ),
                                 title: Text(
-                                  (players_firstTeam.elementAt(index))
-                                      .toString(),
+                                  '#${players_firstTeam.keys.elementAt(index)} ${players_firstTeam.values.elementAt(index).split(' ').first}',
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Lato',
@@ -258,13 +254,12 @@ class MatchToPlay extends StatelessWidget {
                                   backgroundColor: Colors.red,
                                 ),
                                 title: Text(
-                                    (players_secondTeam.elementAt(index))
-                                        .toString(),
-                                        style: const TextStyle(
+                                  '#${players_secondTeam.keys.elementAt(index)} ${(players_secondTeam.values.elementAt(index)).split(' ').first}',
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Lato',
                                       fontSize: 16),
-                                      ),
+                                ),
                               ),
                             );
                           },
@@ -273,89 +268,6 @@ class MatchToPlay extends StatelessWidget {
               ],
             ),
           ),
-
-
-          /*(players_firstTeam.isEmpty)
-              ? Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: const [
-                      Text(
-                        'Sin jugadores',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Lato'),
-                      ),
-                    ],
-                  ),
-                )
-              : Expanded(
-                  child: Container(
-                    child: Row(
-                      children: [
-                        /**
-                         * Listview del primer equipo
-                         */
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: players_firstTeam.length,
-                            itemBuilder: (context, int index) {
-                              return GestureDetector(
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  elevation: 4,
-                                  shadowColor: Color(0xFFE51E3F),
-                                  child: ListTile(
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.red,
-                                    ),
-                                    title: Text(
-                                        (players_firstTeam.elementAt(index))
-                                            .toString()),
-                                  ),
-                                ),
-                                onTap: () {},
-                              );
-                            },
-                          ),
-                        ),
-                        /**
-                         * Listview del segundo equipo
-                         */
-                        Expanded(
-                          child: ListView.builder(
-                            shrinkWrap: true,
-                            itemCount: players_secondTeam.length,
-                            itemBuilder: (context, int index) {
-                              return GestureDetector(
-                                child: Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(8),
-                                  ),
-                                  elevation: 4,
-                                  shadowColor: Color(0xFFE51E3F),
-                                  child: ListTile(
-                                    leading: CircleAvatar(
-                                      backgroundColor: Colors.red,
-                                    ),
-                                    title: Text(
-                                        (players_secondTeam.elementAt(index))
-                                            .toString()),
-                                  ),
-                                ),
-                                onTap: () {},
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),*/
         ],
       ),
     ));

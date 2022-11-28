@@ -10,7 +10,7 @@ import 'team.dart';
 // ignore: use_key_in_widget_constructors
 class PrincipalPage extends StatelessWidget {
   static String id = "Principal_page";
-  final int _cantTeams = 1;
+  final int _cantTeams = 0;
   @override
   Widget build(BuildContext context) {
     final Size sizeScreen = MediaQuery.of(context).size;
@@ -88,7 +88,11 @@ Widget _body(Size sizeScreen, int _cantTeams) {
            * Nombre del jugador
            */
       Text(
-        (userName.containsKey(correoo)) ? '${userName[correoo]}' : 'Error al obtener el nombre',
+        (usersName.containsKey(correoo))
+            ? '${usersName[correoo]}'
+            : (refereesName.containsKey(correoo))
+                ? '${refereesName[correoo]}'
+                : 'Error al obtener el nombre',
         style: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.bold,
