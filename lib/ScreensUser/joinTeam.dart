@@ -18,8 +18,7 @@ class JoinTeamPageState extends State<JoinTeamPage> {
     final sizeScreen = MediaQuery.of(context).size;
     //final nameOfTeam nameTeamSelected = ModalRoute.of(context)?.settings.arguments;
 
-    List<String> _teams = ['Venom', 'Yoguiños', 'Salazar', 'Panditas', 'Farm',
-                            'ambar'];
+    List<String> _teams = ['Venom', 'Yoguinos', 'Salazar', 'Panditas', 'Farm'];
 
     return SafeArea(
       child: Scaffold(
@@ -57,15 +56,15 @@ class JoinTeamPageState extends State<JoinTeamPage> {
               * Imagen del usuario.
             */
             Container(
-              padding: EdgeInsets.only(top: sizeScreen.width * .1),
+              padding: EdgeInsets.only(top: sizeScreen.width * .05),
               alignment: Alignment.topCenter,
-              child: const Icon(
-                Icons.image,
-                size: 70,
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage('images/leagues/$ligaa.png'),
               ),
             ),
             /**
-           * Nombre del jugador
+           * Nombre del equipo
            */
             Text(
               ligaa,
@@ -122,7 +121,10 @@ GestureDetector GestureDetectorLeagues(
       elevation: 7,
       shadowColor: Color(0xFFE51E3F),
       child: ListTile(
-        leading: CircleAvatar(),
+        leading: CircleAvatar(
+          backgroundImage:
+              AssetImage('images/teams/${teams.elementAt(index)}.jpg'),
+        ),
         title: Text(teams.elementAt(index)),
         trailing: IconButton(
           icon: Icon(Icons.add),
@@ -147,7 +149,8 @@ GestureDetector GestureDetectorLeagues(
               btnOkText: 'Continuar',
               btnOkOnPress: () {
                 Navigator.of(context).pushNamedAndRemoveUntil(
-                    LayoutBottomNavigatorBarUser.id, (Route<dynamic> route) => false);
+                    LayoutBottomNavigatorBarUser.id,
+                    (Route<dynamic> route) => false);
               },
             ).show();
           },

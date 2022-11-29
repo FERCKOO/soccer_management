@@ -72,8 +72,8 @@ class JoinLeaguePage extends StatelessWidget {
               (usersName.containsKey(correoo))
                   ? '${usersName[correoo]}'
                   : (refereesName.containsKey(correoo))
-                  ? '${refereesName[correoo]}'
-                  : 'Error al obtener el nombre',
+                      ? '${refereesName[correoo]}'
+                      : 'Error al obtener el nombre',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
@@ -113,7 +113,10 @@ class JoinLeaguePage extends StatelessWidget {
                       elevation: 7,
                       shadowColor: Color(0xFFE51E3F),
                       child: ListTile(
-                        leading: CircleAvatar(),
+                        leading: CircleAvatar(
+                          backgroundImage: AssetImage(
+                              'images/leagues/${_teams.elementAt(index)}.png'),
+                        ),
                         title: Text(_teams.elementAt(index)),
                       ),
                     ),
@@ -121,6 +124,7 @@ class JoinLeaguePage extends StatelessWidget {
                       ligaa = _teams.elementAt(index);
 
                       print(ligaa);
+
                       Navigator.pushNamed(context, JoinTeamPage.id,
                           arguments: nameOfTeam(
                             _teams.elementAt(index),

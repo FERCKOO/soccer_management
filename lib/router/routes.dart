@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 import '../ScreensUser/Number.dart';
 import '../ScreensUser/editNotifications.dart';
+import '../ScreensUser/notificationsAndDarkMode.dart';
 import '../ScreensUser/team.dart';
 import '../ScreensUser/MatchToPlay.dart';
 import '../ScreensUser/changePass.dart';
@@ -30,6 +31,7 @@ var customRoutes = <String, WidgetBuilder>{
   JoinTeamPage.id: (_) => JoinTeamPage(),
   PorfilePage.id: (_) => PorfilePage(),
   EditDataPage.id: (_) => EditDataPage(),
+  NotificationsAndDarkMode.id: (_) => NotificationsAndDarkMode(),
   ChangePassPage.id: (_) => ChangePassPage(),
   editNotificationsPage.id: (_) => editNotificationsPage(),
   TeamPage.id: (_) => TeamPage(),

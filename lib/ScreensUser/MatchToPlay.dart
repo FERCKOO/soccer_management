@@ -1,10 +1,14 @@
 // ignore_for_file: use_key_in_widget_constructors, unused_local_variable
+
 import 'package:flutter/material.dart';
 
 import '../api/bd_users.dart';
 
 class MatchToPlay extends StatelessWidget {
   static String id = 'MatchToPlay_Page';
+
+  String team1 = 'Venom';
+  String team2 = 'Yoguinos';
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +58,7 @@ class MatchToPlay extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: sizeScreen.width * .1,
+                      backgroundImage: AssetImage('images/teams/$team1.jpg'),
                     ),
                     SizedBox(
                       width: sizeScreen.width * .25,
@@ -61,8 +66,8 @@ class MatchToPlay extends StatelessWidget {
                     /**
                     * Nombre del Equipo 1
                     */
-                    const Text(
-                      'Venom',
+                    Text(
+                      team1,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -70,22 +75,6 @@ class MatchToPlay extends StatelessWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const Text(
-                      'Goles',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Lato',
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const Text(
-                      '0',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Lato',
-                      ),
-                      textAlign: TextAlign.center,
-                    )
                   ],
                 ),
                 Column(children: const [
@@ -99,7 +88,7 @@ class MatchToPlay extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   Text(
-                    'Hora partido',
+                    '',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -112,6 +101,7 @@ class MatchToPlay extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: sizeScreen.width * .1,
+                      backgroundImage: AssetImage('images/teams/$team2.jpg'),
                     ),
                     SizedBox(
                       width: sizeScreen.width * .25,
@@ -119,8 +109,8 @@ class MatchToPlay extends StatelessWidget {
                     /**
                     * Nombre del equipo 2
                     */
-                    const Text(
-                      'Yoguiños',
+                    Text(
+                      team2,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -128,21 +118,6 @@ class MatchToPlay extends StatelessWidget {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    const Text(
-                      'Goles',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Lato',
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const Text(
-                      '0',
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontFamily: 'Lato',
-                      ),
-                    )
                   ],
                 ),
               ],
@@ -199,8 +174,12 @@ class MatchToPlay extends StatelessWidget {
                               elevation: 4,
                               shadowColor: const Color(0xFFE51E3F),
                               child: ListTile(
-                                leading: const CircleAvatar(
+                                leading: CircleAvatar(
                                   backgroundColor: Colors.red,
+                                  child: Text(
+                                    '${players_firstTeam.values.elementAt(index).split(' ').first.characters.characterAt(0)}',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                                 title: Text(
                                   '#${players_firstTeam.keys.elementAt(index)} ${players_firstTeam.values.elementAt(index).split(' ').first}',
@@ -252,6 +231,10 @@ class MatchToPlay extends StatelessWidget {
                               child: ListTile(
                                 leading: CircleAvatar(
                                   backgroundColor: Colors.red,
+                                  child: Text(
+                                    '${players_secondTeam.values.elementAt(index).split(' ').first.characters.characterAt(0)}',
+                                    style: TextStyle(color: Colors.white),
+                                  ),
                                 ),
                                 title: Text(
                                   '#${players_secondTeam.keys.elementAt(index)} ${(players_secondTeam.values.elementAt(index)).split(' ').first}',

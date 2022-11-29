@@ -180,7 +180,7 @@ class _LayoutBottomNavigatorBarRefereeState
                   },
                 ),
                 Text(
-                  'Equipos',
+                  'Partidos',
                   style: TextStyle(
                     color: _selectedIndex != 0
                         ? Colors.white

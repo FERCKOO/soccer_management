@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:soccer_management/ScreensUser/editNotifications.dart';
+import 'package:soccer_management/ScreensUser/notificationsAndDarkMode.dart';
 import '../api/bd_users.dart';
 import '../logIn.dart';
 import 'editData.dart';
@@ -32,172 +33,108 @@ class PorfilePage extends StatelessWidget {
             ),
           ),
           centerTitle: true,
+          actions: [
+            IconButton(
+              color: const Color(0xFF011C53),
+              icon: const Icon(Icons.build_sharp),
+              onPressed: () {
+                Navigator.pushNamed(context, NotificationsAndDarkMode.id);
+              },
+            )
+          ],
         ),
-        body: Column(
-          children: [
-            SizedBox(
-              height: sizeScreen.height * .1,
-            ),
+        body: Center(
+          child: Column(
+            children: [
+              SizedBox(height: sizeScreen.height * .1),
 
-            /**
-              * Zona de datos del usuario
-            */
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Icon(
-                  Icons.person_rounded,
-                  size: sizeScreen.width * .11,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      (usersName.containsKey(correoo))
-                          ? '${usersName[correoo]}'
-                          : (refereesName.containsKey(correoo))
-                              ? '${refereesName[correoo]}'
-                              : 'Error al obtener el nombre',
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Lato'),
-                    ),
-                    Text(
-                      (usersName.containsKey(correoo))
-                          ? correoo
-                          : (refereesName.containsKey(correoo))
-                          ? correoo
-                          : 'Error al obtener el correo',
-                      style: TextStyle(
-                          color: Color(0xFFC8C8C8),
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Lato'),
-                    )
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(height: sizeScreen.height * .1),
-            /**
-               * Detector de gestos para click en el container
-               * Container con "editar perfil"
-               */
-            GestureDetector(
-              child: Container(
-                alignment: AlignmentDirectional.topStart,
-                margin: EdgeInsetsDirectional.only(
-                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-                padding: EdgeInsets.symmetric(
-                  vertical: sizeScreen.height * .025,
-                ),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Color(0xFFC8C8C8),
-                      width: 2,
-                    ),
+              /**
+                * Zona de datos del usuario
+              */
+              Icon(
+                Icons.person_rounded,
+                size: sizeScreen.width * .11,
+              ),
+              SizedBox(height: sizeScreen.height * .02),
+              Text(
+                (usersName.containsKey(correoo))
+                    ? '${usersName[correoo]}'
+                    : (refereesName.containsKey(correoo))
+                        ? '${refereesName[correoo]}'
+                        : 'Error al obtener el nombre',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato'),
+              ),
+              SizedBox(height: sizeScreen.height * .01),
+              Text(
+                (usersName.containsKey(correoo))
+                    ? correoo
+                    : (refereesName.containsKey(correoo))
+                        ? correoo
+                        : 'Error al obtener el correo',
+                style: TextStyle(
+                    color: Color(0xFFC8C8C8),
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Lato'),
+              ),
+              SizedBox(height: sizeScreen.height * .1),
+              /**
+                 * Detector de gestos para click en el container
+                 * Container con "editar perfil"
+                 */
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: const Color(0xffF4F4F4),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: sizeScreen.width * .3,
+                    vertical: sizeScreen.height * .029,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: const Text(
+                child: Text(
                   'Editar perfil',
                   textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
+                  style: TextStyle(
+                      color: Colors.black, fontSize: 20, fontFamily: 'Lato'),
                 ),
+                onPressed: () {
+                  Navigator.pushNamed(context, EditDataPage.id);
+                },
               ),
-              onTap: () {
-                Navigator.pushNamed(context, EditDataPage.id);
-              },
-            ),
-            SizedBox(height: sizeScreen.height * .05),
-            /**
-               * Detector de gestos para click en el container
-               * Container con "Notificaciones"
-               */
-            GestureDetector(
-              child: Container(
-                alignment: AlignmentDirectional.topStart,
-                margin: EdgeInsetsDirectional.only(
-                    start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-                padding:
-                    EdgeInsets.symmetric(vertical: sizeScreen.height * .025),
-                decoration: const BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(
-                      color: Color(0xFFC8C8C8),
-                      width: 2,
+              SizedBox(height: sizeScreen.height * .2),
+              /**
+                   * GestureDetector para detectar pulsacion
+                   * en el texto de "Cerrar sesion"
+                   */
+              Container(
+                margin: EdgeInsetsDirectional.only(top: sizeScreen.height * .1),
+                child: GestureDetector(
+                  // Detecta alguna accion en texto
+
+                  onTap: (() {
+                    Navigator.of(context).pushNamedAndRemoveUntil(
+                        LogInPage.id, (Route<dynamic> route) => false);
+                  }),
+                  // Detecta alguna accion en texto
+
+                  child: const Text(
+                    'Cerrar sesión',
+                    style: TextStyle(
+                      fontFamily: 'Lato',
+                      fontSize: 16,
+                      color: Colors.black,
+                      decoration: TextDecoration.underline,
                     ),
                   ),
                 ),
-                child: const Text(
-                  'Notificaciones',
-                  textAlign: TextAlign.left,
-                  style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
-                ),
               ),
-              onTap: () {
-                Navigator.pushNamed(context, editNotificationsPage.id);
-              },
-            ),
-            SizedBox(height: sizeScreen.height * .06),
-            /**
-               * Container para el dark mode
-               */
-            Container(
-              alignment: AlignmentDirectional.topStart,
-              margin: EdgeInsetsDirectional.only(
-                  start: sizeScreen.width * .05, end: sizeScreen.width * .09),
-              padding: EdgeInsets.symmetric(vertical: sizeScreen.height * .025),
-              decoration: const BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: Color(0xFFC8C8C8),
-                    width: 2,
-                  ),
-                ),
-              ),
-              child: Row(
-                children: [
-                  const Text(
-                    'Modo obscuro',
-                    textAlign: TextAlign.left,
-                    style: TextStyle(fontSize: 20, fontFamily: 'Lato'),
-                  ),
-                  /**
-                   * Switch para activar el dark mode
-                  */
-                  _switch()
-                ],
-              ),
-            ),
-
-            /**
-                 * GestureDetector para detectar pulsacion
-                 * en el texto de "Cerrar sesion"
-                 */
-            Container(
-              margin: EdgeInsetsDirectional.only(top: sizeScreen.height * .1),
-              child: GestureDetector(
-                // Detecta alguna accion en texto
-
-                onTap: (() {
-                  Navigator.of(context).pushNamedAndRemoveUntil(
-                      LogInPage.id, (Route<dynamic> route) => false);
-                }),
-                // Detecta alguna accion en texto
-
-                child: const Text(
-                  'Cerrar sesión',
-                  style: TextStyle(
-                    fontFamily: 'Lato',
-                    fontSize: 16,
-                    color: Colors.black,
-                    decoration: TextDecoration.underline,
-                  ),
-                ),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

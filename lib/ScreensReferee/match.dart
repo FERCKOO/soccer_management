@@ -20,6 +20,9 @@ class MatchPageState extends State<MatchPage> {
   Widget build(BuildContext context) {
     final sizeScreen = MediaQuery.of(context).size;
 
+    String team1 = 'Venom';
+    String team2 = 'Yoguinos';
+
     return SafeArea(
         child: Scaffold(
       backgroundColor: const Color(0xffF4F4F4),
@@ -65,6 +68,7 @@ class MatchPageState extends State<MatchPage> {
                   children: [
                     CircleAvatar(
                       radius: sizeScreen.width * .1,
+                      backgroundImage: AssetImage('images/teams/$team1.jpg'),
                     ),
                     SizedBox(
                       width: sizeScreen.width * .25,
@@ -72,8 +76,8 @@ class MatchPageState extends State<MatchPage> {
                     /**
                     * Nombre del Equipo 1
                     */
-                    const Text(
-                      'Venom',
+                    Text(
+                      team1,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -134,6 +138,7 @@ class MatchPageState extends State<MatchPage> {
                   children: [
                     CircleAvatar(
                       radius: sizeScreen.width * .1,
+                      backgroundImage: AssetImage('images/teams/$team2.jpg'),
                     ),
                     SizedBox(
                       width: sizeScreen.width * .25,
@@ -141,8 +146,8 @@ class MatchPageState extends State<MatchPage> {
                     /**
                     * Nombre del equipo 2
                     */
-                    const Text(
-                      'Yoguiños',
+                    Text(
+                      team2,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -228,8 +233,12 @@ class MatchPageState extends State<MatchPage> {
                                 children: [
                                   Expanded(
                                     child: ListTile(
-                                      leading: const CircleAvatar(
+                                      leading: CircleAvatar(
                                         backgroundColor: Colors.red,
+                                        child: Text(
+                                          '${players_firstTeam.values.elementAt(index).split(' ').first.characters.characterAt(0)}',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
                                       ),
                                       title: Text(
                                         '#${players_firstTeam.keys.elementAt(index)} ${players_firstTeam.values.elementAt(index).split(' ').first}',
@@ -284,13 +293,18 @@ class MatchPageState extends State<MatchPage> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               elevation: 4,
-                              shadowColor: Color(0xFFE51E3F),
+                              shadowColor: const Color(0xFFE51E3F),
                               child: Row(
                                 children: [
                                   Expanded(
                                     child: ListTile(
                                       leading: CircleAvatar(
                                         backgroundColor: Colors.red,
+                                        child: Text(
+                                          '${players_secondTeam.values.elementAt(index).split(' ').first.characters.characterAt(0)}',
+                                          style: const TextStyle(
+                                              color: Colors.white),
+                                        ),
                                       ),
                                       title: Text(
                                         '#${players_secondTeam.keys.elementAt(index)} ${(players_secondTeam.values.elementAt(index)).split(' ').first}',
